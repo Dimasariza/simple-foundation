@@ -1,6 +1,34 @@
-@tailwind base;
+@layer tailwind-base, primereact, tailwind-utilities;
+
+/* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
+@import 'primereact/resources/themes/lara-light-blue/theme.css' layer(primereact);
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: transparent;
+  cursor: pointer;
+  position: absolute;
+  background: transparent;
+  /* 
+  bottom: 0;
+  height: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: auto; */
+}
+
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 /* :root {
   --foreground-rgb: 0, 0, 0;

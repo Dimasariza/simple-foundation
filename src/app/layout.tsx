@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { PrimeReactProvider } from "primereact/api";
 import "./globals.css";
-import 'react-datepicker/dist/react-datepicker.css'
-
+import "primereact/resources/themes/lara-light-cyan/theme.css";
+import 'primeicons/primeicons.css';
+import { locale, addLocale, updateLocaleOption, updateLocaleOptions, localeOption, localeOptions } from 'primereact/api';
+import { useEffect } from "react";
+import Tailwind from 'primereact/passthrough/tailwind';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,9 +20,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const value = {
+    // unstyled: true,
+    // pt: Tailwind,
+    locale: 'es',
+  }
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <PrimeReactProvider value={value}>
+          {children}
+        </PrimeReactProvider>
+      </body>
     </html>
   );
 }
