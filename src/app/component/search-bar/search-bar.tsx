@@ -3,7 +3,7 @@
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
 
-const input = styled(InputText)`
+const Input = styled(InputText)`
     margin: 1rem;
     width: 1000px;
     height: 10px;
@@ -16,16 +16,17 @@ const input = styled(InputText)`
     }
 
     &:hover {
-        // background-color: red;
+        background-color: red;
     }
 `;
 
-const AppInput = styled(input)`
-    &::before {
-        content: "🎉";
-        display: block;
-    }
-`
+const AppSearchBar = (props: any) => {
+    return (
+        <div>
+            <img src="/icons/plus.svg" alt="" />
+            <Input {...props} />
+        </div>
+    )
+}
 
-
-export default AppInput;
+export default AppSearchBar;
