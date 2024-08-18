@@ -21,7 +21,7 @@ export default function Home() {
  
   return (
     <div>
-      <AppInput />
+      <AppInput placeholder="Search" />
       {/* <Calendar value={date} onChange={(e) => setDate(e.value)}  icon={() => <i className="pi pi-calendar" />}/> */}
     </div>
   );
