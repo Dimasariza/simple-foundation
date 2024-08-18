@@ -7,7 +7,7 @@ const DatePicker = styled(Calendar)`
     border-radius: 0;
     margin: 2rem;
 
-    input {
+    .p-inputtext {
         background: red;
         border-radius: 0;
     }
