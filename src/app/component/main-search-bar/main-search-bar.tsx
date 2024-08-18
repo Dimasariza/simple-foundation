@@ -1,17 +1,17 @@
-"use client"
-
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
 
 const Input = styled(InputText)`
-    width: 581px;
-    height: 40px;
+    width: 1637px;
+    height: 58px;
     padding-left: 1rem;
-    border: 1px solid #828282;
-    border-radius: 5px;
+    border-radius: 0;
+    background: #4F4F4F;
 
     &::placeholder {
-        color: #333333;
+        font-weight: bold;
+        opacity: 0.5;
+        color: red;
         padding: 4rem;
     }
 `;
@@ -23,20 +23,20 @@ const InputWrapper = styled.div`
 
 const SearchIcon = styled.img`
     position: absolute;
-    top: 14px;
-    bottom: 14px;
-    right: 86px;
-    width: 12px;
-    height: 12px;
+    top: 19px;
+    left: 26px;
+    bottom: 23px;
+    width: 16px;
+    height: 16px;
 `
 
-const AppSearchBar = (props: any) => {
+const AppMainSearchBar = (props: any) => {
     return (
         <InputWrapper>
-            <SearchIcon src="/icons/searchbar-icon.svg"  alt="search icons" />
+            <SearchIcon src="/icons/main-search.svg"  alt="search icons" />
             <Input {...props} />
         </InputWrapper>
     )
 }
 
-export default AppSearchBar;
+export default AppMainSearchBar;
