@@ -12,31 +12,6 @@
   @tailwind utilities;
 }
 
-.p-datepicker-header {
-  /* width: 100px !important; */
-  border-bottom: none;
-}
-
-.p-datepicker {
-  margin-left: 20rem;
-  box-shadow: none;
-}
-
-.p-highlight {
-  border: 1px solid black;
-}
-
-.p-datepicker-trigger {
-  background: none !important;
-  border: none;
-  border-radius: 0;
-  right: 3rem !important;
-}
-
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
-
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
