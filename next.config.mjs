@@ -1,8 +1,14 @@
 /** @type {import('next').NextConfig} */
-// const path = require('path')
+
 const nextConfig = {
     sassOptions: {
-        // includePaths: [path.join(__dirname, 'styles')],
+    },
+    output: "export",
+    reactStrictMode: false,
+    trailingSlash: true,
+    env: {
+        PUBLIC_URL: process.env.PUBLIC_URL,
+        DB_URL: process.env.DB_URL,
     },
 };
 

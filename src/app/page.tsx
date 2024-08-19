@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { Calendar } from 'primereact/calendar';
 import { Nullable } from "primereact/ts-helpers";
 
@@ -15,28 +15,27 @@ import AppAvatarGroup from "./component/avatar/avatar-group";
 import AppDatePicker from "./component/date-picker/date-picker";
 import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
 import AppInbox from "./component/inbox/inbox";
+import AppChatInbox from "./component/chat-inbox/chat-inbox";
+import AppTaskList from "./component/task-list/task-list";
+import AppCheckBox from "./component/check-box/check-box";
  
 export default function Home() {
-  const [date, setDate] = React.useState<Nullable<Date>>(null);
+  const [date, setDate] = useState<Nullable<Date>>(null);
 
-  addLocale('es', {
-    firstDayOfWeek: 1,
-    dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
-  });
-
-  locale('es')
- 
   return (
     <div>
 
       <AppMainSearchBar />
 
-      <AppDatePicker value={date} onSelect={(e: any) => { setDate(e.value) }} selectOtherMonths={false} showOtherMonths={false} showIcon 
-      icon={() => <img src="/icons/calendar.svg" />} />
+      <AppDatePicker value={date} onSelect={(e: any) => { setDate(e.value) }} />
 
-      <AppAvatarGroup />
+      {/* <AppAvatarGroup />
 
-      <AppInbox />
+      <AppInbox /> */}
+
+      <AppChatInbox />
+
+      <AppTaskList />
 
 
     </div>

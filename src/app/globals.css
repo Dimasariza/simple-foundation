@@ -11,3 +11,16 @@
   @tailwind components;
   @tailwind utilities;
 }
+
+* {
+  ::-webkit-scrollbar {
+      width: 8px !important;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px !important;
+      border-radius: 10px !important;
+      background: #BDBDBD !important; 
+  }
+}
