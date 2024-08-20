@@ -17,7 +17,7 @@ import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
 import AppInbox from "./component/inbox/inbox";
 import AppChatInbox from "./component/chat-inbox/chat-inbox";
 import AppTaskList from "./component/task-list/task-list";
-import AppCheckBox from "./component/check-box/check-box";
+import AppQuickButton from "./component/quick-button/quick-button";
  
 export default function Home() {
   const [date, setDate] = useState<Nullable<Date>>(null);
@@ -27,15 +27,17 @@ export default function Home() {
 
       <AppMainSearchBar />
 
-      <AppDatePicker value={date} onSelect={(e: any) => { setDate(e.value) }} />
+      {/* <AppDatePicker value={date} onSelect={(e: any) => { setDate(e.value) }} /> */}
 
       {/* <AppAvatarGroup />
 
       <AppInbox /> */}
 
-      <AppChatInbox />
+      {/* <AppChatInbox /> */}
 
-      <AppTaskList />
+      {/* <AppTaskList /> */}
+
+      <AppQuickButton />
 
 
     </div>

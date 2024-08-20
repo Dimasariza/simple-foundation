@@ -9,10 +9,8 @@ import AppDatePicker from "../date-picker/date-picker";
 import { Nullable } from "primereact/ts-helpers";
 import { MenuItem } from "primereact/menuitem";
 import { Menu } from "primereact/menu";
-import AppCheckBox from "../check-box/check-box";
 import { Panel } from "primereact/panel";
 import { Avatar } from "primereact/avatar";
-
 
 const Task = styled.div`
 
@@ -21,7 +19,6 @@ const Task = styled.div`
 function AppTaskList() {
     const [selectedCity, setSelectedCity] = useState(null);
     const [checked, setChecked] = useState<any>(false);
-
 
     const cities = [
         { name: 'New York', code: 'NY' },
@@ -33,7 +30,7 @@ function AppTaskList() {
 
     const cardHeaderTemplate = () => {
         return (
-            <div className="card flex justify-content-center">
+            <div className="flex w-full justify-between bg-red-500">
                 <Dropdown 
                     value={selectedCity} 
                     onChange={(e) => setSelectedCity(e.value)} 
@@ -42,6 +39,8 @@ function AppTaskList() {
                     placeholder="Select a City" 
                     className="md:w-14rem" 
                 />
+
+                <Button label="New Task" />
             </div>
         )
     }
@@ -66,6 +65,10 @@ function AppTaskList() {
                 <div className="flex align-items-center gap-2">
                     <Checkbox onChange={e => setChecked(e.checked)} checked={checked} />
                     <span className="font-bold">Cross Reference with Jeanne for case</span>
+                </div>
+                <div>
+                    <span className="text-red-400">2 Days left</span>
+                    <span>01 Aug 2024</span>
                 </div>
                 <div>
                     {options.togglerElement}
@@ -94,7 +97,14 @@ function AppTaskList() {
     return (
         <Card header={cardHeaderTemplate}>
             <Panel headerTemplate={panelHeaderTemplate}  toggleable>
-                <AppDatePicker />
+                <div>
+                    <i className="pi pi-clock"></i>
+                    <AppDatePicker />
+                </div>
+                <div>
+                    <i className="pi pi-pencil"></i>
+                    <span>No Description</span>
+                </div>
             </Panel>
             <Task />
         </Card>
