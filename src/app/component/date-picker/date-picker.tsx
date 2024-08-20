@@ -1,7 +1,6 @@
-import { Calendar } from "primereact/calendar";
+import { Calendar, CalendarProps } from "primereact/calendar";
 import styled from "styled-components";
 import './date-picker.scss'
-import { addLocale, locale } from "primereact/api";
 
 const DatePicker = styled(Calendar)`
     border-radius: 0;
@@ -29,13 +28,7 @@ const DatePicker = styled(Calendar)`
 
 `  
 
-function AppDatePicker(props: any) {
-    addLocale('es', {
-        firstDayOfWeek: 1,
-        dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
-    });
-    
-    locale('es' )
+function AppDatePicker(props: CalendarProps) {
     return (    
         <DatePicker {...props} selectOtherMonths={false} showOtherMonths={false} showIcon 
         icon={() => <img src="/icons/calendar.svg" />} />

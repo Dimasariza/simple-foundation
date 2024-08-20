@@ -1,15 +1,15 @@
 "use client"
 
 import { DataScroller } from 'primereact/datascroller';
-import { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
-import { Rating } from "primereact/rating";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { ProductService } from "../../service/ProductService";
-import { Card } from "primereact/card";
 import styled from 'styled-components';
 import { Menu } from 'primereact/menu';
-import { MenuItem } from 'primereact/menuitem';
 import AppSearchBar from '../search-bar/search-bar';
+import AppCard from '../card/card';
+import { useDispatch } from 'react-redux';
+import { QuickTabsAction } from '../../redux/action/tabMenu';
 
 interface Product {
     id: string;
@@ -31,8 +31,10 @@ interface Massage {
 const InboxStyle = styled(DataScroller)`
     width: 708px;
     height: 726px;
-    border-radius: 5px;
-    border: 1px solid #BDBDBD;
+
+    .p-datascroller-list > li {
+        border: none;
+    }
 `
 
 const MassageStyle = styled.div<Massage>`
@@ -56,33 +58,49 @@ const MassageStyle = styled.div<Massage>`
     }
 `
 
-function AppChatInbox() {
+function AppGroupChatInbox() {
     const [products, setProducts] = useState<Product | any>([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         ProductService.getProducts().then((data) => setProducts(data));
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const menuLeft = useRef<Menu | any>(null);
-    const items: MenuItem[] = [
-        {
-            label: 'Refresh',
-            icon: 'pi pi-refresh'
-        },
-        {
-            label: 'Export',
-            icon: 'pi pi-upload'
-        }
-    ];
+    const menuRight = useRef<Menu | any>(null);
+    const menuItems = {
+        other: [
+            {
+                label: 'Share',
+            },
+            {
+                label: 'Reply',
+            }
+        ],
+        own: [
+            {
+                label: 'Edit',
+            },
+            {
+                label: 'Delete',
+            }
+        ]
+    }
 
     const itemTemplate = (data: any) => {
         return (
             <div>
                 <MassageStyle owner="own">
                     <span>You</span>
-                    <div className='msg-wrapper'>
-                        <Button  text icon={<img src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
-                        <Menu model={items} popup ref={menuLeft} />
+                    <div className='msg-wrapper' style={{border: "none"}}>
+                        <Button  
+                            text 
+                            icon={<img src='/icons/menu-deactive.svg'/>} 
+                            onClick={(event) => menuLeft.current.toggle(event)} 
+                            aria-controls="popup_menu_left" 
+                            aria-haspopup 
+                        />
+                        <Menu model={menuItems.own} popup ref={menuLeft} />
                         <div>
                             <span>
                                 No worries. It will be completed ASAP. I've asked him yesterday.
@@ -94,10 +112,16 @@ function AppChatInbox() {
                     </div>
                 </MassageStyle>
                 <MassageStyle >
-                    <span>You</span>
+                    <span>Other</span>
                     <div className='msg-wrapper'>
-                        <Button  text icon={<img src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
-                        <Menu model={items} popup ref={menuLeft} />
+                        <Button  
+                            text 
+                            icon={<img src='/icons/menu-deactive.svg'/>} 
+                            onClick={(event) => menuRight.current.toggle(event)} 
+                            aria-controls="popup_menu_left" 
+                            aria-haspopup 
+                        />
+                        <Menu model={menuItems.other} popup ref={menuRight} />
                         <div>
                             <span>
                                 No worries. It will be completed ASAP. I've asked him yesterday.
@@ -112,11 +136,15 @@ function AppChatInbox() {
         );
     };
 
+    const handleBackToInbox = () => {
+        dispatch(QuickTabsAction({name: "Inbox", group: "Inbox"}));  
+    }
+
     const header = (
         <div className="flex justify-between" style={{borderBottom: "1px solid #BDBDBD"}}>
             <div className="flex">
-                <Button icon="pi pi-arrow-left" text severity="secondary" />
-                <div className="flex" style={{flexDirection: "column"}}>
+                <Button icon="pi pi-arrow-left" onClick={handleBackToInbox} text severity="secondary" />
+                <div className="flex text-start" style={{flexDirection: "column"}}>
                     <span>I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHn]</span>
                     <span>3 Participants</span>
                 </div>
@@ -127,41 +155,42 @@ function AppChatInbox() {
 
     const footer = (
         <div>
+            <div style={{
+                position: "relative"
+            }}>
+                <span style={{position: "absolute", bottom: "10px"}}>test</span>
+            </div>
             <AppSearchBar />
         </div>
     )
 
     return (
-        <InboxStyle 
-            pt={{
-                header: {
-                    style: {
-                        padding: 0,
-                        background: "none",
-                        borderRadius: "10px"
+        <AppCard 
+            style={{
+                width: "708px",
+                height: "726px",
+                borderRadius: "5px",
+                overflow: "hidden"
+            }}
+        >
+            <InboxStyle 
+                value={products} 
+                itemTemplate={itemTemplate} 
+                rows={5} 
+                header={header} 
+                footer={footer}
+                inline 
+                scrollHeight="610px"
+                pt={{
+                    list: {
+                        style: {
+                            border: "none !important",
+                        }
                     }
-                },
-                item: {
-                    style: {
-                        border: "none"
-                    }
-                },
-                footer: {
-                    style: {
-                        background: "none",
-                        border: "none"
-                    }
-                }
-            }} 
-            value={products} 
-            itemTemplate={itemTemplate} 
-            rows={5} 
-            header={header} 
-            footer={footer}
-            inline 
-            scrollHeight="620px"
-        />
+                }}
+            />
+        </AppCard>
     )
 }
 
-export default AppChatInbox;
+export default AppGroupChatInbox;

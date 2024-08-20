@@ -7,6 +7,7 @@ const Input = styled(InputText)`
     padding-left: 1rem;
     border-radius: 0;
     background: #4F4F4F;
+    border: none;
 
     &::placeholder {
         font-weight: bold;
@@ -19,6 +20,7 @@ const Input = styled(InputText)`
 const InputWrapper = styled.div`
     position: relative;
     width: fit-content;
+    border: none;
 `
 
 const SearchIcon = styled.img`
@@ -32,7 +34,7 @@ const SearchIcon = styled.img`
 
 const AppMainSearchBar = (props: any) => {
     return (
-        <InputWrapper>
+        <InputWrapper className="!fixed top-0 right-0">
             <SearchIcon src="/icons/main-search.svg"  alt="search icons" />
             <Input {...props} />
         </InputWrapper>

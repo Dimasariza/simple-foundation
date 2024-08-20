@@ -1,45 +1,49 @@
 "use client"
 
-import React, { ReactNode, useState } from "react";
-import { Calendar } from 'primereact/calendar';
-import { Nullable } from "primereact/ts-helpers";
+import React from "react";
 
 import { locale, addLocale } from 'primereact/api';
-import { InputText } from "primereact/inputtext";
-import AppInput from "./component/input/input";
-import AppSearchBar from "./component/search-bar/search-bar";
-import { AvatarGroup } from "primereact/avatargroup";
-import { Avatar } from "primereact/avatar";
-import AppAvatar from "./component/avatar/avatar";
-import AppAvatarGroup from "./component/avatar/avatar-group";
-import AppDatePicker from "./component/date-picker/date-picker";
 import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
 import AppInbox from "./component/inbox/inbox";
-import AppChatInbox from "./component/chat-inbox/chat-inbox";
 import AppTaskList from "./component/task-list/task-list";
 import AppQuickButton from "./component/quick-button/quick-button";
+import { useSelector } from "react-redux";
+import AppGroupChatInbox from "./component/chat-inbox/group-chat-inbox";
  
 export default function Home() {
-  const [date, setDate] = useState<Nullable<Date>>(null);
+  addLocale('es', {
+    firstDayOfWeek: 1,
+    dayNamesMin: ['S', 'M', 'T', 'W', 'Th', 'F', 'S'],
+  });
+
+  locale('es');
+
+  const { tab } = useSelector((state: any) => state.QuickTabsReducer);
+
+  const switchQuickTabs = () => {
+    switch(tab?.group) {
+      case "Inbox":
+        if(tab?.name == "Inbox") {
+          return <AppInbox />;
+        } else if(tab.name == "Group-Inbox") {
+          return <AppGroupChatInbox />;
+        } else {
+          return <AppGroupChatInbox />;
+        }
+      case "Task":
+        return <AppTaskList />;
+      default:
+        return 
+    }
+  }
 
   return (
     <div>
-
       <AppMainSearchBar />
 
-      {/* <AppDatePicker value={date} onSelect={(e: any) => { setDate(e.value) }} /> */}
-
-      {/* <AppAvatarGroup />
-
-      <AppInbox /> */}
-
-      {/* <AppChatInbox /> */}
-
-      {/* <AppTaskList /> */}
+      { switchQuickTabs() }
 
       <AppQuickButton />
-
-
     </div>
   );
 }

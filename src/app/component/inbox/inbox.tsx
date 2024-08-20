@@ -9,6 +9,9 @@ import styled from "styled-components";
 import "./inbox.scss"
 import { ProductService } from "../../service/ProductService";
 import { ListBox } from "primereact/listbox";
+import AppCard from "../card/card";
+import { useDispatch, useSelector } from "react-redux";
+import { QuickTabsAction } from "../../redux/action/tabMenu";
 
 interface Product {
     id: string;
@@ -33,17 +36,22 @@ const ItemStyled = styled.div`
 function AppInbox() {
     const [products, setProducts] = useState<Product[] | any>();
     const [loading, setLoading] = useState<boolean>(true);
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000);
         ProductService.getProducts().then((data) => {
             setProducts(data)
-            setLoading(false)
         });
     }, [])
 
     const itemTemplate = (item: Product) => {
         return (
-            <ItemStyled>
+            <ItemStyled 
+                onClick={handleSelectedInbox}
+            >
                 <AppAvatarGroup />
                 <div className="w-full">
                     <div className="flex flex-column gap-2 xl:mr-8">
@@ -65,14 +73,12 @@ function AppInbox() {
         );
     };
 
+    const handleSelectedInbox = () => {
+        dispatch(QuickTabsAction({name: "Group-Inbox", group: "Inbox"}));  
+    }
+
     return (
-        <Card style={{
-            width: "734px",
-            height: "737px",
-            border: "1px solid #bdbdbd",
-            borderRadius: "5px"
-        }}
-        unstyled>
+        <AppCard style={{overflow: "visible"}}>
             {
                 loading 
                 ?   <div className="text-center" style={{height: "737px", alignContent: "center"}}>
@@ -86,12 +92,12 @@ function AppInbox() {
                             header: {
                                 style: {
                                     background: "none",
-                                    border: "none"
+                                    border: "none",
                                 }
                             },
                         }}
                         className="w-full md:w-14rem border-none" 
-                        listStyle={{ maxHeight: '500px' }} 
+                        listStyle={{ maxHeight: '680px' }} 
                         itemTemplate={itemTemplate} 
                         filter 
                         filterTemplate={<AppSearchBar placeholder="Search" />} 
@@ -99,7 +105,7 @@ function AppInbox() {
                         optionLabel="name"
                     />
             }
-        </Card>
+        </AppCard>
     )
 
 }
