@@ -3,6 +3,9 @@
 const nextConfig = {
     sassOptions: {
     },
+    images: {
+        unoptimized: true
+    },
     output: "export",
     reactStrictMode: false,
     trailingSlash: true,

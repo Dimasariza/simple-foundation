@@ -80,7 +80,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                                         className="bg-white" 
                                         rounded 
                                         text 
-                                        icon={<Image width={100} height={100} alt="quick button" src={url + "/icons/${i.icon}"}
+                                        icon={<Image width={100} height={100} alt="quick button" src={url + `/icons/${i.icon}`}
                                     />} />
                                 </ButtonWithLabel>
                             )
