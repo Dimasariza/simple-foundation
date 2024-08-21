@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
 import Image from "next/image";
-const url = process.env.PUBLIC_URL
+const url = process.env.PUBLIC_URL || ""
 
 const MainButton = styled(Button)`
     width: 68px !important;

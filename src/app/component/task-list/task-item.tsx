@@ -10,7 +10,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Panel } from "primereact/panel";
 import { IEditTaskItem, ITaskItemProps } from "../../types/task-item";
 import Image from "next/image";
-const url = process.env.PUBLIC_URL
+const url = process.env.PUBLIC_URL || ""
 
 function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({

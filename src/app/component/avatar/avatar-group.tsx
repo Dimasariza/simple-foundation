@@ -3,7 +3,7 @@
 import { AvatarGroup } from "primereact/avatargroup";
 import AppAvatar from "./avatar";
 
-const url = process.env.PUBLIC_URL
+const url = process.env.PUBLIC_URL || ""
 function AppAvatarGroup() { 
     return (
         <AvatarGroup>

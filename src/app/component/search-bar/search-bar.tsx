@@ -2,7 +2,7 @@
 
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
-const url = process.env.PUBLIC_URL
+const url = process.env.PUBLIC_URL || ""
 
 const Input = styled(InputText)`
     width: 581px;

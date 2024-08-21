@@ -11,7 +11,7 @@ import AppCard from '../card/card';
 import { useDispatch } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
-const url = process.env.PUBLIC_URL
+const url = process.env.PUBLIC_URL || ""
 
 interface Product {
     id: string;
