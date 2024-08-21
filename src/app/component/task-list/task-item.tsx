@@ -8,17 +8,8 @@ import { Button } from "primereact/button";
 import AppDatePicker from "../date-picker/date-picker";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Panel } from "primereact/panel";
-
-interface ITaskItemProps {
-    data: ITaskList
-    setTaskListData: Dispatch<ITaskList[]>
-}
-
-interface IEditTaskItem {
-    taskTitle: boolean
-    taskDescription: boolean
-    [key: string]: any
-}
+import { IEditTaskItem, ITaskItemProps } from "../../types/task-item";
+import Image from "next/image";
 
 function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
@@ -35,6 +26,15 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
 
     const handleEdit = (name: string) => {
         setEdit((prev) => ({...prev, [name]: !prev[name]}))
+    }
+
+    const handleCompletedTask = (e: CheckboxChangeEvent) => {
+        setTaskListData((prev: ITaskList[]) => prev.map((i) => {
+            if(data.id == i.id) {
+                return {...i, completed: e.checked}
+            }
+            return i
+        }))
     }
 
     const getDateStatus = () => {
@@ -59,7 +59,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
         return (
             <div className={className}>
                 <div className="flex align-items-center gap-2">
-                    <Checkbox checked={data?.completed} onChange={(e: CheckboxChangeEvent) => data.completed == e.checked} />
+                    <Checkbox checked={data?.completed} onChange={handleCompletedTask} />
                     {
                         edit.taskTitle
                         ? <InputText />
@@ -72,7 +72,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                 </div>
                 <div>
                     {options.togglerElement}
-                    <Button  text icon={<img src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
+                    <Button  text icon={<Image alt="menu" src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
                     <Menu model={items} popup ref={menuLeft} />
                 </div>
             </div>

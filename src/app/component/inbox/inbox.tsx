@@ -12,6 +12,7 @@ import { ListBox } from "primereact/listbox";
 import AppCard from "../card/card";
 import { useDispatch, useSelector } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
+import Image from "next/image";
 
 interface Product {
     id: string;
@@ -83,7 +84,7 @@ function AppInbox() {
                 loading 
                 ?   <div className="text-center" style={{height: "737px", alignContent: "center"}}>
                         <div className="flex justify-center">
-                            <img src="/icons/loading.svg" className="pi-spin align-center" />
+                            <Image alt="loading" src="/icons/loading.svg" className="pi-spin align-center" />
                         </div>
                         <span>Loading Chats...</span>
                     </div>

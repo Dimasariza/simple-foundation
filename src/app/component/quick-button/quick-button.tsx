@@ -6,6 +6,7 @@ import { motion, MotionProps } from "framer-motion"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
+import Image from "next/image";
 
 const MainButton = styled(Button)`
     width: 68px !important;
@@ -78,7 +79,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                                         className="bg-white" 
                                         rounded 
                                         text 
-                                        icon={<img src={`/icons/${i.icon}`}
+                                        icon={<Image alt="quick button" src={`/icons/${i.icon}`}
                                     />} />
                                 </ButtonWithLabel>
                             )
@@ -91,7 +92,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                     <MainButton 
                         severity="info"
                         onClick={() => {setExpandQuickTab((prev) => !prev)}}
-                        icon={<img src="/icons/cloud-lightning.svg" />} 
+                        icon={<Image alt="Main button" src="/icons/cloud-lightning.svg" />} 
                         rounded
                     />
                 }
@@ -116,7 +117,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                         {...props} 
                         rounded
                         className="bg-white" 
-                        icon={<img src={`/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
+                        icon={<Image alt="front button" src={`/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
                         text 
                     />
                 </div>

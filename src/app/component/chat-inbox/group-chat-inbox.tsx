@@ -10,6 +10,7 @@ import AppSearchBar from '../search-bar/search-bar';
 import AppCard from '../card/card';
 import { useDispatch } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
+import Image from 'next/image';
 
 interface Product {
     id: string;
@@ -95,7 +96,7 @@ function AppGroupChatInbox() {
                     <div className='msg-wrapper' style={{border: "none"}}>
                         <Button  
                             text 
-                            icon={<img src='/icons/menu-deactive.svg'/>} 
+                            icon={<Image alt='menu' src='/icons/menu-deactive.svg'/>} 
                             onClick={(event) => menuLeft.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
@@ -116,7 +117,7 @@ function AppGroupChatInbox() {
                     <div className='msg-wrapper'>
                         <Button  
                             text 
-                            icon={<img src='/icons/menu-deactive.svg'/>} 
+                            icon={<Image alt='menu' src='/icons/menu-deactive.svg'/>} 
                             onClick={(event) => menuRight.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
