@@ -1,3 +1,5 @@
+"use client"
+
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
 
@@ -32,11 +34,10 @@ const SearchIcon = styled.img`
     height: 16px;
 `
 
-const url = process.env.PUBLIC_URL || ""
 const AppMainSearchBar = (props: any) => {
     return (
         <InputWrapper className="!fixed top-0 right-0">
-            <SearchIcon src={url + `/icons/main-search.svg`}  alt="search icons" />
+            <SearchIcon src={`/icons/main-search.svg`}  alt="search icons" />
             <Input {...props} />
         </InputWrapper>
     )
