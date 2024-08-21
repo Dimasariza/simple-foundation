@@ -104,7 +104,7 @@ function AppGroupChatInbox() {
                         <Menu model={menuItems.own} popup ref={menuLeft} />
                         <div>
                             <span>
-                                No worries. It will be completed ASAP. I've asked him yesterday.
+                                No worries. It will be completed ASAP. I&apos;ve asked him yesterday.
                             </span>
                             <span>
                                 19.32
@@ -125,7 +125,7 @@ function AppGroupChatInbox() {
                         <Menu model={menuItems.other} popup ref={menuRight} />
                         <div>
                             <span>
-                                No worries. It will be completed ASAP. I've asked him yesterday.
+                                No worries. It will be completed ASAP. I&apos;ve asked him yesterday.
                             </span>
                             <span>
                                 19.32
