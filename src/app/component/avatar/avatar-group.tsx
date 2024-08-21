@@ -3,10 +3,11 @@
 import { AvatarGroup } from "primereact/avatargroup";
 import AppAvatar from "./avatar";
 
+const url = process.env.PUBLIC_URL
 function AppAvatarGroup() { 
     return (
         <AvatarGroup>
-            <AppAvatar shape="circle" image="/icons/person-1.svg" pt={{
+            <AppAvatar shape="circle" image={url + "/icons/person-1.svg"} pt={{
                 image: {
                     width: "18px",
                     height: "18px"
@@ -17,7 +18,7 @@ function AppAvatarGroup() {
             }}
             />
 
-            <AppAvatar shape="circle" image="/icons/person-2.svg" pt={{
+            <AppAvatar shape="circle" image={url + "/icons/person-2.svg"} pt={{
                 image: {
                     width: "18px",
                     height: "18px"

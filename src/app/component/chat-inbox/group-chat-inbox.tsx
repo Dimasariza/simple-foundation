@@ -11,6 +11,7 @@ import AppCard from '../card/card';
 import { useDispatch } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
+const url = process.env.PUBLIC_URL
 
 interface Product {
     id: string;
@@ -96,7 +97,7 @@ function AppGroupChatInbox() {
                     <div className='msg-wrapper' style={{border: "none"}}>
                         <Button  
                             text 
-                            icon={<Image width={100} height={100} alt='menu' src='/icons/menu-deactive.svg'/>} 
+                            icon={<Image width={100} height={100} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuLeft.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
@@ -117,7 +118,7 @@ function AppGroupChatInbox() {
                     <div className='msg-wrapper'>
                         <Button  
                             text 
-                            icon={<Image width={100} height={100} alt='menu' src='/icons/menu-deactive.svg'/>} 
+                            icon={<Image width={100} height={100} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuRight.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 

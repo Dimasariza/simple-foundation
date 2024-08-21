@@ -13,6 +13,7 @@ import AppCard from "../card/card";
 import { useDispatch, useSelector } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
 import Image from "next/image";
+const url = process.env.PUBLIC_URL
 
 interface Product {
     id: string;
@@ -84,7 +85,7 @@ function AppInbox() {
                 loading 
                 ?   <div className="text-center" style={{height: "737px", alignContent: "center"}}>
                         <div className="flex justify-center">
-                            <Image width={100} height={100} alt="loading" src="/icons/loading.svg" className="pi-spin align-center" />
+                            <Image width={100} height={100} alt="loading" src={url + "/icons/loading.svg"} className="pi-spin align-center" />
                         </div>
                         <span>Loading Chats...</span>
                     </div>

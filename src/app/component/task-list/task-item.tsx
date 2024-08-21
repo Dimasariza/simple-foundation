@@ -1,4 +1,4 @@
-import { Dispatch, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ITaskList } from "../../types/task-list";
 import { MenuItem } from "primereact/menuitem";
 import { Menu } from "primereact/menu";
@@ -10,6 +10,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Panel } from "primereact/panel";
 import { IEditTaskItem, ITaskItemProps } from "../../types/task-item";
 import Image from "next/image";
+const url = process.env.PUBLIC_URL
 
 function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
@@ -72,7 +73,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                 </div>
                 <div>
                     {options.togglerElement}
-                    <Button  text icon={<Image width={100} height={100} alt="menu" src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
+                    <Button  text icon={<Image width={100} height={100} alt="menu" src={url + "/icons/menu-deactive.svg"} />} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
                     <Menu model={items} popup ref={menuLeft} />
                 </div>
             </div>

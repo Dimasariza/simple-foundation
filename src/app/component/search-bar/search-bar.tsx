@@ -2,6 +2,7 @@
 
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
+const url = process.env.PUBLIC_URL
 
 const Input = styled(InputText)`
     width: 581px;
@@ -33,7 +34,7 @@ const SearchIcon = styled.img`
 const AppSearchBar = (props: any) => {
     return (
         <InputWrapper>
-            <SearchIcon src="/icons/searchbar-icon.svg"  alt="search icons" />
+            <SearchIcon src={url + "/icons/searchbar-icon.svg"}  alt="search icons" />
             <Input {...props} />
         </InputWrapper>
     )

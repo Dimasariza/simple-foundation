@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
 import Image from "next/image";
+const url = process.env.PUBLIC_URL
 
 const MainButton = styled(Button)`
     width: 68px !important;
@@ -79,7 +80,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                                         className="bg-white" 
                                         rounded 
                                         text 
-                                        icon={<Image width={100} height={100} alt="quick button" src={`/icons/${i.icon}`}
+                                        icon={<Image width={100} height={100} alt="quick button" src={url + "/icons/${i.icon}"}
                                     />} />
                                 </ButtonWithLabel>
                             )
@@ -92,7 +93,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                     <MainButton 
                         severity="info"
                         onClick={() => {setExpandQuickTab((prev) => !prev)}}
-                        icon={<Image width={100} height={100} alt="Main button" src="/icons/cloud-lightning.svg" />} 
+                        icon={<Image width={100} height={100} alt="Main button" src={url + "/icons/cloud-lightning.svg"} />} 
                         rounded
                     />
                 }
@@ -117,7 +118,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                         {...props} 
                         rounded
                         className="bg-white" 
-                        icon={<Image width={100} height={100} alt="front button" src={`/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
+                        icon={<Image width={100} height={100} alt="front button" src={url + `/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
                         text 
                     />
                 </div>

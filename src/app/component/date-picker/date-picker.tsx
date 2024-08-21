@@ -2,6 +2,7 @@ import { Calendar, CalendarProps } from "primereact/calendar";
 import styled from "styled-components";
 import './date-picker.scss'
 import Image from "next/image";
+const url = process.env.PUBLIC_URL
 
 const DatePicker = styled(Calendar)`
     border-radius: 0;
@@ -32,7 +33,7 @@ const DatePicker = styled(Calendar)`
 function AppDatePicker(props: CalendarProps) {
     return (    
         <DatePicker {...props} selectOtherMonths={false} showOtherMonths={false} showIcon 
-        icon={() => <Image width={100} height={100} alt="calendar" src="/icons/calendar.svg" />} />
+        icon={() => <Image width={100} height={100} alt="calendar" src={url + "/icons/calendar.svg"} />} />
     )
 }
 
