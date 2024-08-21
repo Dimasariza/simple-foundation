@@ -60,7 +60,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
         if(!expandQuickTab) {
             dispatch(QuickTabsAction({name: "close"}));  
         }
-    }, []);
+    });
 
     return (
         <div className="!fixed bottom-1 right-4 flex items-center">
