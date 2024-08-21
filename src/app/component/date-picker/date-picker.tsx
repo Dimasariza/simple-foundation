@@ -32,7 +32,7 @@ const DatePicker = styled(Calendar)`
 function AppDatePicker(props: CalendarProps) {
     return (    
         <DatePicker {...props} selectOtherMonths={false} showOtherMonths={false} showIcon 
-        icon={() => <Image alt="calendar" src="/icons/calendar.svg" />} />
+        icon={() => <Image width={100} height={100} alt="calendar" src="/icons/calendar.svg" />} />
     )
 }
 

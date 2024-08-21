@@ -32,10 +32,11 @@ const SearchIcon = styled.img`
     height: 16px;
 `
 
+const url = process.env.PUBLIC_URL || ""
 const AppMainSearchBar = (props: any) => {
     return (
         <InputWrapper className="!fixed top-0 right-0">
-            <SearchIcon src="/icons/main-search.svg"  alt="search icons" />
+            <SearchIcon src={url + `/icons/main-search.svg`}  alt="search icons" />
             <Input {...props} />
         </InputWrapper>
     )

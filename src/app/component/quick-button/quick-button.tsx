@@ -60,7 +60,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
         if(!expandQuickTab) {
             dispatch(QuickTabsAction({name: "close"}));  
         }
-    });
+    }, []);
 
     return (
         <div className="!fixed bottom-1 right-4 flex items-center">
@@ -79,7 +79,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                                         className="bg-white" 
                                         rounded 
                                         text 
-                                        icon={<Image alt="quick button" src={`/icons/${i.icon}`}
+                                        icon={<Image width={100} height={100} alt="quick button" src={`/icons/${i.icon}`}
                                     />} />
                                 </ButtonWithLabel>
                             )
@@ -92,7 +92,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                     <MainButton 
                         severity="info"
                         onClick={() => {setExpandQuickTab((prev) => !prev)}}
-                        icon={<Image alt="Main button" src="/icons/cloud-lightning.svg" />} 
+                        icon={<Image width={100} height={100} alt="Main button" src="/icons/cloud-lightning.svg" />} 
                         rounded
                     />
                 }
@@ -117,7 +117,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                         {...props} 
                         rounded
                         className="bg-white" 
-                        icon={<Image alt="front button" src={`/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
+                        icon={<Image width={100} height={100} alt="front button" src={`/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
                         text 
                     />
                 </div>

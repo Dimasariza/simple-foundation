@@ -72,7 +72,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                 </div>
                 <div>
                     {options.togglerElement}
-                    <Button  text icon={<Image alt="menu" src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
+                    <Button  text icon={<Image width={100} height={100} alt="menu" src='/icons/menu-deactive.svg'/>} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
                     <Menu model={items} popup ref={menuLeft} />
                 </div>
             </div>

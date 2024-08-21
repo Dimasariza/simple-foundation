@@ -84,7 +84,7 @@ function AppInbox() {
                 loading 
                 ?   <div className="text-center" style={{height: "737px", alignContent: "center"}}>
                         <div className="flex justify-center">
-                            <Image alt="loading" src="/icons/loading.svg" className="pi-spin align-center" />
+                            <Image width={100} height={100} alt="loading" src="/icons/loading.svg" className="pi-spin align-center" />
                         </div>
                         <span>Loading Chats...</span>
                     </div>
