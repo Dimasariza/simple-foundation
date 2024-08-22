@@ -13,6 +13,8 @@ import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
 import { Divider } from 'primereact/divider';
 import { IGroupMessege } from '../../types/chat';
+import AppChatInput from './messege-input';
+import AppMessegeInput from './messege-input';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
@@ -47,6 +49,7 @@ const MassageStyle = styled.div<{owner?: string}>`
 
 function AppGroupChatInbox() {
     const [products, setProducts] = useState<IGroupMessege | any>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -146,17 +149,6 @@ function AppGroupChatInbox() {
         </div>
     );
 
-    const footer = (
-        <div>
-            <div style={{
-                position: "relative"
-            }}>
-                <span style={{position: "absolute", bottom: "10px"}}>test</span>
-            </div>
-            <AppSearchBar />
-        </div>
-    )
-
     return (
         <AppCard 
             style={{
@@ -171,7 +163,7 @@ function AppGroupChatInbox() {
                 itemTemplate={itemTemplate} 
                 rows={5} 
                 header={header} 
-                footer={footer}
+                footer={<AppMessegeInput loading={loading} />}
                 inline 
                 scrollHeight="610px"
                 pt={{

@@ -13,7 +13,7 @@ import { IInbox } from "../../types/inbox";
 import styled from "styled-components";
 const url = process.env.PUBLIC_URL || ""
 
-const ListStyle = styled(ListBox)`
+const ListStyle = styled(ListBox)<{data: IInbox[]}>`
     font-family: var(--font-lato);
 
     .p-list-box {
@@ -31,7 +31,7 @@ const ListStyle = styled(ListBox)`
         height: 500px;
 
         li {
-            padding: 0;
+            padding: ${({data}) => data?.length ? "0" : "34px"};
         }
         
         li:last-child > div {
@@ -46,15 +46,6 @@ function AppInbox() {
     const [loading, setLoading] = useState<boolean>(true);
     const [filter, setFilter] = useState<string>("");
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 500);
-        ProductService.getProducts().then((data) => {
-            setInbox(data)
-        });
-    }, [])
 
     const itemTemplate = (inbox: IInbox) => {
         const image = url + "/icons/person-2.svg";
@@ -102,6 +93,15 @@ function AppInbox() {
         setFilter(e.target.value)
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+        ProductService.getProducts().then((data) => {
+            setInbox(data)
+        });
+    }, [])
+
     return (
         <AppCard style={{overflow: "visible"}}>
             {
@@ -116,6 +116,7 @@ function AppInbox() {
                         </div>
                     </div>
                 :   <ListStyle 
+                        data={inbox}
                         className="w-full md:w-14rem border-none" 
                         itemTemplate={itemTemplate} 
                         filter

@@ -6,13 +6,12 @@ import { Button } from "primereact/button";
 import { ProductService } from "../../service/ProductService";
 import styled from 'styled-components';
 import { Menu } from 'primereact/menu';
-import AppSearchBar from '../search-bar/search-bar';
 import AppCard from '../card/card';
 import { useDispatch } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
 import { IPersonalMessege } from '../../types/chat';
-import AppChatInput from './chat-input';
+import AppMessegeInput from './messege-input';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
@@ -34,6 +33,7 @@ const InboxStyle = styled(DataScroller)`
 
 const MassageStyle = styled.div<{owner?: string}>`
     text-align: ${({owner}) => owner == "own" ? "end" : "start"};
+    margin-bottom: 2px;
 
     .msg-wrapper {
         display: flex;
@@ -81,7 +81,7 @@ function AppPersonalChatInbox() {
 
     const itemTemplate = (data: any) => {
         return (
-            <div className={`${loading && "mb-20"} mb-2 px-[30px] py-[16px]`}>
+            <div className={`pl-[18px]`}>
                 <MassageStyle >
                     <span className="text-primary-blue text-[14px] tracking-[-0.04em]">FastVisa Support</span>
                     <div className="msg-wrapper">
@@ -144,26 +144,10 @@ function AppPersonalChatInbox() {
         </div>
     );
 
-    const footer = (
-        <div className='relative'>
-            {
-                loading && 
-                <span className="absolute left-0 w-full flex justify-center bottom-[70px]">
-                    <div className="messege-badge border bg-stickers-aliceblue p-[15px] text-[14px] ml-1 flex h-[55px] w-[670px]">
-                        <Image src={url + "/icons/pc-loading.svg"} className='pi-spin' width={34} height={34} alt="loading" />
-                        <span className='ml-2 tracking-[-0.05em]'>Please wait while we connect you with one of our team ...</span>
-                    </div>
-                </span>
-            }
-            <AppChatInput />
-        </div>
-    )
-
     useEffect(() => {
-        // ProductService.getProducts().then((data) => setMessege(data));
-        setMessege([1])
+        ProductService.getProducts().then((data) => setMessege(data));
         setTimeout(() => {
-            // setLoading(false)
+            setLoading(false)
         }, 2000);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -181,15 +165,15 @@ function AppPersonalChatInbox() {
                 itemTemplate={itemTemplate} 
                 rows={5} 
                 header={header} 
-                footer={footer}
+                footer={<AppMessegeInput loading={loading}/>}
                 inline 
-                scrollHeight="596px"
+                scrollHeight="580px"
                 pt={{
                     list: {
-                        className: "border-none h-card-height",
+                        className: `border-none h-card-height ${loading && "mb-20"}`,
                     },
                     header: {
-                        className: "bg-transparent p-0 h-[70px]"
+                        className: "bg-transparent p-0 h-[70px] mb-[12px]"
                     },
                     footer: {
                         className: "bg-transparent border-none"
