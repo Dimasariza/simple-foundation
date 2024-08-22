@@ -19,6 +19,8 @@ const config: Config = {
         "quick-btn-gap": "26px",
         "quick-other-gap": "16px",
         "card-bottom": "110px",
+        "card-height": "737px",
+        "card-width": "734px"
       },
       colors: {
         "quick-btn": {
