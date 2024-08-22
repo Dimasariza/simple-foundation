@@ -27,7 +27,7 @@ function AppTaskList() {
                     placeholder="Select Task" 
                     className="md:w-14rem" 
                 />
-                <Button label="New Task" />
+                <Button label="New Task" className="bg-primary-blue"/>
             </div>
         )
     }

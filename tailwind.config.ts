@@ -10,7 +10,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        "quick-btn-right": '34px',
+        "quick-btn-bottom": '27px',
+        "quick-btn-gap": "26px",
+        "quick-other-gap": "16px",
+        "card-bottom": "110px"
+      },
       colors: {
+        "quick-btn": {
+          white: "#F2F2F2"
+        },
         primary: {
           blue: "#2F80ED",
           maingray: "#333333",

@@ -12,6 +12,8 @@ const url = process.env.PUBLIC_URL || ""
 const MainButton = styled(Button)`
     width: 68px !important;
     height: 68px !important;
+    box-sizing: border-box;
+    border: none;
 `
 const OtherButton = styled(Button)`
     width: 60px !important;
@@ -20,10 +22,11 @@ const OtherButton = styled(Button)`
 
 const BackButton = styled(motion(MainButton))<ButtonProps | MotionProps>`
     background: #4F4F4F;
+    right:  15px;
 `
-
+    
 const FrontButton = styled(motion(MainButton))<ButtonProps | MotionProps>`
-    right: 40px;
+    margin-left: 31px;
 `
 
 const ButtonWithLabel = motion(styled.div`
@@ -31,9 +34,10 @@ const ButtonWithLabel = motion(styled.div`
 
     p {
         position: absolute;
-        bottom: 70px;
+        bottom: 65px;
         width: 100%;
         text-align: center;
+        margin-right: 3px;
     }
 `)
 
@@ -69,16 +73,16 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
     };
 
     return (
-        <div className="!fixed bottom-1 right-4 flex items-center">
-            <div className="m-5 flex gap-6">
+        <div className="!fixed bottom-quick-btn-bottom right-quick-btn-right flex items-center justify-end">
+            <div className="flex items-center gap-quick-btn-gap">
                 <AnimatePresence>
-                {
-                    expandQuickTab &&
-                    <div className="gap-6 flex">
-                        {
-                            quickTabsBtn
-                            .filter(({group}) => group != tab?.group)
-                            .map((i: any, key: number) => 
+                    {
+                        expandQuickTab &&
+                        <div className="gap-quick-btn-gap flex">
+                            {
+                                quickTabsBtn
+                                .filter(({group}) => group != tab?.group)
+                                .map((i: any, key: number) => 
                                     <ButtonWithLabel 
                                         initial={{...defaultState}}
                                         exit={{...defaultState}}
@@ -89,34 +93,34 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                                         }}
                                         key={i.name + key}
                                     >
-                                        <p>{!tab && i.name}</p>
+                                        <p className="text-quick-btn-white">{!tab && i.name}</p>
                                         <OtherButton 
                                             onClick={() => handleClickTabs(i)} 
-                                            className="bg-white" 
+                                            className="bg-quick-btn-white" 
                                             rounded 
                                             text 
-                                            icon={<Image width={100} height={100} alt="quick button" src={url + `/icons/${i.icon}`}
+                                            icon={<Image width={26.67} height={26.67} alt="quick button" src={url + `/icons/${i.icon}`}
                                         />} />
                                     </ButtonWithLabel>
-                            )
-                        }
-                    </div>
-                }
+                                )
+                            }
+                        </div>
+                    }
                 </AnimatePresence>
 
                 <AnimatePresence>
                     {
                         !tab &&
                         <MainButton 
-                            severity="info"
+                            className="bg-primary-blue"
                             onClick={() => {setExpandQuickTab((prev) => !prev)}}
-                            icon={<Image width={100} height={100} alt="Main button" src={url + "/icons/cloud-lightning.svg"} />} 
+                            icon={<Image width={56} height={56} alt="Main button" src={url + "/icons/cloud-lightning.svg"} />} 
                             rounded
                         />
                     }
                 </AnimatePresence>
-
             </div>
+
             {   
                 tab &&
                 <div>
@@ -124,6 +128,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                         {...props}
                         label="B"
                         rounded
+                        className="absolute"
                         // initial={{ opacity: 0 }}            
                         // animate={{ opacity: 1 }}
                         // transition={{
@@ -136,7 +141,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                         {...props} 
                         rounded
                         className="bg-white" 
-                        icon={<Image width={100} height={100} alt="front button" src={url + `/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
+                        icon={<Image width={30.22} height={30.22} alt="front button" src={url + `/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
                         text 
                     />
                 </div>

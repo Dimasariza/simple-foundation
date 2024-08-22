@@ -79,11 +79,12 @@ function AppPersonalChatInbox() {
         return (
             <div className={`${loading && "mb-20"} mb-2`}>
                 <MassageStyle owner="own">
-                    <span>You</span>
+                    <span className="text-chats-badge-purple">You</span>
                     <div className='msg-wrapper'>
                         <Button  
+                            style={{height: "10px"}}
                             text 
-                            icon={<Image width={100} height={100} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
+                            icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuLeft.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
@@ -100,16 +101,17 @@ function AppPersonalChatInbox() {
                     </div>
                 </MassageStyle>
                 <MassageStyle >
-                    <span>Other</span>
-                    <div className='msg-wrapper'>
+                    <span className="text-primary-blue">Other</span>
+                    <div className='msg-wrapper '>
                         <Button  
+                            style={{height: "10px"}}
                             text 
-                            icon={<Image width={100} height={100} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
+                            icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuRight.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
                         />
-                        <Menu model={menuItems.other} popup ref={menuRight} />
+                        <Menu model={menuItems.other} popupAlignment="right" popup ref={menuRight} />
                         <div>
                             <span>
                                 No worries. It will be completed ASAP. I&apos;ve asked him yesterday.
@@ -132,7 +134,7 @@ function AppPersonalChatInbox() {
         <div className="flex justify-between" style={{borderBottom: "1px solid #BDBDBD"}}>
             <div className="flex items-center">
                 <Button icon="pi pi-arrow-left" onClick={handleBackToInbox} text severity="secondary" />
-                <span className='bg-chats-badge-yellow text-test'>FastVisa Support</span>
+                <span className="text-primary-blue">FastVisa Support</span>
             </div>
             <Button icon="pi pi-times" text severity="secondary" />
         </div>

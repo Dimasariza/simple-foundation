@@ -63,12 +63,12 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
         const differenceInMilliseconds = setDateObj.getTime() - currentDateObj.getTime();
         const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
-        if(Math.sign(differenceInDays) > 0 && differenceInDays < 1) {
+        if(Math.sign(differenceInDays) < 0 && Math.abs(differenceInDays) < 1) {
             return { day: "Today", diff: 0 }
-        } else if (Math.sign(differenceInDays) > 0 && differenceInDays > 1) {
-            return { day: "Days Left", diff: Math.floor(Math.abs(differenceInDays)) } 
+        } else if (Math.sign(differenceInDays) > 0 && differenceInDays > 0) {
+            return { day: "Days Left", diff: Math.ceil(Math.abs(differenceInDays)) } 
         } else if(Math.sign(differenceInDays) < 0 && differenceInDays < 1) {
-            return { day: "Days Over", diff: Math.ceil(Math.abs(differenceInDays)) }
+            return { day: "Days Over", diff: Math.floor(Math.abs(differenceInDays)) }
         }
     }
 
@@ -133,7 +133,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                 pt={{
                     content: {
                         style: {
-                            border: "none",
+                            // border: "none",
                             borderRadius: 0
                         }
                     },

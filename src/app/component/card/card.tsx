@@ -6,7 +6,7 @@ const MotionCard = motion<any>(Card);
 function AppCard(props: CardProps) {
     const cardProps = {
         ...props,
-        className: `${props?.className ?? ""} !fixed bottom-20 right-10`,
+        className: `${props?.className ?? ""} !fixed bottom-card-bottom right-quick-btn-right`,
         style: {
             width: "734px",
             height: "737px",
@@ -20,7 +20,9 @@ function AppCard(props: CardProps) {
 
     const defaultState = {
         opacity: 0,
-        scale: 0.6
+        scale: 0.2,
+        x: 300,
+        y: 300
     };
 
     return (
@@ -28,9 +30,14 @@ function AppCard(props: CardProps) {
             {...cardProps}
             initial={defaultState}
             exit={defaultState}
+            transition={{
+                duration: 0.2
+            }}
             animate={{
               opacity: 1,
-              scale: 1
+              scale: 1,
+              x: 0,
+              y: 0
             }}
         >
             {props.children}
