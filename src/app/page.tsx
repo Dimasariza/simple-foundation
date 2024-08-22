@@ -9,6 +9,8 @@ import AppTaskList from "./component/task-list/task-list";
 import AppQuickButton from "./component/quick-button/quick-button";
 import { useSelector } from "react-redux";
 import AppGroupChatInbox from "./component/chat-inbox/group-chat-inbox";
+import { AnimatePresence } from "framer-motion";
+import AppPersonalChatInbox from "./component/chat-inbox/personal-chat-inbox";
  
 export default function Home() {
   addLocale('es', {
@@ -27,9 +29,9 @@ export default function Home() {
           return <AppInbox />;
         } else if(tab.name == "Group-Inbox") {
           return <AppGroupChatInbox />;
-        } else {
-          return <AppGroupChatInbox />;
-        }
+        } else if(tab.name == "Personal-Inbox") {
+          return <AppPersonalChatInbox />;
+        } 
       case "Task":
         return <AppTaskList />;
       default:
@@ -41,7 +43,9 @@ export default function Home() {
     <div>
       <AppMainSearchBar />
 
-      { switchQuickTabs() }
+        <AnimatePresence>
+          { switchQuickTabs() }
+        </AnimatePresence>
 
       <AppQuickButton />
     </div>

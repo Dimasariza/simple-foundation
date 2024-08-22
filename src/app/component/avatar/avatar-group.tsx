@@ -2,31 +2,35 @@
 
 import { AvatarGroup } from "primereact/avatargroup";
 import AppAvatar from "./avatar";
+import { AvatarProps } from "primereact/avatar";
+import { IInbox } from "../../types/inbox";
 
 const url = process.env.PUBLIC_URL || ""
-function AppAvatarGroup() { 
+function AppAvatarGroup({inbox, avatar}: {avatar?: AvatarProps, inbox?: IInbox}) { 
     return (
-        <AvatarGroup>
-            <AppAvatar shape="circle" image={url + "/icons/person-1.svg"} pt={{
-                image: {
-                    width: "18px",
-                    height: "18px"
-                }
-            }}
-            style={{
-                background: "#E0E0E0",
-            }}
-            />
+        <AvatarGroup 
+            style={{width: "51px"}} 
+            className="flex justify-center"
+        >
+            {
+                inbox?.inboxGroup == "group" &&
+                <AppAvatar 
+                    shape="circle" 
+                    image={url + "/icons/person-1.svg"} 
+                    style={{
+                        background: "#E0E0E0",
+                    }}
+                />
+            }
 
-            <AppAvatar shape="circle" image={url + "/icons/person-2.svg"} pt={{
-                image: {
-                    width: "18px",
-                    height: "18px"
-                }
-            }}
-            style={{
-                background: "#2F80ED",
-            }}
+            <AppAvatar 
+                label="F"
+                shape="circle" 
+                image={url + "/icons/person-2.svg"} 
+                style={{
+                    background: "#2F80ED",
+                    color: "white"
+                }}
             />
         </AvatarGroup>
     )

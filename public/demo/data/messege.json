@@ -1,0 +1,17 @@
+{
+    "data": [
+        { 
+            "inboxId": "inbox001",
+            "message": [
+                {
+                    "deleted": false,
+                    "messege": "string",
+                    "messegeId": "messege001",
+                    "sendDate": "2024-08-22",
+                    "userId": "user001",
+                    "unReadMessage": true
+                }
+            ] 
+        }
+    ]
+}

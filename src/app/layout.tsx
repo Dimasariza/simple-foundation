@@ -24,7 +24,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-primary-maingray`}>
         <PrimeReactProvider value={value}>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>

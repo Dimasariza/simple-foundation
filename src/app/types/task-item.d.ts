@@ -1,10 +1,10 @@
 export interface ITaskItemProps {
-    data: ITaskList
-    setTaskListData: Dispatch<ITaskList[] | any>
+    data: ITaskList;
+    setTaskListData: Dispatch<ITaskList[] | any>;
 }
 
 export interface IEditTaskItem {
-    taskTitle: boolean
-    taskDescription: boolean
-    [key: string]: any
+    taskTitle: boolean;
+    taskDescription: boolean;
+    [key: string]: any;
 }

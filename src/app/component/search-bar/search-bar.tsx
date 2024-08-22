@@ -1,11 +1,11 @@
 "use client"
 
-import { InputText } from "primereact/inputtext";
+import { InputText, InputTextProps } from "primereact/inputtext";
 import styled from "styled-components";
 const url = process.env.PUBLIC_URL || ""
 
 const Input = styled(InputText)`
-    width: 581px;
+    width: 100%;
     height: 40px;
     padding-left: 1rem;
     border: 1px solid #828282;
@@ -18,8 +18,8 @@ const Input = styled(InputText)`
 `;
 
 const InputWrapper = styled.div`
+    width: 100%;
     position: relative;
-    width: fit-content;
 `
 
 const SearchIcon = styled.img`
@@ -31,7 +31,7 @@ const SearchIcon = styled.img`
     height: 12px;
 `
 
-const AppSearchBar = (props: any) => {
+const AppSearchBar = (props: InputTextProps) => {
     return (
         <InputWrapper>
             <SearchIcon src={url + "/icons/searchbar-icon.svg"}  alt="search icons" />

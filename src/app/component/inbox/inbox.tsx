@@ -1,82 +1,99 @@
 "use client"
 
-import { Card } from "primereact/card";
 import AppSearchBar from "../search-bar/search-bar";
 import { useEffect, useState } from "react";
-import { OrderList } from "primereact/orderlist";
 import AppAvatarGroup from "../avatar/avatar-group";
-import styled from "styled-components";
-import "./inbox.scss"
 import { ProductService } from "../../service/ProductService";
 import { ListBox } from "primereact/listbox";
 import AppCard from "../card/card";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
 import Image from "next/image";
+import { IInbox } from "../../types/inbox";
+import styled from "styled-components";
 const url = process.env.PUBLIC_URL || ""
 
-interface Product {
-    id: string;
-    code: string;
-    name: string;
-    description: string;
-    image: string;
-    price: number;
-    category: string;
-    quantity: number;
-    inventoryStatus: 'string',
-    rating: number;
-}
+const ListStyle = styled(ListBox)`
+    .p-list-box {
+        max-height: '680px'
+    }
+        
+    .p-listbox-header {
+        background: none;
+        border: none;
+    }
 
-const ItemStyled = styled.div`
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    border-bottom: 1px solid #828282;
-    height: 104.5px;
+    .p-listbox-list {
+        li > div {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            border-bottom: 1px solid #828282;
+            height: 104.5px;
+        }
+        
+        li:last-child > div {
+            border: none;
+        }
+    }
+
 `
 
 function AppInbox() {
-    const [products, setProducts] = useState<Product[] | any>();
+    const [inbox, setInbox] = useState<IInbox[] | any>();
     const [loading, setLoading] = useState<boolean>(true);
+    const [filter, setFilter] = useState<string>("");
     const dispatch = useDispatch();
 
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-        }, 1000);
+        }, 500);
         ProductService.getProducts().then((data) => {
-            setProducts(data)
+            setInbox(data)
         });
     }, [])
 
-    const itemTemplate = (item: Product) => {
+    const itemTemplate = (inbox: IInbox) => {
+        const image = url + "/icons/person-2.svg";
         return (
-            <ItemStyled 
-                onClick={handleSelectedInbox}
-            >
-                <AppAvatarGroup />
+            <div onClick={() => handleSelectedInbox(inbox)}>   
+                <AppAvatarGroup inbox={inbox} avatar={{image}} />
                 <div className="w-full">
                     <div className="flex flex-column gap-2 xl:mr-8">
-                        <span className="font-bold" style={{color: "#2F80ED"}}>{item.name}</span>
+                        <span className="font-bold" style={{color: "#2F80ED"}}>{inbox.name}</span>
                         <div className="flex align-items-center gap-2">
-                            <span>{item.category}</span>
+                            {/* <span>{inbox.category}</span> */}
                         </div>
                     </div>
-                    <span>Cameron Phillips:</span>
+                    {
+                        inbox?.inboxGroup == "group" &&
+                        <span><b>Cameron Phillips:</b></span>
+                    }
                     <div className="flex justify-between">
                         <span>Hey, please read.</span>
-                        <i  className="pi pi-circle-fill" 
-                            style={{fontSize: "10px", color: "#EB5757", display: "flex", alignItems: "end", paddingBottom: "5px"}}
-                            >
-                        </i>
+                        {
+                            inbox?.unReadMessege &&
+                            <i  className="pi pi-circle-fill" 
+                                style={{fontSize: "10px", color: "#EB5757", display: "flex", alignItems: "end", paddingBottom: "5px"}}
+                                >
+                            </i>
+                        }
                     </div>
                 </div>
-            </ItemStyled>
+            </div>
         );
     };
 
-    const handleSelectedInbox = () => {
-        dispatch(QuickTabsAction({name: "Group-Inbox", group: "Inbox"}));  
+    const handleSelectedInbox = (inbox: IInbox) => {
+        if(inbox.inboxGroup == "personal") {
+            dispatch(QuickTabsAction({name: "Personal-Inbox", group: "Inbox"}));  
+        } else if(inbox.inboxGroup == "group") {
+            dispatch(QuickTabsAction({name: "Group-Inbox", group: "Inbox"}));  
+        }
+    }
+
+    const handleFilterChange = (e: any) => {
+        setFilter(e.target.value)
     }
 
     return (
@@ -89,21 +106,14 @@ function AppInbox() {
                         </div>
                         <span>Loading Chats...</span>
                     </div>
-                :   <ListBox 
-                        pt={{
-                            header: {
-                                style: {
-                                    background: "none",
-                                    border: "none",
-                                }
-                            },
-                        }}
-                        className="w-full md:w-14rem border-none" 
-                        listStyle={{ maxHeight: '680px' }} 
+                :   <ListStyle 
+                        className="w-full md:w-14rem border-none liststyle" 
                         itemTemplate={itemTemplate} 
-                        filter 
-                        filterTemplate={<AppSearchBar placeholder="Search" />} 
-                        options={products} 
+                        filter
+                        filterValue={filter} 
+                        onFilterValueChange={() => {}}
+                        filterTemplate={<AppSearchBar onChange={handleFilterChange} placeholder="Search" />} 
+                        options={inbox} 
                         optionLabel="name"
                     />
             }

@@ -5,6 +5,7 @@ export const QuickTabsReducer = (state: any = { tab: '' }, { type, tab }: any) =
         case 'Task':
         case 'Inbox':
         case 'Group-Inbox':
+        case 'Personal-Inbox':
         case 'Other':
             return {
                 ...state,

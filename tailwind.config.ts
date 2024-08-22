@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,6 +10,43 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          blue: "#2F80ED",
+          maingray: "#333333",
+          gray1: "#4F4F4F",
+          gray2: "#828282",
+          gray3: "#E0E0E0",
+        },
+        indicator: {
+          sandybrown: "#F8B76B",
+          purple: "#8785FF",
+          tomato: "#EB5757",
+          cream: "#F2C94C"
+        },
+        chats: {
+          main: {
+            yellow: "#FCEED3",
+            purple: "#EEDCFF",
+            green: "#D2F2EA"
+          },
+          badge: {
+            yellow: "#E5A443",
+            purple: "#9B51E0",
+            green: "#43B78D"
+          }
+        },
+        stickers: {
+          aliceblue: "#E9F3FF",
+          sandybrown: "#FDCFA4",
+          blanchedalmond: "#F9E9C3",
+          cyan: "#AFEBDB",
+          limegreen: "#CBF1C2",
+          darkpurple: "#CFCEF9",
+          lightpurple: "#F9E0FD"
+        },
+        "test": "red"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

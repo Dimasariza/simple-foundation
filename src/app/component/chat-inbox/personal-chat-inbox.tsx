@@ -11,8 +11,8 @@ import AppCard from '../card/card';
 import { useDispatch } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
-import { Divider } from 'primereact/divider';
-import { IGroupMessege } from '../../types/chat';
+import "./chat.scss"
+import { IPersonalMessege } from '../../types/chat';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
@@ -38,19 +38,20 @@ const MassageStyle = styled.div<{owner?: string}>`
             text-align: start;
             display: flex;
             flex-direction: column;
-            background: ${({owner}) => owner == "own" ? "#EEDCFF" : "#FCEED3"};;
+            background: ${({owner}) => owner == "own" ? "#EEDCFF" : "#F8F8F8"};
             padding: 9px;
             border-radius: 5px;
         }
     }
 `
 
-function AppGroupChatInbox() {
-    const [products, setProducts] = useState<IGroupMessege | any>([]);
+function AppPersonalChatInbox() {
+    const [messege, setMessege] = useState<IPersonalMessege | any>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        ProductService.getProducts().then((data) => setProducts(data));
+        ProductService.getProducts().then((data) => setMessege(data));
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const menuLeft = useRef<Menu | any>(null);
@@ -76,10 +77,10 @@ function AppGroupChatInbox() {
 
     const itemTemplate = (data: any) => {
         return (
-            <div>
+            <div className={`${loading && "mb-20"} mb-2`}>
                 <MassageStyle owner="own">
                     <span>You</span>
-                    <div className='msg-wrapper' style={{border: "none"}}>
+                    <div className='msg-wrapper'>
                         <Button  
                             text 
                             icon={<Image width={100} height={100} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
@@ -98,9 +99,6 @@ function AppGroupChatInbox() {
                         </div>
                     </div>
                 </MassageStyle>
-                <Divider align="center">
-                    <span>Badge</span>
-                </Divider>
                 <MassageStyle >
                     <span>Other</span>
                     <div className='msg-wrapper'>
@@ -122,9 +120,6 @@ function AppGroupChatInbox() {
                         </div>
                     </div>
                 </MassageStyle>
-                <Divider align="center">
-                    <span>Badge</span>
-                </Divider>
             </div>
         );
     };
@@ -135,27 +130,34 @@ function AppGroupChatInbox() {
 
     const header = (
         <div className="flex justify-between" style={{borderBottom: "1px solid #BDBDBD"}}>
-            <div className="flex">
+            <div className="flex items-center">
                 <Button icon="pi pi-arrow-left" onClick={handleBackToInbox} text severity="secondary" />
-                <div className="flex text-start flex-col">
-                    <span>I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHn]</span>
-                    <span>3 Participants</span>
-                </div>
+                <span className='bg-chats-badge-yellow text-test'>FastVisa Support</span>
             </div>
             <Button icon="pi pi-times" text severity="secondary" />
         </div>
     );
 
     const footer = (
-        <div>
-            <div style={{
-                position: "relative"
-            }}>
-                <span style={{position: "absolute", bottom: "10px"}}>test</span>
-            </div>
+        <div className='relative'>
+            {
+                loading && 
+                <span className="absolute left-0 w-full" style={{bottom: "50px"}}>
+                    <div className="messege-badge flex">
+                        <Image src={url + "/icons/pc-loading.svg"} className='pi-spin' width={34} height={34} alt="loading" />
+                        <span style={{marginLeft: "11px"}}>Please wait while we connect you with one of our team ...</span>
+                    </div>
+                </span>
+            }
             <AppSearchBar />
         </div>
     )
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000);
+    }, [])
 
     return (
         <AppCard 
@@ -167,7 +169,7 @@ function AppGroupChatInbox() {
             }}
         >
             <InboxStyle 
-                value={products} 
+                value={messege} 
                 itemTemplate={itemTemplate} 
                 rows={5} 
                 header={header} 
@@ -186,4 +188,4 @@ function AppGroupChatInbox() {
     )
 }
 
-export default AppGroupChatInbox;
+export default AppPersonalChatInbox;

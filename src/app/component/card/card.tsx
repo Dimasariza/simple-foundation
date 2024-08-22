@@ -6,7 +6,7 @@ const MotionCard = motion<any>(Card);
 function AppCard(props: CardProps) {
     const cardProps = {
         ...props,
-        className: `${props.className} !fixed bottom-20 right-10`,
+        className: `${props?.className ?? ""} !fixed bottom-20 right-10`,
         style: {
             width: "734px",
             height: "737px",
@@ -30,7 +30,6 @@ function AppCard(props: CardProps) {
             exit={defaultState}
             animate={{
               opacity: 1,
-              boxShadow: "1px 1px 10px rgba(0, 0, 0, 0.3)",
               scale: 1
             }}
         >
