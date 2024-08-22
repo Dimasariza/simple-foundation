@@ -11,22 +11,28 @@ import AppCard from '../card/card';
 import { useDispatch } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
-import "./chat.scss"
 import { IPersonalMessege } from '../../types/chat';
+import AppChatInput from './chat-input';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
     width: 708px;
     height: 726px;
-
+    
     .p-datascroller-list > li {
         border: none;
+    }
+
+    .p-datascroller .p-datascroller-content {
+        padding: 0;
+    }
+
+    .p-datascroller .p-datascroller-footer {
+        padding: 0;
     }
 `
 
 const MassageStyle = styled.div<{owner?: string}>`
-    padding: 10px;
-    max-height: 100px;
     text-align: ${({owner}) => owner == "own" ? "end" : "start"};
 
     .msg-wrapper {
@@ -36,10 +42,12 @@ const MassageStyle = styled.div<{owner?: string}>`
 
         div {
             text-align: start;
+            width: 455px;
+            border: none;
             display: flex;
             flex-direction: column;
             background: ${({owner}) => owner == "own" ? "#EEDCFF" : "#F8F8F8"};
-            padding: 9px;
+            padding: 8px;
             border-radius: 5px;
         }
     }
@@ -49,10 +57,6 @@ function AppPersonalChatInbox() {
     const [messege, setMessege] = useState<IPersonalMessege | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        ProductService.getProducts().then((data) => setMessege(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const menuLeft = useRef<Menu | any>(null);
     const menuRight = useRef<Menu | any>(null);
@@ -77,34 +81,12 @@ function AppPersonalChatInbox() {
 
     const itemTemplate = (data: any) => {
         return (
-            <div className={`${loading && "mb-20"} mb-2`}>
-                <MassageStyle owner="own">
-                    <span className="text-chats-badge-purple">You</span>
-                    <div className='msg-wrapper'>
-                        <Button  
-                            style={{height: "10px"}}
-                            text 
-                            icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
-                            onClick={(event) => menuLeft.current.toggle(event)} 
-                            aria-controls="popup_menu_left" 
-                            aria-haspopup 
-                        />
-                        <Menu model={menuItems.own} popup ref={menuLeft} />
-                        <div>
-                            <span>
-                                No worries. It will be completed ASAP. I&apos;ve asked him yesterday.
-                            </span>
-                            <span>
-                                19.32
-                            </span>
-                        </div>
-                    </div>
-                </MassageStyle>
+            <div className={`${loading && "mb-20"} mb-2 px-[30px] py-[16px]`}>
                 <MassageStyle >
-                    <span className="text-primary-blue">Other</span>
-                    <div className='msg-wrapper '>
+                    <span className="text-primary-blue text-[14px] tracking-[-0.04em]">FastVisa Support</span>
+                    <div className="msg-wrapper">
                         <Button  
-                            style={{height: "10px"}}
+                            className="h-[10px]"
                             text 
                             icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuRight.current.toggle(event)} 
@@ -113,10 +95,32 @@ function AppPersonalChatInbox() {
                         />
                         <Menu model={menuItems.other} popupAlignment="right" popup ref={menuRight} />
                         <div>
-                            <span>
-                                No worries. It will be completed ASAP. I&apos;ve asked him yesterday.
+                            <span className="text-[12px] tracking-[0.04em]">
+                                Hey there. Welcome to your inbox! Contact us for more information and help about anything! We&apos;ll send you a response as soon as possible.
                             </span>
-                            <span>
+                            <span className="text-[12px] tracking-[0.04em] flex pt-1">
+                                19.32
+                            </span>
+                        </div>
+                    </div>
+                </MassageStyle>
+                <MassageStyle owner="own">
+                    <span className="text-chats-badge-purple text-[14px] tracking-[-0.04em]">You</span>
+                    <div className='msg-wrapper'>
+                        <Button  
+                            className="h-[10px]"
+                            text 
+                            icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
+                            onClick={(event) => menuLeft.current.toggle(event)} 
+                            aria-controls="popup_menu_left" 
+                            aria-haspopup 
+                        />
+                        <Menu model={menuItems.own} popup ref={menuLeft} />
+                        <div>
+                            <span className="text-[12px] tracking-[0.04em]">
+                                Hi, I need help with something can you help me?
+                            </span>
+                            <span className="text-[12px] tracking-[0.04em] flex pt-1">
                                 19.32
                             </span>
                         </div>
@@ -131,12 +135,12 @@ function AppPersonalChatInbox() {
     }
 
     const header = (
-        <div className="flex justify-between" style={{borderBottom: "1px solid #BDBDBD"}}>
+        <div className="flex justify-between border-b border-border-gray p-[23px]">
             <div className="flex items-center">
-                <Button icon="pi pi-arrow-left" onClick={handleBackToInbox} text severity="secondary" />
-                <span className="text-primary-blue">FastVisa Support</span>
+                <Button icon="pi pi-arrow-left text-primary-maingray" className="w-[24px] h-[24px] p-0 m-0" onClick={handleBackToInbox} text severity="secondary" />
+                <span className="text-primary-blue flex p-0 ml-[14px] font-normal tracking-[-0.035em]">FastVisa Support</span>
             </div>
-            <Button icon="pi pi-times" text severity="secondary" />
+            <Button icon="pi pi-times text-primary-maingray" className='w-[24px] h-[24px] p-0 m-0' text severity="secondary" />
         </div>
     );
 
@@ -144,22 +148,24 @@ function AppPersonalChatInbox() {
         <div className='relative'>
             {
                 loading && 
-                <span className="absolute left-0 w-full" style={{bottom: "50px"}}>
-                    <div className="messege-badge flex">
+                <span className="absolute left-0 w-full flex justify-center bottom-[70px]">
+                    <div className="messege-badge border bg-stickers-aliceblue p-[15px] text-[14px] ml-1 flex h-[55px] w-[670px]">
                         <Image src={url + "/icons/pc-loading.svg"} className='pi-spin' width={34} height={34} alt="loading" />
-                        <span style={{marginLeft: "11px"}}>Please wait while we connect you with one of our team ...</span>
+                        <span className='ml-2 tracking-[-0.05em]'>Please wait while we connect you with one of our team ...</span>
                     </div>
                 </span>
             }
-            <AppSearchBar />
+            <AppChatInput />
         </div>
     )
 
     useEffect(() => {
+        // ProductService.getProducts().then((data) => setMessege(data));
+        setMessege([1])
         setTimeout(() => {
-            setLoading(false)
+            // setLoading(false)
         }, 2000);
-    }, [])
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <AppCard 
@@ -177,12 +183,16 @@ function AppPersonalChatInbox() {
                 header={header} 
                 footer={footer}
                 inline 
-                scrollHeight="610px"
+                scrollHeight="596px"
                 pt={{
                     list: {
-                        style: {
-                            border: "none !important",
-                        }
+                        className: "border-none h-card-height",
+                    },
+                    header: {
+                        className: "bg-transparent p-0 h-[70px]"
+                    },
+                    footer: {
+                        className: "bg-transparent border-none"
                     }
                 }}
             />

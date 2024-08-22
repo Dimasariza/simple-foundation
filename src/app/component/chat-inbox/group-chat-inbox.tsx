@@ -138,7 +138,7 @@ function AppGroupChatInbox() {
             <div className="flex">
                 <Button icon="pi pi-arrow-left" onClick={handleBackToInbox} text severity="secondary" />
                 <div className="flex text-start flex-col">
-                    <span>I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHn]</span>
+                    <span className="text-primary-blue">I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHn]</span>
                     <span>3 Participants</span>
                 </div>
             </div>

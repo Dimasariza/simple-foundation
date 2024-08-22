@@ -1,8 +1,14 @@
 "use client"
 
-function AppButton() {
+import { Button, ButtonProps } from "primereact/button";
+import styled from "styled-components";
+
+const StyledButton = styled(Button)`
+`
+
+function AppButton(props: ButtonProps) {
     return (
-        <div>Test button</div>
+        <StyledButton {...props} />
     )
 }
 
