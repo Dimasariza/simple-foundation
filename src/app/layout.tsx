@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css';
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux';
 import { persistor, store } from "./redux/root";
+import { lato } from "./utils/font";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,11 +25,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-primary-maingray`}>
+      <body className={`${inter.className} ${lato} bg-primary-maingray`}>
         <PrimeReactProvider value={value}>
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-              {children}
+              <main className="font-lato">{children}</main>
             </PersistGate>
           </Provider>
         </PrimeReactProvider>

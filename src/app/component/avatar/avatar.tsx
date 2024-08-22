@@ -7,7 +7,6 @@ const AvatarStyle = styled(Avatar)`
     width: 34px;
     height: 34px;
     border: none;
-    background: #2F80ED;
 
     img {
         width: 18px;    

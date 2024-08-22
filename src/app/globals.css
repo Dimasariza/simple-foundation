@@ -13,15 +13,14 @@
 }
 
 * {
-  font-family: 'Lato', sans-serif;
   ::-webkit-scrollbar {
-      width: 8px !important;
+    width: 8px !important;
   }
-
+  
   /* Handle */
   ::-webkit-scrollbar-thumb {
-      -webkit-border-radius: 10px !important;
-      border-radius: 10px !important;
-      background: #BDBDBD !important; 
+    -webkit-border-radius: 10px !important;
+    border-radius: 10px !important;
+    background: #BDBDBD !important; 
   }
 }

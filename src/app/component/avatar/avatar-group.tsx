@@ -9,17 +9,14 @@ const url = process.env.PUBLIC_URL || ""
 function AppAvatarGroup({inbox, avatar}: {avatar?: AvatarProps, inbox?: IInbox}) { 
     return (
         <AvatarGroup 
-            style={{width: "51px"}} 
-            className="flex justify-center"
+            className="flex justify-center self-start w-[50px]"
         >
             {
                 inbox?.inboxGroup == "group" &&
                 <AppAvatar 
                     shape="circle" 
                     image={url + "/icons/person-1.svg"} 
-                    style={{
-                        background: "#E0E0E0",
-                    }}
+                    className="bg-primary-gray3"
                 />
             }
 
@@ -27,10 +24,7 @@ function AppAvatarGroup({inbox, avatar}: {avatar?: AvatarProps, inbox?: IInbox})
                 label="F"
                 shape="circle" 
                 image={url + "/icons/person-2.svg"} 
-                style={{
-                    background: "#2F80ED",
-                    color: "white"
-                }}
+                className="text-white bg-primary-blue"
             />
         </AvatarGroup>
     )

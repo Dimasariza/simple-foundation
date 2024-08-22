@@ -9,13 +9,16 @@ const config: Config = {
     "./node_modules/primereact/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      lato: ['var(--font-lato)']
+    },
     extend: {
       spacing: {
         "quick-btn-right": '34px',
         "quick-btn-bottom": '27px',
         "quick-btn-gap": "26px",
         "quick-other-gap": "16px",
-        "card-bottom": "110px"
+        "card-bottom": "110px",
       },
       colors: {
         "quick-btn": {

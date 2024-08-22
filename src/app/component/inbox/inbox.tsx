@@ -14,22 +14,24 @@ import styled from "styled-components";
 const url = process.env.PUBLIC_URL || ""
 
 const ListStyle = styled(ListBox)`
+    font-family: var(--font-lato);
+
     .p-list-box {
-        max-height: '680px'
+        max-height: '680px';
     }
         
     .p-listbox-header {
         background: none;
         border: none;
-        padding: 20px 34px;
+        padding: 24px 32px 0 32px;
     }
 
     .p-listbox-list {
-        li > div {
-            display: grid;
-            grid-template-columns: 60px 1fr;
-            border-bottom: 1px solid #828282;
-            height: 104.5px;
+        padding: 0;
+        height: 500px;
+
+        li {
+            padding: 0;
         }
         
         li:last-child > div {
@@ -59,28 +61,31 @@ function AppInbox() {
         return (
             loading 
             ?   <></>
-            :   <div onClick={() => handleSelectedInbox(inbox)}>   
-                    <AppAvatarGroup inbox={inbox} avatar={{image}} />
-                    <div className="w-full">
-                        <div className="flex flex-column gap-2 xl:mr-8">
-                            <span className="font-bold" style={{color: "#2F80ED"}}>{inbox.name}</span>
-                            <div className="flex align-items-center gap-2">
-                                {/* <span>{inbox.category}</span> */}
+            :   <div className="px-[34px]">
+                    <div onClick={() => handleSelectedInbox(inbox)} className="flex gap-[17px] border-b-[1px] pb-[16px] pt-[22px] border-primary-gray2">   
+                        <AppAvatarGroup inbox={inbox} avatar={{image}} />
+
+                        <div className="w-full mt-[-6px]">
+                            <div className="flex flex-column xl:mr-8">
+                                <span className="font-bold text-primary-blue max-w-4/5">
+                                    {inbox.name}
+                                </span>
+                                <span className="ml-3 font-normal tracking-[0.01em] flex text-[0.85em]">January 1, 2021 19.10</span>
                             </div>
-                        </div>
-                        {
-                            inbox?.inboxGroup == "group" &&
-                            <span><b>Cameron Phillips:</b></span>
-                        }
-                        <div className="flex justify-between">
-                            <span>Hey, please read.</span>
                             {
-                                inbox?.unReadMessege &&
-                                <i  className="pi pi-circle-fill" 
-                                    style={{fontSize: "10px", color: "#EB5757", display: "flex", alignItems: "end", paddingBottom: "5px"}}
-                                    >
-                                </i>
+                                inbox?.inboxGroup == "group" &&
+                                <span className="font-normal tracking-[0.01em] mt-[-3px] flex text-[0.9em]">Cameron Phillips:</span>
                             }
+                            <div className="flex justify-between">
+                                <span className="font-normal tracking-[0.01em] p-0 mt-[-5px] flex text-[0.9em]">Please check this out!</span>
+                                {
+                                    true &&
+                                    <i  className="pi pi-circle-fill" 
+                                        style={{fontSize: "10px", color: "#EB5757", display: "flex", alignItems: "end", paddingBottom: "5px"}}
+                                        >
+                                    </i>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,23 +107,22 @@ function AppInbox() {
     return (
         <AppCard style={{overflow: "visible"}}>
             <ListStyle 
-                className="w-full md:w-14rem border-none liststyle" 
+                className="w-full md:w-14rem border-none" 
                 itemTemplate={itemTemplate} 
                 filter
                 filterValue={filter} 
                 onFilterValueChange={() => {}}
-                filterTemplate={<AppSearchBar onChange={handleFilterChange} placeholder="Search" />} 
+                filterTemplate={<AppSearchBar onChange={handleFilterChange} placeholder="Search"/>} 
                 options={inbox} 
                 optionLabel="name"
             />
-
             {
                 loading &&
-                <div className="text-center content-center" style={{height: "500px"}}>
-                    <div className="flex justify-center">
-                        <Image width={100} height={100} alt="loading" src={url + "/icons/loading.svg"} className="pi-spin align-center" />
+                <div className="text-center content-center" style={{height: "440px"}}>
+                    <div className="flex justify-center" style={{marginBottom: "8px"}}>
+                        <Image width={85} height={85} alt="loading" src={url + "/icons/loading.svg"} className="pi-spin align-center" />
                     </div>
-                    <span>Loading Chats...</span>
+                    <div style={{fontSize: "16px", paddingLeft: "16px"}} className="tracking-[0.01em]"><b>Loading Chats ...</b></div>
                 </div>
             }
         </AppCard>
