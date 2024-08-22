@@ -56,12 +56,17 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
     };
 
     const handleCloseTabs = () => {
-        dispatch(QuickTabsAction({name: "close"}));  
-        setExpandQuickTab(false);
+        dispatch(QuickTabsAction({name: "close"})); 
     };
+    
+    useEffect(() => {
+        if(!tab) { // to close quick tabs
+            setExpandQuickTab(false);
+        }
+    }, [tab])
 
     useEffect(() => {
-        if(!expandQuickTab) {
+        if(!expandQuickTab) { // close quick tabs when refresh
             dispatch(QuickTabsAction({name: "close"}));  
         }
     }, []);
