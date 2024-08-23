@@ -95,11 +95,15 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
         return (
             <div className={className}>
                 <div className="flex p-[10px]">
-                    <Checkbox pt={{
-                        box: {
-                            className: "rounded-[2px] border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
-                        }
-                    }} checked={data?.completed} onChange={handleCompletedTask} />
+                    <Checkbox 
+                        pt={{
+                            box: {
+                                className: "rounded-[2px] border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
+                            }
+                        }} 
+                        checked={data?.completed} 
+                        onChange={handleCompletedTask} 
+                    />
                     {
                         edit.taskTitle
                         ?   <AppInput placeholder="Type Task Title" className="ml-4" />

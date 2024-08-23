@@ -78,8 +78,6 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
         x: 80
     };
 
-    console.log(tab)
-
     return (
         <div className="!fixed bottom-quick-btn-bottom right-quick-btn-right flex items-center justify-end">
             <div className="flex items-center gap-quick-btn-gap">

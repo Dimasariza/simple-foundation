@@ -3,7 +3,7 @@
 import { InputText } from "primereact/inputtext";
 import styled from "styled-components";
 
-const AppInput = styled(InputText)`
+const   AppInput = styled(InputText)`
     font-family: var(--font-lato);
     height: 40px;
 

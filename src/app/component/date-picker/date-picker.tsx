@@ -28,6 +28,10 @@ const DatePicker = styled(Calendar)`
         right: 13px;
         bottom: 12px;
     }
+    
+    .p-datepicker-month {
+        font-family: var(--font-lato);
+    }
 
 `  
 
