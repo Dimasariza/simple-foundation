@@ -26,7 +26,7 @@ const config: Config = {
       },
       colors: {
         "quick-btn": {
-          white: "#F2F2F2"
+          white: "#F8F8F8"
         },
         border: {
           gray: "#BDBDBD"

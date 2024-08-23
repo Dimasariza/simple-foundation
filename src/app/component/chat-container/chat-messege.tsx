@@ -16,6 +16,7 @@ import { UserService } from '../../service/UserService';
 import { IUser } from '../../types/user';
 import ChatHeader from './messege-header';
 import { Divider } from 'primereact/divider';
+import { classNames } from 'primereact/utils';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
@@ -47,7 +48,6 @@ const MassageStyle = styled.div<{owner?: boolean}>`
             border: none;
             display: flex;
             flex-direction: column;
-            background: ${({owner}) => owner ? "#EEDCFF" : "#F8F8F8"};
             padding: 8px;
             border-radius: 5px;
         }
@@ -86,12 +86,38 @@ function AppChatContainer() {
     }
 
     const itemTemplate = (data: any) => {
-        console.log(data)
-        const {owner} = data || {};
+        const {owner, unReadMessege, user, messege} = data || {};
         return (
             <div className={`pl-[18px]`}>
+                {
+                    tab?.inbox?.inboxGroup == "group" &&
+                    <Divider 
+                        align="center" 
+                        className={classNames("m-0 mt-5 text-l", {
+                            "text-indicator-tomato before:border-indicator-tomato": unReadMessege,
+                            "text-primary-gray1 before:border-primary-gray1": !unReadMessege
+                        })}
+                    >
+                        <span>
+                            {
+                                unReadMessege 
+                                ? "New Message"
+                                : "Today June 09, 2021"
+                            }
+                        </span>
+                    </Divider>
+                }
                 <MassageStyle owner={owner}>
-                    <span className={`${owner ? "text-chats-badge-purple" : "text-primary-blue"} text-[14px] tracking-[-0.04em]`}>{owner ? "You" :  data?.user?.name}</span>
+                    <span 
+                        className={classNames("text-[14px] tracking-[-0.04em]", {
+                            "text-chats-badge-purple": owner,
+                            "text-primary-blue": !owner && tab?.inbox?.inboxGroup == "personal",
+                            "text-chats-badge-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessege,
+                            "text-chats-badge-green": unReadMessege
+                        })} 
+                    >
+                        {owner ? "You" :  user?.name}
+                    </span>
                     <div className="msg-wrapper">
                         <Button  
                             className="h-[10px] w-[20px]"
@@ -114,9 +140,14 @@ function AppChatContainer() {
                                 },
                             }} 
                         />
-                        <div>
+                        <div className={classNames({
+                            "bg-chats-main-purple": owner,
+                            "bg-quick-btn-white": !owner && tab?.inbox?.inboxGroup == "personal",
+                            "bg-chats-main-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessege,
+                            "bg-chats-main-green": !owner && unReadMessege,
+                        })}>
                             <span className="text-[12px] tracking-[0.04em]">
-                                {data?.messege}
+                                {messege}
                             </span>
                             <span className="text-[12px] tracking-[0.04em] flex pt-1">
                                 19.32
@@ -124,12 +155,6 @@ function AppChatContainer() {
                         </div>
                     </div>
                 </MassageStyle>
-                {
-                    tab?.inbox?.inboxGroup == "group" &&
-                    <Divider align="center" className="m-0 mt-5 text-l text-indicator-tomato border-indicator-tomato">
-                        <span>Today June 09, 2021</span>
-                    </Divider>
-                }
             </div>
         );
     };
@@ -170,7 +195,7 @@ function AppChatContainer() {
                 itemTemplate={itemTemplate} 
                 rows={5} 
                 header={<ChatHeader handleBackToInbox={handleBackToInbox}  handleCloseMessege={handleCloseMessege} />} 
-                footer={<AppMessegeInput loading={loading}/>}
+                footer={<AppMessegeInput placeholder="Type a new message" loading={loading}/>}
                 inline 
                 scrollHeight="580px"
                 className="w-chat-width h-chat-height"
