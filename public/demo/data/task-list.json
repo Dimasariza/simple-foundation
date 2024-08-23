@@ -5,7 +5,7 @@
             "completed": false,
             "title": "Close off Case #012920- RODRIGUES, Amiguel",
             "setDate": "",
-            "description": "Homeworks needed to be checked are as follows: Client Profile Quistionaire, Passport Requirement and Images, Personal Documents."
+            "description": "Closing off this case since this application has been canclled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!"
         },
         {
             "id": 1,
@@ -20,6 +20,13 @@
             "title": "Contact Mr Caleb - video conferece?",
             "setDate": "",
             "description": "Closing off this case since this application has been canclled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!"
+        },
+        {
+            "id": 1,
+            "completed": false,
+            "title": "Close off Case #012920- RODRIGUES, Amiguel",
+            "setDate": "",
+            "description": "Homeworks needed to be checked are as follows: Client Profile Quistionaire, Passport Requirement and Images, Personal Documents."
         }
     ]
 }

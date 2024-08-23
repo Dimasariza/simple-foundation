@@ -12,6 +12,7 @@ import Image from "next/image";
 import moment from "moment";
 import { classNames } from "primereact/utils";
 import styled from "styled-components";
+import AppInput from "../input/input";
 const url = process.env.PUBLIC_URL || ""
 
 const StyledPanel = styled(Panel)`
@@ -19,6 +20,9 @@ const StyledPanel = styled(Panel)`
         padding: 0;
     }
 
+    .p-panel-content {
+        padding: 0;
+    }
 `
 
 function TaskItem ({data, setTaskListData}: ITaskItemProps) {
@@ -94,7 +98,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                     }} checked={data?.completed} onChange={handleCompletedTask} />
                     {
                         edit.taskTitle
-                        ?   <InputText />
+                        ?   <AppInput placeholder="Type Task Title" className="ml-4" />
                         :   <span 
                                 className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
                                     "line-through text-[14px]": data.completed
@@ -128,20 +132,24 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     };
 
     const panelBodyTemplate = (
-        <>
-            <div className="flex align-self-center">
+        <div className="mx-16 grid-cols-12 grid">
+            <div className="flex">
                 <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
-                <AppDatePicker dateFormat="dd-mm-yy" value={new Date(data?.setDate)} onChange={handleEditSetDate} />
             </div>
+            <AppDatePicker className="col-span-11" dateFormat="dd-mm-yy" value={new Date(data?.setDate)} onChange={handleEditSetDate} />
             <div className="flex">
                 <Image width={15} height={15} alt="Edit task list" src={"/icons/pencil.svg"} />
+            </div>
+            <div className="col-span-11 my-5">
                 {
                     edit.taskDescription 
                     ? <InputTextarea className="w-full" autoResize/>
-                    : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5" onClick={() => handleEditing("taskDescription")}>{data?.description}</span>
+                    : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5" onClick={() => handleEditing("taskDescription")}>
+                        {data?.description}
+                    </span>
                 }
             </div>
-        </>
+        </div>
     )
 
     return (
