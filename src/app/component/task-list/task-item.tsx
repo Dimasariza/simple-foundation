@@ -10,7 +10,16 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Panel } from "primereact/panel";
 import Image from "next/image";
 import moment from "moment";
+import { classNames } from "primereact/utils";
+import styled from "styled-components";
 const url = process.env.PUBLIC_URL || ""
+
+const StyledPanel = styled(Panel)`
+    .p-panel-header {
+        padding: 0;
+    }
+
+`
 
 function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
@@ -72,34 +81,47 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     }
 
     const panelHeaderTemplate = (options: any) => {
-        const className = `${options.className} justify-content-space-between border-none bg-transparent`;
+        const className = `${options.className} border-none bg-transparent items-center ml-[30px] mr-[50px] my-[10px]`;
         const { day, diff }: any = getDateStatus() || {};
 
         return (
             <div className={className}>
-                <div className="flex align-items-center gap-2">
-                    <Checkbox checked={data?.completed} onChange={handleCompletedTask} />
+                <div className="flex">
+                    <Checkbox pt={{
+                        box: {
+                            className: "rounded-[2px] border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
+                        }
+                    }} checked={data?.completed} onChange={handleCompletedTask} />
                     {
                         edit.taskTitle
-                        ? <InputText />
-                        : <span className={`cursor-pointer ${data.completed && "line-through"}`} onClick={() => handleEditing("taskTitle")}>{data?.title}</span>
+                        ?   <InputText />
+                        :   <span 
+                                className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
+                                    "line-through text-[14px]": data.completed
+                                })}
+                                onClick={() => handleEditing("taskTitle")}
+                            >
+                                {data?.title}
+                            </span>
                     }
                 </div>
-                {
-                    data?.setDate &&
-                    <div>
-                        <span className="text-red-400">{diff == 0 ? "" : diff} {day}</span>
-                        <span>{moment(data?.setDate).format("DD-MM-YYYY")}</span>
-                    </div>
-                }
-                <div>
+                <div className="flex">
                     {
-                        collapsed
-                        ? <Button text onClick={() => setCollapsed(prev => !prev)} icon={<i className="pi pi-angle-down"></i>}></Button> 
-                        : <Button text onClick={() => setCollapsed(prev => !prev)} icon={<i className="pi pi-angle-up"></i>}></Button> 
+                        data?.setDate &&
+                        <div className="flex gap-5 justify-end px-4">
+                            <span className="text-indicator-tomato text-[14px] tracking-[-0.07em]">
+                                {diff == 0 ? "" : diff} {day}
+                            </span>
+                            <span className="text-[14px] tracking-[0.01em]">
+                                {moment(data?.setDate).format("DD-MM-YYYY")}
+                            </span>
+                        </div>
                     }
-                    <Button  text icon={<Image width={100} height={100} alt="menu" src={url + "/icons/menu-deactive.svg"} />} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
-                    <Menu model={items} popup ref={menuLeft} />
+                    <div className="flex gap-3 justify-between">
+                        <Button className="w-[16px] h-[16px]" text onClick={() => setCollapsed(prev => !prev)} icon={<i className={`pi text-[14px] text-primary-gray1 ${collapsed ? "pi-angle-down" : "pi pi-angle-up"} "`}></i>}></Button> 
+                        <Button className="w-[24px] h-[24px]" text icon={<Image width={20} height={20} alt="menu" src={url + "/icons/menu-deactive.svg"} />} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
+                        <Menu model={items} popup ref={menuLeft} />
+                    </div>
                 </div>
             </div>
         );
@@ -108,39 +130,30 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const panelBodyTemplate = (
         <>
             <div className="flex align-self-center">
-                <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={50} height={50} />
+                <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
                 <AppDatePicker dateFormat="dd-mm-yy" value={new Date(data?.setDate)} onChange={handleEditSetDate} />
             </div>
             <div className="flex">
-                <Image width={100} height={100} alt="Edit task list" src={"/icons/pencil.svg"} />
+                <Image width={15} height={15} alt="Edit task list" src={"/icons/pencil.svg"} />
                 {
                     edit.taskDescription 
                     ? <InputTextarea className="w-full" autoResize/>
-                    : <span className="cursor-pointer" onClick={() => handleEditing("taskDescription")}>{data?.description}</span>
+                    : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5" onClick={() => handleEditing("taskDescription")}>{data?.description}</span>
                 }
             </div>
         </>
     )
 
     return (
-        <div>
-            <Panel 
-                collapsed={collapsed}
-                onToggle={() => setCollapsed(prev => !prev)}
-                headerTemplate={panelHeaderTemplate} 
-                toggleable 
-                pt={{
-                    content: {
-                        style: {
-                            // border: "none",
-                            borderRadius: 0
-                        }
-                    },
-                }}
-            >
-                {panelBodyTemplate}
-            </Panel>
-        </div>
+        <StyledPanel 
+            className="p-0"
+            collapsed={collapsed}
+            onToggle={() => setCollapsed(prev => !prev)}
+            headerTemplate={panelHeaderTemplate} 
+            toggleable 
+        >
+            {panelBodyTemplate}
+        </StyledPanel>
     )
 }
 

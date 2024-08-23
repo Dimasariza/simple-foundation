@@ -1,4 +1,4 @@
-interface IMessege {
+export interface IChatMessege {
     deleted: boolean;
     messege: string | any;
     messegeId: string | number;
@@ -8,12 +8,4 @@ interface IMessege {
     userId: string | number;
     unReadMessege: boolean;
     owner: boolean;
-}
-
-export interface IChatMessege extends IMessege {
-
-}
-
-export interface IGroupMessege extends IMessege {
-
 }

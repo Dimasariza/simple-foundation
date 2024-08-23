@@ -1,11 +1,39 @@
 import { Button } from "primereact/button";
-import { Dropdown } from "primereact/dropdown";
+import { Dropdown, DropdownProps } from "primereact/dropdown";
 import { useEffect, useState } from "react";
 import AppCard from "../card/card";
 import { ListBox } from "primereact/listbox";
 import { ITaskList } from "../../types/task-list";
 import { TaskListService } from "../../service/TaskListService";
 import TaskItem from "./task-item";
+import styled from "styled-components";
+
+const StyledDropDown = styled(Dropdown)<DropdownProps>`
+    .p-placeholder {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .p-dropdown-trigger {
+        width: 14px;
+        height: 14px;
+        margin-left: 8px;
+    }
+`
+
+const StyledListBox = styled(ListBox)`
+    .p-listbox-list {
+        padding: 0;
+    }
+    .p-listbox-item {
+        padding: 0;
+    }
+    .p-listbox-header {
+        background: transparent;
+        border: none;
+    }
+`
 
 function AppTaskList() {
     const [selectedTask, setSelectedTask] = useState(null);
@@ -19,15 +47,23 @@ function AppTaskList() {
     const cardHeaderTemplate = () => {
         return (
             <div className="flex w-full justify-around">
-                <Dropdown 
+                <StyledDropDown 
                     value={selectedTask} 
                     onChange={(e) => setSelectedTask(e.value)} 
                     options={taskOptions} 
                     optionLabel="name" 
-                    placeholder="Select Task" 
-                    className="md:w-14rem" 
+                    placeholder="My Task" 
+                    className="md:w-14rem h-[40px] flex border-primary-gray2 items-center p-2" 
                 />
-                <Button label="New Task" className="bg-primary-blue"/>
+                <Button 
+                    label="New Task" 
+                    pt={{
+                        label: {
+                            className: "font-normal tracking-[-0.06em]"
+                        }
+                    }} 
+                    className="font-thin bg-primary-blue h-[40px]"
+                />
             </div>
         )
     }
@@ -38,13 +74,15 @@ function AppTaskList() {
     }, [])
 
     return (
-        <AppCard style={{overflow: "visible"}} >
-            <ListBox 
+        <AppCard className="overflow-visible" >
+            <StyledListBox 
                 className="w-full md:w-14rem border-none" 
                 listStyle={{ maxHeight: '680px', overflow: "auto" }} 
                 filter 
                 filterTemplate={cardHeaderTemplate} 
-                options={taskListData?.map((i: any, key: number) => <TaskItem key={i?.title + key} data={i} setTaskListData={setTaskListData}/>)}
+                options={
+                    taskListData?.map((i: any, key: number) => <TaskItem key={i?.title + key} data={i} setTaskListData={setTaskListData}/>)
+                }
             />
         </AppCard>
     )

@@ -3,9 +3,23 @@
         {
             "id": 1,
             "completed": false,
-            "title": "Close off Case #012921-RODRIGUES, Amiguel",
+            "title": "Close off Case #012920- RODRIGUES, Amiguel",
             "setDate": "",
             "description": "Homeworks needed to be checked are as follows: Client Profile Quistionaire, Passport Requirement and Images, Personal Documents."
+        },
+        {
+            "id": 1,
+            "completed": false,
+            "title": "Set up documentation report for several Cases: Case 145443, Case 192829 and Case 182203",
+            "setDate": "",
+            "description": "Closing off this case since this application has been canclled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!"
+        },
+        {
+            "id": 1,
+            "completed": false,
+            "title": "Contact Mr Caleb - video conferece?",
+            "setDate": "",
+            "description": "Closing off this case since this application has been canclled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!"
         }
     ]
 }

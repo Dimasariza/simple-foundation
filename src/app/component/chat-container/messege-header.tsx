@@ -2,7 +2,8 @@ import { Button } from "primereact/button";
 import { useSelector } from "react-redux";
 
 function ChatHeader({handleBackToInbox, handleCloseMessege}:  any) {
-    const { tab: {inbox} } = useSelector((state: any) => state.QuickTabsReducer) || {};
+    const { tab } = useSelector((state: any) => state.QuickTabsReducer) || {};
+    const {inbox} = {...tab}
 
     return (
         <div className="flex justify-between border-b border-border-gray p-[23px]">
