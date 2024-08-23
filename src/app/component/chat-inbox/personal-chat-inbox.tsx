@@ -7,11 +7,12 @@ import { ProductService } from "../../service/ProductService";
 import styled from 'styled-components';
 import { Menu } from 'primereact/menu';
 import AppCard from '../card/card';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
 import { IPersonalMessege } from '../../types/chat';
 import AppMessegeInput from './messege-input';
+import { ChatInboxService } from '../../service/ChatInboxService';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
@@ -57,6 +58,7 @@ function AppPersonalChatInbox() {
     const [messege, setMessege] = useState<IPersonalMessege | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const dispatch = useDispatch();
+    const { tab } = useSelector((state: any) => state.QuickTabsReducer);
 
     const menuLeft = useRef<Menu | any>(null);
     const menuRight = useRef<Menu | any>(null);
@@ -64,17 +66,21 @@ function AppPersonalChatInbox() {
         other: [
             {
                 label: 'Share',
+                color: "text-primary-blue"
             },
             {
                 label: 'Reply',
+                color: "text-primary-blue"
             }
         ],
         own: [
             {
                 label: 'Edit',
+                color: "text-primary-blue"
             },
             {
                 label: 'Delete',
+                color: "text-indicator-tomato"
             }
         ]
     }
@@ -86,14 +92,21 @@ function AppPersonalChatInbox() {
                     <span className="text-primary-blue text-[14px] tracking-[-0.04em]">FastVisa Support</span>
                     <div className="msg-wrapper">
                         <Button  
-                            className="h-[10px]"
+                            className="h-[10px] w-[20px]"
                             text 
                             icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuRight.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
                         />
-                        <Menu model={menuItems.other} popupAlignment="right" popup ref={menuRight} />
+                        <Menu className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" model={menuItems.other} popupAlignment="right" popup ref={menuRight}  pt={{
+                            label(options: any) {
+                                return {
+                                    ...options,
+                                    className: options?.context.item?.color
+                                }
+                            },
+                        }} />
                         <div>
                             <span className="text-[12px] tracking-[0.04em]">
                                 Hey there. Welcome to your inbox! Contact us for more information and help about anything! We&apos;ll send you a response as soon as possible.
@@ -108,14 +121,21 @@ function AppPersonalChatInbox() {
                     <span className="text-chats-badge-purple text-[14px] tracking-[-0.04em]">You</span>
                     <div className='msg-wrapper'>
                         <Button  
-                            className="h-[10px]"
+                            className="h-[10px] w-[20px]"
                             text 
                             icon={<Image width={16} height={16} alt='menu' src={url + "/icons/menu-deactive.svg"}/>} 
                             onClick={(event) => menuLeft.current.toggle(event)} 
                             aria-controls="popup_menu_left" 
                             aria-haspopup 
                         />
-                        <Menu model={menuItems.own} popup ref={menuLeft} />
+                        <Menu className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" model={menuItems.own} popup ref={menuLeft} pt={{
+                            label(options: any) {
+                                return {
+                                    ...options,
+                                    className: options?.context.item?.color
+                                }
+                            },
+                        }} />
                         <div>
                             <span className="text-[12px] tracking-[0.04em]">
                                 Hi, I need help with something can you help me?
@@ -161,21 +181,15 @@ function AppPersonalChatInbox() {
     );
 
     useEffect(() => {
-        ProductService.getProducts().then((data) => setMessege(data));
+        ChatInboxService.getMesseges()
+        .then((data) => setMessege(data));
         setTimeout(() => {
             setLoading(false)
         }, 2000);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <AppCard 
-            style={{
-                width: "708px",
-                height: "726px",
-                borderRadius: "5px",
-                overflow: "hidden"
-            }}
-        >
+        <AppCard className="rounded-[5px] w-chat-width h-chat-height overflow-hidden">
             <InboxStyle 
                 value={messege} 
                 itemTemplate={itemTemplate} 

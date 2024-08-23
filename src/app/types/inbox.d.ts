@@ -1,7 +1,11 @@
+import { IGroupMessege, IPersonalMessege } from "./chat";
+import { IUser } from "./user";
+
 export interface IInbox {
     id: string;
     inboxGroup: "personal" | "group";
-    lastMassage: any;
     name: string;
-    unReadMessege: boolean;
+    lastMessege: IPersonalMessege | IGroupMessege;
+    messege: IPersonalMessege[] | IGroupMessege[];
+    user: IUser;
 }

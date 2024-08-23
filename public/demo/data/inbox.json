@@ -3,26 +3,22 @@
         {
             "id": "inbox001",
             "name": "109220-Naturalization",
-            "userId": [],
             "unReadMessage": true,
             "inboxGroup": "group"
         },
         {
             "id": "inbox002",
             "name": "Jeannette Moraima Guaman Chamba (Hutto I-589)[Hutto Follow Up - Brief Service]",
-            "userId": [],
             "inboxGroup": "group"
         },
         {
             "id": "inbox003",
             "name": "8405-Diana SALAZAR MUNGUIA",
-            "userId": [],
             "inboxGroup": "group"
         },
         {
             "id": "inbox004",
             "name": "FastVisa Support",
-            "userId": [],
             "inboxGroup": "personal"
         }
     ]

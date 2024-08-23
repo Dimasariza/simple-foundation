@@ -1,11 +1,14 @@
-import { ITaskList } from "../types/task-list";
+import { IPersonalMessege } from "../types/chat";
 import axios from 'axios';
 
-const endPoint = 'http://localhost:3100/data'
+const endPoint = '/demo/data/messege.json';
 
-export const TaskListService = {
-    getInbox() {
+export const ChatInboxService = {
+    getMesseges() {
       return axios.get(endPoint)
-      .then((res) => res.data as ITaskList[])
+      .then(({data}) => data.data as IPersonalMessege[])
     },
+    getGroupMsg() {
+
+    }
 };

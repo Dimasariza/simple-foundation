@@ -20,7 +20,9 @@ const config: Config = {
         "quick-other-gap": "16px",
         "card-bottom": "110px",
         "card-height": "737px",
-        "card-width": "734px"
+        "card-width": "734px",
+        "chat-width": "708px",
+        "chat-height": "726px"
       },
       colors: {
         "quick-btn": {
