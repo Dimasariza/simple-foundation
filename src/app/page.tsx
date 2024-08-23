@@ -8,9 +8,9 @@ import AppInbox from "./component/inbox/inbox";
 import AppTaskList from "./component/task-list/task-list";
 import AppQuickButton from "./component/quick-button/quick-button";
 import { useSelector } from "react-redux";
-import AppGroupChatInbox from "./component/chat-inbox/group-chat-inbox";
+import AppGroupChatInbox from "./component/chat-container/group-chat-inbox";
 import { AnimatePresence } from "framer-motion";
-import AppPersonalChatInbox from "./component/chat-inbox/personal-chat-inbox";
+import AppChatContainer from "./component/chat-container/chat-messege";
  
 export default function Home() {
   addLocale('es', {
@@ -28,9 +28,9 @@ export default function Home() {
         if(tab?.name == "Inbox") {
           return <AppInbox />;
         } else if(tab.name == "Group-Inbox") {
-          return <AppGroupChatInbox />;
+          return <AppChatContainer />;
         } else if(tab.name == "Personal-Inbox") {
-          return <AppPersonalChatInbox />;
+          return <AppChatContainer />;
         } 
       case "Task":
         return <AppTaskList />;

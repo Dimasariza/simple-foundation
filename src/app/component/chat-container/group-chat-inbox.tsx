@@ -26,21 +26,21 @@ const InboxStyle = styled(DataScroller)`
     }
 `
 
-const MassageStyle = styled.div<{owner?: string}>`
+const MassageStyle = styled.div<{owner?: boolean}>`
     padding: 10px;
     max-height: 100px;
-    text-align: ${({owner}) => owner == "own" ? "end" : "start"};
+    text-align: ${({owner}) => owner ? "end" : "start"};
 
     .msg-wrapper {
         display: flex;
-        flex-direction: ${({owner}) => owner == "own" ? "row" : "row-reverse"};
-        justify-content: ${({owner}) => owner == "own" ? "end" : "start"};
+        flex-direction: ${({owner}) => owner ? "row" : "row-reverse"};
+        justify-content: ${({owner}) => owner ? "end" : "start"};
 
         div {
             text-align: start;
             display: flex;
             flex-direction: column;
-            background: ${({owner}) => owner == "own" ? "#EEDCFF" : "#FCEED3"};;
+            background: ${({owner}) => owner ? "#EEDCFF" : "#FCEED3"};;
             padding: 9px;
             border-radius: 5px;
         }
@@ -80,7 +80,7 @@ function AppGroupChatInbox() {
     const itemTemplate = (data: any) => {
         return (
             <div>
-                <MassageStyle owner="own">
+                <MassageStyle owner>
                     <span>You</span>
                     <div className='msg-wrapper' style={{border: "none"}}>
                         <Button  

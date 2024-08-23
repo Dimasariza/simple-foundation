@@ -49,6 +49,59 @@
                     "sendDate": "2024-08-22",
                     "userId": "user003",
                     "unReadMessege": false
+                },
+                {
+                    "deleted": false,
+                    "messege": "Hi, I need help with something can you help me?",
+                    "messegeId": "messege002",
+                    "sendDate": "2024-08-22",
+                    "userId": "user000",
+                    "unReadMessege": false
+                }
+            ] 
+        },
+        { 
+            "inboxId": "inbox005",
+            "messege": [
+                {
+                    "deleted": false,
+                    "messege": "No worries. It will be completed ASAP. I've asked him yesterday.",
+                    "messegeId": "messege001",
+                    "sendDate": "2024-08-22 19-42",
+                    "userId": "user000",
+                    "unReadMessege": false
+                },
+                {
+                    "deleted": false,
+                    "messege": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
+                    "messegeId": "messege002",
+                    "sendDate": "2024-08-22 19-42",
+                    "userId": "user004",
+                    "unReadMessege": false
+                },
+                {
+                    "deleted": false,
+                    "messege": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
+                    "messegeId": "messege003",
+                    "sendDate": "2024-08-22 19-42",
+                    "userId": "user000",
+                    "unReadMessege": false
+                },
+                {
+                    "deleted": false,
+                    "messege": "Sure thing, Claren",
+                    "messegeId": "messege004",
+                    "sendDate": "2024-08-22 19-42",
+                    "userId": "user004",
+                    "unReadMessege": false
+                },
+                {
+                    "deleted": false,
+                    "messege": "Morning.I'll try to do them. Thanks",
+                    "messegeId": "messege003",
+                    "sendDate": "2024-08-22 19-42",
+                    "userId": "user005",
+                    "unReadMessege": false
                 }
             ] 
         }

@@ -7,9 +7,10 @@ interface IMessege {
     user: IUser;
     userId: string | number;
     unReadMessege: boolean;
+    owner: boolean;
 }
 
-export interface IPersonalMessege extends IMessege {
+export interface IChatMessege extends IMessege {
 
 }
 

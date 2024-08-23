@@ -20,6 +20,11 @@
             "id": "inbox004",
             "name": "FastVisa Support",
             "inboxGroup": "personal"
+        },
+        {
+            "id": "inbox005",
+            "name": "I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHN]",
+            "inboxGroup": "group"
         }
     ]
 }

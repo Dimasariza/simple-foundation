@@ -16,5 +16,4 @@ const AppInput = styled(InputText)`
     }
 `;
 
-
 export default AppInput;
