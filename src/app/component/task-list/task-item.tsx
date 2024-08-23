@@ -146,7 +146,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
             </div>
             <AppDatePicker className="col-span-11" dateFormat="dd-mm-yy" value={new Date(data?.setDate)} onChange={handleEditSetDate} />
             <div className="flex">
-                <Image width={15} height={15} alt="Edit task list" src={"/icons/pencil.svg"} />
+                <Image width={15} height={15} alt="Edit task list" src={`/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
             </div>
             <div className="col-span-11 my-5"  onClick={() => handleEditing("taskDescription")}>
                 {
