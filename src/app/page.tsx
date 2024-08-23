@@ -8,7 +8,6 @@ import AppInbox from "./component/inbox/inbox";
 import AppTaskList from "./component/task-list/task-list";
 import AppQuickButton from "./component/quick-button/quick-button";
 import { useSelector } from "react-redux";
-import AppGroupChatInbox from "./component/chat-container/group-chat-inbox";
 import { AnimatePresence } from "framer-motion";
 import AppChatContainer from "./component/chat-container/chat-messege";
  
@@ -27,9 +26,7 @@ export default function Home() {
       case "Inbox":
         if(tab?.name == "Inbox") {
           return <AppInbox />;
-        } else if(tab.name == "Group-Inbox") {
-          return <AppChatContainer />;
-        } else if(tab.name == "Personal-Inbox") {
+        } else {
           return <AppChatContainer />;
         } 
       case "Task":

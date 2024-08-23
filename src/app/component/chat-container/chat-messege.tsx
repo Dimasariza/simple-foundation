@@ -86,6 +86,7 @@ function AppChatContainer() {
     }
 
     const itemTemplate = (data: any) => {
+        console.log(data)
         const {owner} = data || {};
         return (
             <div className={`pl-[18px]`}>
@@ -125,8 +126,8 @@ function AppChatContainer() {
                 </MassageStyle>
                 {
                     tab?.inbox?.inboxGroup == "group" &&
-                    <Divider align="center">
-                        <span>Badge</span>
+                    <Divider align="center" className="m-0 mt-5 text-l text-indicator-tomato border-indicator-tomato">
+                        <span>Today June 09, 2021</span>
                     </Divider>
                 }
             </div>

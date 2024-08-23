@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ITaskList } from "../../types/task-list";
+import { IEditTaskItem, ITaskItemProps, ITaskList } from "../../types/task-list";
 import { MenuItem } from "primereact/menuitem";
 import { Menu } from "primereact/menu";
 import { Checkbox, CheckboxChangeEvent } from "primereact/checkbox";
@@ -8,7 +8,6 @@ import { Button } from "primereact/button";
 import AppDatePicker from "../date-picker/date-picker";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Panel } from "primereact/panel";
-import { IEditTaskItem, ITaskItemProps } from "../../types/task-item";
 import Image from "next/image";
 import moment from "moment";
 const url = process.env.PUBLIC_URL || ""
