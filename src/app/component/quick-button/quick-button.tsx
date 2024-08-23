@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
 import Image from "next/image";
+import { classNames } from "primereact/utils";
 const url = process.env.PUBLIC_URL || ""
 
 const MainButton = styled(Button)`
@@ -77,6 +78,8 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
         x: 80
     };
 
+    console.log(tab)
+
     return (
         <div className="!fixed bottom-quick-btn-bottom right-quick-btn-right flex items-center justify-end">
             <div className="flex items-center gap-quick-btn-gap">
@@ -145,8 +148,18 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                     <FrontButton 
                         {...props} 
                         rounded
-                        className="bg-white" 
-                        icon={<Image width={30.22} height={30.22} alt="front button" src={url + `/icons/${quickTabsBtn.find(i => i.group == tab.group)?.icon}`} />}
+                        className={classNames({
+                            "bg-indicator-purple": tab.name == "Inbox",
+                            "bg-indicator-sandybrown": tab.name == "Task",
+                        })} 
+                        icon={
+                            <Image 
+                                width={30.22} 
+                                height={30.22} 
+                                alt="front button" 
+                                src={url + `/icons/${tab.name == "Inbox" ? "chat-deactive.svg" : "book-deactive.svg"}`} 
+                            />
+                        }
                         text 
                     />
                 </div>

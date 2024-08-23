@@ -39,7 +39,7 @@ const ListStyle = styled(ListBox)<{data: IInbox[]}>`
             padding: ${({data}) => data?.length ? "0" : "34px"};
         }
         
-        li:last-child > div {
+        li:last-child > div > div {
             border: none;
         }
     }

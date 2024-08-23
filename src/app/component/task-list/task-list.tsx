@@ -46,24 +46,28 @@ function AppTaskList() {
 
     const cardHeaderTemplate = () => {
         return (
-            <div className="flex w-full justify-around">
-                <StyledDropDown 
-                    value={selectedTask} 
-                    onChange={(e) => setSelectedTask(e.value)} 
-                    options={taskOptions} 
-                    optionLabel="name" 
-                    placeholder="My Task" 
-                    className="md:w-14rem h-[40px] flex border-primary-gray2 items-center p-2" 
-                />
-                <Button 
-                    label="New Task" 
-                    pt={{
-                        label: {
-                            className: "font-normal tracking-[-0.06em]"
-                        }
-                    }} 
-                    className="font-thin bg-primary-blue h-[40px]"
-                />
+            <div className="grid-cols-2 grid">
+                <div className="pl-12 flex">
+                    <StyledDropDown 
+                        value={selectedTask} 
+                        onChange={(e) => setSelectedTask(e.value)} 
+                        options={taskOptions} 
+                        optionLabel="name" 
+                        placeholder="My Task" 
+                        className="md:w-14rem h-[40px] flex border-primary-gray2 items-center p-2" 
+                    />
+                </div>
+                <div className="flex justify-end mr-2">
+                    <Button 
+                        label="New Task" 
+                        pt={{
+                            label: {
+                                className: "font-normal tracking-[-0.06em]"
+                            }
+                        }} 
+                        className="font-thin bg-primary-blue h-[40px]"
+                    />
+                </div>
             </div>
         )
     }

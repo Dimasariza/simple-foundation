@@ -20,8 +20,10 @@ const StyledPanel = styled(Panel)`
         padding: 0;
     }
 
+
     .p-panel-content {
         padding: 0;
+        border: 0;
     }
 `
 
@@ -85,12 +87,12 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     }
 
     const panelHeaderTemplate = (options: any) => {
-        const className = `${options.className} border-none bg-transparent items-center ml-[30px] mr-[50px] my-[10px]`;
+        const className = `${options.className} border-x-0 border-t-0 border-b-1 bg-transparent items-center ml-[20px] mr-[40px] my-[5px]`;
         const { day, diff }: any = getDateStatus() || {};
 
         return (
             <div className={className}>
-                <div className="flex">
+                <div className="flex p-[10px]">
                     <Checkbox pt={{
                         box: {
                             className: "rounded-[2px] border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
@@ -124,7 +126,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                     <div className="flex gap-3 justify-between">
                         <Button className="w-[16px] h-[16px]" text onClick={() => setCollapsed(prev => !prev)} icon={<i className={`pi text-[14px] text-primary-gray1 ${collapsed ? "pi-angle-down" : "pi pi-angle-up"} "`}></i>}></Button> 
                         <Button className="w-[24px] h-[24px]" text icon={<Image width={20} height={20} alt="menu" src={url + "/icons/menu-deactive.svg"} />} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
-                        <Menu model={items} popup ref={menuLeft} />
+                        <Menu model={items} popup ref={menuLeft} className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" pt={{label: {className: "text-indicator-tomato"}}} />
                     </div>
                 </div>
             </div>
@@ -154,7 +156,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
 
     return (
         <StyledPanel 
-            className="p-0"
+            className="p-0 border-none"
             collapsed={collapsed}
             onToggle={() => setCollapsed(prev => !prev)}
             headerTemplate={panelHeaderTemplate} 
