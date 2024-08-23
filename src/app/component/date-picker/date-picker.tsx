@@ -11,7 +11,8 @@ const DatePicker = styled(Calendar)`
 
     .p-inputtext {
         border-radius: 5px;
-        border: 1px solid #d9d9d9;
+        font-family: var(--font-lato);
+        border: 1px solid #828282;
     }
 
     .p-datepicker-trigger {
@@ -32,7 +33,7 @@ const DatePicker = styled(Calendar)`
 
 function AppDatePicker(props: CalendarProps) {
     return (    
-        <DatePicker {...props} selectOtherMonths={false} showOtherMonths={false} showIcon 
+        <DatePicker {...props} selectOtherMonths={false} showOtherMonths={false} showIcon className={`${props.className} border-primary-gray2`}
         icon={() => <Image width={100} height={100} alt="calendar" src={url + "/icons/calendar.svg"} />} />
     )
 }

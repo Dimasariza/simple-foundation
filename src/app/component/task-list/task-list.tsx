@@ -9,8 +9,12 @@ import TaskItem from "./task-item";
 import styled from "styled-components";
 
 const StyledDropDown = styled(Dropdown)<DropdownProps>`
+    border-radius: 5px;
+
     .p-placeholder {
-        font-size: 12px;
+        font-family: var(--font-lato);
+        font-size: 16px;
+        font-weight: bold;
         margin: 0;
         padding: 0;
     }
@@ -23,6 +27,8 @@ const StyledDropDown = styled(Dropdown)<DropdownProps>`
 `
 
 const StyledListBox = styled(ListBox)`
+    font-family: var(--font-lato);
+
     .p-listbox-list {
         padding: 0;
     }
@@ -53,8 +59,13 @@ function AppTaskList() {
                         onChange={(e) => setSelectedTask(e.value)} 
                         options={taskOptions} 
                         optionLabel="name" 
-                        placeholder="My Task" 
+                        placeholder="My Tasks" 
                         className="md:w-14rem h-[40px] flex border-primary-gray2 items-center p-2" 
+                        pt={{
+                            list: {
+                                className: "font-lato"
+                            }
+                        }}
                     />
                 </div>
                 <div className="flex justify-end mr-2">
@@ -62,10 +73,10 @@ function AppTaskList() {
                         label="New Task" 
                         pt={{
                             label: {
-                                className: "font-normal tracking-[-0.06em]"
+                                className: "font-normal tracking-[0.01em]"
                             }
                         }} 
-                        className="font-thin bg-primary-blue h-[40px]"
+                        className="font-thin bg-primary-blue h-[40px] font-lato"
                     />
                 </div>
             </div>

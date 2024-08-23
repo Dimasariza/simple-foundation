@@ -33,8 +33,8 @@ function AppMessegeInput(props: InputTextProps | any) {
                 </span>
             }
             <div className="flex gap-[13px] px-[20px] pb-[20px]">
-                <InputStyled {...props} className="w-full h-[40px] border-primary-gray2 border"/>
-                <Button label="Send" className="bg-primary-blue h-[40px]"/>
+                <InputStyled {...props} className="w-full h-[40px] border-primary-gray2 border font-lato"/>
+                <Button label="Send" className="bg-primary-blue h-[40px] font-lato"/>
             </div>
         </div>
     )

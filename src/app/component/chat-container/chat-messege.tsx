@@ -20,6 +20,8 @@ import { classNames } from 'primereact/utils';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
+    font-family: var(--font-lato);
+
     .p-datascroller-list > li {
         border: none;
     }
@@ -93,7 +95,7 @@ function AppChatContainer() {
                     tab?.inbox?.inboxGroup == "group" &&
                     <Divider 
                         align="center" 
-                        className={classNames("m-0 mt-5 text-l", {
+                        className={classNames("m-0 mt-5 text-l font-lato font-bold", {
                             "text-indicator-tomato before:border-indicator-tomato": unReadMessege,
                             "text-primary-gray1 before:border-primary-gray1": !unReadMessege
                         })}
@@ -109,7 +111,7 @@ function AppChatContainer() {
                 }
                 <MassageStyle owner={owner}>
                     <span 
-                        className={classNames("text-[14px] tracking-[-0.04em]", {
+                        className={classNames("text-[14px] tracking-[0.01em]", {
                             "text-chats-badge-purple": owner,
                             "text-primary-blue": !owner && tab?.inbox?.inboxGroup == "personal",
                             "text-chats-badge-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessege,
@@ -146,7 +148,7 @@ function AppChatContainer() {
                             "bg-chats-main-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessege,
                             "bg-chats-main-green": !owner && unReadMessege,
                         })}>
-                            <span className="text-[12px] tracking-[0.04em]">
+                            <span className="text-[12px] tracking-[0.07em]">
                                 {messege}
                             </span>
                             <span className="text-[12px] tracking-[0.04em] flex pt-1">

@@ -13,13 +13,15 @@ import moment from "moment";
 import { classNames } from "primereact/utils";
 import styled from "styled-components";
 import AppInput from "../input/input";
+import AppTextArea from "../text-area/text-area";
 const url = process.env.PUBLIC_URL || ""
 
 const StyledPanel = styled(Panel)`
+    font-family: var(--font-lato);
+
     .p-panel-header {
         padding: 0;
     }
-
 
     .p-panel-content {
         padding: 0;
@@ -145,7 +147,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
             <div className="col-span-11 my-5">
                 {
                     edit.taskDescription 
-                    ? <InputTextarea className="w-full" autoResize/>
+                    ? <AppTextArea className="w-full" value={data?.description} autoResize/>
                     : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5" onClick={() => handleEditing("taskDescription")}>
                         {data?.description}
                     </span>

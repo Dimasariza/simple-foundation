@@ -149,15 +149,15 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
                         {...props} 
                         rounded
                         className={classNames({
-                            "bg-indicator-purple": tab.name == "Inbox",
-                            "bg-indicator-sandybrown": tab.name == "Task",
+                            "bg-indicator-purple": tab.group == "Inbox",
+                            "bg-indicator-sandybrown": tab.group == "Task",
                         })} 
                         icon={
                             <Image 
                                 width={30.22} 
                                 height={30.22} 
                                 alt="front button" 
-                                src={url + `/icons/${tab.name == "Inbox" ? "chat-deactive.svg" : "book-deactive.svg"}`} 
+                                src={url + `/icons/${tab.group == "Inbox" ? "chat-deactive.svg" : "book-deactive.svg"}`} 
                             />
                         }
                         text 
