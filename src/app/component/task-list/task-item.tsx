@@ -49,7 +49,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
 
     const handleCompletedTask = (e: CheckboxChangeEvent) => {
         setTaskListData((prev: ITaskList[]) => prev.map((i) => {
-            if(data.id == i.id) {
+            if(data?.id == i.id) {
                 return {...i, completed: e.checked}
             }
             return i
@@ -58,8 +58,8 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
 
     const handleEditSetDate = (e: any) => {
         setTaskListData((prev: ITaskList[]) => prev.map((i) => {
-            if(data.id == i.id) {
-                return {...i, setDate: moment(e?.value).format("YYYY-MM-DD")  }
+            if(data?.id == i.id) {
+                return {...i, setDate: moment(e?.value).format("YYYY-MM-DD")}
             }
             return i
         }))
@@ -109,7 +109,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                         ?   <AppInput placeholder="Type Task Title" className="ml-4" />
                         :   <span 
                                 className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
-                                    "line-through text-[14px]": data.completed
+                                    "line-through text-[14px]": data?.completed
                                 })}
                                 onClick={() => handleEditing("taskTitle")}
                             >
@@ -148,11 +148,11 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
             <div className="flex">
                 <Image width={15} height={15} alt="Edit task list" src={"/icons/pencil.svg"} />
             </div>
-            <div className="col-span-11 my-5">
+            <div className="col-span-11 my-5"  onClick={() => handleEditing("taskDescription")}>
                 {
                     edit.taskDescription 
                     ? <AppTextArea className="w-full" value={data?.description} autoResize/>
-                    : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5" onClick={() => handleEditing("taskDescription")}>
+                    : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5">
                         {data?.description}
                     </span>
                 }

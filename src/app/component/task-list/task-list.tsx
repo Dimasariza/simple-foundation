@@ -50,6 +50,11 @@ function AppTaskList() {
         { name: 'Urgent To-Do', code: 'urgent' },
     ];
 
+    const handleAddNewTask = () => {
+        const newData: ITaskList[] = [{} as ITaskList, ...taskListData!]
+        setTaskListData(newData)
+    }
+
     const cardHeaderTemplate = () => {
         return (
             <div className="grid-cols-2 grid">
@@ -71,6 +76,7 @@ function AppTaskList() {
                 <div className="flex justify-end mr-2">
                     <Button 
                         label="New Task" 
+                        onClick={handleAddNewTask}
                         pt={{
                             label: {
                                 className: "font-normal tracking-[0.01em]"

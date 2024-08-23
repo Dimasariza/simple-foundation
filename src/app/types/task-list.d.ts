@@ -8,7 +8,7 @@ export interface ITaskList {
 
 export interface ITaskItemProps {
     data: ITaskList;
-    setTaskListData: Dispatch<ITaskList[] | any>;
+    setTaskListData: Dispatch<ITaskList[]>;
 }
 
 export interface IEditTaskItem {
