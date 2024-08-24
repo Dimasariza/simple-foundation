@@ -1,12 +1,10 @@
 import { useRef, useState } from "react";
 import { IEditTaskItem, ITaskItemProps, ITaskList } from "../../types/task-list";
-import { MenuItem } from "primereact/menuitem";
+import { MenuItem, MenuItemCommandEvent } from "primereact/menuitem";
 import { Menu } from "primereact/menu";
 import { Checkbox, CheckboxChangeEvent } from "primereact/checkbox";
-import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import AppDatePicker from "../date-picker/date-picker";
-import { InputTextarea } from "primereact/inputtextarea";
 import { Panel } from "primereact/panel";
 import Image from "next/image";
 import moment from "moment";
@@ -14,7 +12,7 @@ import { classNames } from "primereact/utils";
 import styled from "styled-components";
 import AppInput from "../input/input";
 import AppTextArea from "../text-area/text-area";
-const url = process.env.PUBLIC_URL || ""
+const url = process.env.PUBLIC_URL || "";
 
 const StyledPanel = styled(Panel)`
     font-family: var(--font-lato);
@@ -27,7 +25,7 @@ const StyledPanel = styled(Panel)`
         padding: 0;
         border: 0;
     }
-`
+`;
 
 function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
@@ -40,6 +38,10 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     const items: MenuItem[] = [
         {
             label: 'Delete',
+            command: (e: MenuItemCommandEvent) => {
+                setTaskListData((prev: ITaskList[]) => prev.filter((i) => i.id !== data.id))
+            },
+            
         },
     ];
 
@@ -47,30 +49,13 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
         setEdit((prev) => ({...prev, [name]: !prev[name]}))
     }
 
-    const handleCompletedTask = (e: CheckboxChangeEvent) => {
+    const handleEditData = (key: string, newData: any) => {
         setTaskListData((prev: ITaskList[]) => prev.map((i) => {
             if(data?.id == i.id) {
-                return {...i, completed: e.checked}
+                return {...i, [key]: newData}
             }
             return i
         }))
-    }
-
-    const handleEditSetDate = (e: any) => {
-        setTaskListData((prev: ITaskList[]) => prev.map((i) => {
-            if(data?.id == i.id) {
-                return {...i, setDate: moment(e?.value).format("YYYY-MM-DD")}
-            }
-            return i
-        }))
-    }
-
-    const handleEditDescription = () => {
-
-    }
-
-    const handleEditTitle = () => {
-
     }
 
     const getDateStatus = () => {
@@ -102,15 +87,20 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                             }
                         }} 
                         checked={data?.completed} 
-                        onChange={handleCompletedTask} 
+                        onChange={(e: CheckboxChangeEvent) => handleEditData("completed", e.checked)} 
                     />
                     {
                         edit.taskTitle
-                        ?   <AppInput placeholder="Type Task Title" className="ml-4" />
-                        :   <span 
-                                className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
-                                    "line-through text-[14px]": data?.completed
-                                })}
+                        ?   <AppInput 
+                                value={data?.title} 
+                                placeholder="Type Task Title" 
+                                className="ml-4" 
+                                onChange={(e) => {handleEditData("title", e.target.value)}}
+                            />
+                        :   <span className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
+                                        "line-through text-[14px]": data?.completed
+                                    })
+                                }
                                 onClick={() => handleEditing("taskTitle")}
                             >
                                 {data?.title}
@@ -132,7 +122,11 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                     <div className="flex gap-3 justify-between">
                         <Button className="w-[16px] h-[16px]" text onClick={() => setCollapsed(prev => !prev)} icon={<i className={`pi text-[14px] text-primary-gray1 ${collapsed ? "pi-angle-down" : "pi pi-angle-up"} "`}></i>}></Button> 
                         <Button className="w-[24px] h-[24px]" text icon={<Image width={20} height={20} alt="menu" src={url + "/icons/menu-deactive.svg"} />} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
-                        <Menu model={items} popup ref={menuLeft} className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" pt={{label: {className: "text-indicator-tomato"}}} />
+                        <Menu model={items} popup ref={menuLeft} className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" pt={{
+                            label: {
+                                className: "text-indicator-tomato"
+                            }
+                        }}/>
                     </div>
                 </div>
             </div>
@@ -144,17 +138,22 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
             <div className="flex">
                 <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
             </div>
-            <AppDatePicker className="col-span-11" dateFormat="dd-mm-yy" value={new Date(data?.setDate)} onChange={handleEditSetDate} />
+            <AppDatePicker 
+                className="col-span-11" 
+                dateFormat="dd-mm-yy" 
+                value={new Date(data?.setDate)} 
+                onChange={(e) => handleEditData("setDate", moment(e?.value).format("YYYY-MM-DD"))} 
+            />
             <div className="flex">
                 <Image width={15} height={15} alt="Edit task list" src={`/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
             </div>
-            <div className="col-span-11 my-5"  onClick={() => handleEditing("taskDescription")}>
+            <div className="col-span-11 my-5">
                 {
                     edit.taskDescription 
-                    ? <AppTextArea className="w-full" value={data?.description} autoResize/>
-                    : <span className="cursor-pointer tracking-[-0.04em] w-[600px] leading-5">
+                    ? <AppTextArea className="w-full" value={data?.description} autoResize onChange={(e) => handleEditData("description", e.target.value)}/>
+                    : <p className="cursor-pointer tracking-[-0.04em] min-h-5 min-w-[600px] leading-5" onClick={() => handleEditing("taskDescription")}>
                         {data?.description}
-                    </span>
+                      </p>
                 }
             </div>
         </div>

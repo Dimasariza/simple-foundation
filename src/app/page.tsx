@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react";
+import React, { useState } from "react";
 
 import { locale, addLocale } from 'primereact/api';
 import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
@@ -10,6 +10,11 @@ import AppQuickButton from "./component/quick-button/quick-button";
 import { useSelector } from "react-redux";
 import { AnimatePresence } from "framer-motion";
 import AppChatContainer from "./component/chat-container/chat-messege";
+import { Panel } from "primereact/panel";
+import AppTextArea from "./component/text-area/text-area";
+import AppCard from "./component/card/card";
+import { ListBox } from "primereact/listbox";
+import AppInput from "./component/input/input";
  
 export default function Home() {
   addLocale('es', {
@@ -38,7 +43,8 @@ export default function Home() {
 
   return (
     <div>
-      <AppMainSearchBar />
+      {/* <AppMainSearchBar /> */}
+
 
         <AnimatePresence>
           { switchQuickTabs() }

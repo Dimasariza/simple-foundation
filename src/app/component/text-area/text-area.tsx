@@ -1,4 +1,5 @@
 import { InputTextarea, InputTextareaProps } from "primereact/inputtextarea";
+import { useState } from "react";
 import styled from "styled-components";
 
 const StyledTextArea = styled(InputTextarea)`
@@ -8,8 +9,12 @@ const StyledTextArea = styled(InputTextarea)`
 `
 
 function AppTextArea(props: InputTextareaProps) {
+    const [text, setText] = useState<string>();
+    const handleChangeInput = (e: any) => {
+        setText(e.target.value)
+    }
     return (
-        <StyledTextArea {...props} className={`${props.className} rounded-[5px] border-primary-gray2 tracking-[-0.045em] leading-5`}/>
+        <StyledTextArea value={text} {...props} className={`${props.className} rounded-[5px] border-primary-gray2 tracking-[-0.045em] leading-5`}/>
     )
 }
 
