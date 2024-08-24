@@ -77,7 +77,7 @@ function AppInbox() {
                         }
                         <div className="flex justify-between">
                             <p className="font-normal tracking-[0.01em] p-0 mt-[-5px] text-[0.9em] w-3/4 truncate">
-                                {inbox?.lastMessege?.messege}
+                                {inbox?.lastMessege?.message}
                             </p>
                             {
                                 inbox.lastMessege?.unReadMessege &&
@@ -114,13 +114,13 @@ function AppInbox() {
         ])
         .then(([inbox, user, messeges]) => {
             inbox = inbox.map(i => {
-                let { messege } = messeges?.find((personal) => personal.inboxId == i.id) || {}
-                messege = messege?.map((item: IChatMessege) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
+                let { message } = messeges?.find((personal) => personal.inboxId == i.id) || {}
+                message = message?.map((item: IChatMessege) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
                 
                 return {
                     ...i,
-                    messege,
-                    lastMessege: messege?.[messege?.length - 1]
+                    message,
+                    lastMessege: message?.[message?.length - 1]
                 }
             })
             setInbox(inbox)

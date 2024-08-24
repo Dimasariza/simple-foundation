@@ -1,6 +1,6 @@
 export interface IChatMessege {
     deleted: boolean;
-    messege: string | any;
+    message: string | any;
     messegeId: string | number;
     inboxId: string | number;
     sendDate: Date;

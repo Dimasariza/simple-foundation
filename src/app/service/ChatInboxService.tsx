@@ -1,7 +1,7 @@
 import { IChatMessege } from "../types/chat";
 import axios from 'axios';
 
-const endPoint = '/demo/data/messege.json';
+const endPoint = '/demo/data/message.json';
 
 export const ChatInboxService = {
     getMesseges() {

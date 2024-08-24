@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React from "react";
 
 import { locale, addLocale } from 'primereact/api';
 import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
@@ -9,12 +9,7 @@ import AppTaskList from "./component/task-list/task-list";
 import AppQuickButton from "./component/quick-button/quick-button";
 import { useSelector } from "react-redux";
 import { AnimatePresence } from "framer-motion";
-import AppChatContainer from "./component/chat-container/chat-messege";
-import { Panel } from "primereact/panel";
-import AppTextArea from "./component/text-area/text-area";
-import AppCard from "./component/card/card";
-import { ListBox } from "primereact/listbox";
-import AppInput from "./component/input/input";
+import AppChatContainer from "./component/chat-container/chat-message";
  
 export default function Home() {
   addLocale('es', {

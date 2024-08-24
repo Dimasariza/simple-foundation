@@ -1,4 +1,5 @@
 import { Button } from "primereact/button";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function ChatHeader({handleBackToInbox, handleCloseMessege}:  any) {

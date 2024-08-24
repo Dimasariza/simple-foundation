@@ -6,6 +6,6 @@ export interface IInbox {
     inboxGroup: "personal" | "group";
     name: string;
     lastMessege: IChatMessege | IGroupMessege;
-    messege: IChatMessege[] | IGroupMessege[];
+    message: IChatMessege[] | IGroupMessege[];
     user: IUser;
 }

@@ -10,13 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import Image from 'next/image';
 import { IChatMessege } from '../../types/chat';
-import AppMessegeInput from './messege-input';
 import { ChatInboxService } from '../../service/ChatInboxService';
 import { UserService } from '../../service/UserService';
 import { IUser } from '../../types/user';
-import ChatHeader from './messege-header';
 import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
+import ChatHeader from './message-header';
+import AppMessegeInput from './message-input';
+import moment from 'moment';
 const url = process.env.PUBLIC_URL || ""
 
 const InboxStyle = styled(DataScroller)`
@@ -57,8 +58,21 @@ const MassageStyle = styled.div<{owner?: boolean}>`
 `
 
 function AppChatContainer() {
-    const [messege, setMessege] = useState<IChatMessege | any>([]);
+    const emptyMessage = {
+        deleted: "",
+        message: "",
+        messegeId: "",
+        inboxId: "",
+        sendDate: "",
+        user: "",
+        userId: "",
+        unReadMessege: "",
+        owner: ""
+    };
+
+    const [message, setMessege] = useState<IChatMessege | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [newMessage, setNewMessage] = useState<any>(emptyMessage);
     const dispatch = useDispatch();
     const { tab } = useSelector((state: any) => state.QuickTabsReducer);
 
@@ -88,7 +102,7 @@ function AppChatContainer() {
     }
 
     const itemTemplate = (data: any) => {
-        const {owner, unReadMessege, user, messege} = data || {};
+        const {owner, unReadMessege, user, message} = data || {};
         return (
             <div className={`pl-[18px]`}>
                 {
@@ -149,7 +163,7 @@ function AppChatContainer() {
                             "bg-chats-main-green": !owner && unReadMessege,
                         })}>
                             <span className="text-[12px] tracking-[0.07em]">
-                                {messege}
+                                {message}
                             </span>
                             <span className="text-[12px] tracking-[0.04em] flex pt-1">
                                 19.32
@@ -179,7 +193,7 @@ function AppChatContainer() {
             UserService.getUsers()
         ])
         .then(([msgByInbox, user]: any) => {
-            const messeges = msgByInbox.messege.map((i: IChatMessege) => {
+            const messeges = msgByInbox.message.map((i: IChatMessege) => {
                 return {
                     ...i,
                     user: user.find((u: IUser) => u.userId == i.userId),
@@ -193,12 +207,30 @@ function AppChatContainer() {
     return (
         <AppCard className="rounded-[5px] w-chat-width h-chat-height overflow-hidden">
             <InboxStyle 
-                value={messege} 
+                value={message} 
                 itemTemplate={itemTemplate} 
                 rows={5} 
-                header={<ChatHeader handleBackToInbox={handleBackToInbox}  handleCloseMessege={handleCloseMessege} />} 
-                footer={<AppMessegeInput placeholder="Type a new message" loading={loading}/>}
-                inline 
+                header={<ChatHeader handleBackToInbox={handleBackToInbox} handleCloseMessege={handleCloseMessege} />} 
+                footer={
+                    <AppMessegeInput 
+                        input={{
+                            placeholder: "Type a new message", 
+                            onChange: (e) => {setNewMessage((prev: IChatMessege) => ({
+                                ...prev, message: e.target.value,
+                            }))}
+                        }}
+                        button={{
+                            onClick: (e) => {setMessege((prev: IChatMessege) => [...message, {
+                                ...newMessage,
+                                sendData: moment(new Date()).format("YYYY-MM-DD"),
+                                userId: "user000",
+                                owner: true
+                            }])}
+                        }}
+                        loading={loading}
+                    />
+                }
+                inline
                 scrollHeight="580px"
                 className="w-chat-width h-chat-height"
                 pt={{

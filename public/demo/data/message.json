@@ -2,10 +2,10 @@
     "data": [
         { 
             "inboxId": "inbox001",
-            "messege": [
+            "message": [
                 {
                     "deleted": false,
-                    "messege": "Please check this out!",
+                    "message": "Please check this out!",
                     "messegeId": "messege001",
                     "sendDate": "2021-01-01 19-10",
                     "userId": "user001",
@@ -15,10 +15,10 @@
         },
         { 
             "inboxId": "inbox002",
-            "messege": [
+            "message": [
                 {
                     "deleted": false,
-                    "messege": "Hey, please read.",
+                    "message": "Hey, please read.",
                     "messegeId": "messege001",
                     "sendDate": "2021-01-01 19-10",
                     "userId": "user002",
@@ -28,10 +28,10 @@
         },
         { 
             "inboxId": "inbox003",
-            "messege": [
+            "message": [
                 {
                     "deleted": false,
-                    "messege": "I understand your initial concerns and thats very valid, Elizabeth. But you a response as soon as possible.",
+                    "message": "I understand your initial concerns and thats very valid, Elizabeth. But you a response as soon as possible.",
                     "messegeId": "messege001",
                     "sendDate": "2024-08-22",
                     "userId": "user001",
@@ -41,10 +41,10 @@
         },
         { 
             "inboxId": "inbox004",
-            "messege": [
+            "message": [
                 {
                     "deleted": false,
-                    "messege": "Hey there. Welcome to your inbox! Contact us for more information and help about anything! We'll send you a response as soon as possible.",
+                    "message": "Hey there. Welcome to your inbox! Contact us for more information and help about anything! We'll send you a response as soon as possible.",
                     "messegeId": "messege001",
                     "sendDate": "2024-08-22",
                     "userId": "user003",
@@ -52,7 +52,7 @@
                 },
                 {
                     "deleted": false,
-                    "messege": "Hi, I need help with something can you help me?",
+                    "message": "Hi, I need help with something can you help me?",
                     "messegeId": "messege002",
                     "sendDate": "2024-08-22",
                     "userId": "user000",
@@ -62,10 +62,10 @@
         },
         { 
             "inboxId": "inbox005",
-            "messege": [
+            "message": [
                 {
                     "deleted": false,
-                    "messege": "No worries. It will be completed ASAP. I've asked him yesterday.",
+                    "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
                     "messegeId": "messege001",
                     "sendDate": "2024-08-22 19-42",
                     "userId": "user000",
@@ -73,7 +73,7 @@
                 },
                 {
                     "deleted": false,
-                    "messege": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
+                    "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
                     "messegeId": "messege002",
                     "sendDate": "2024-08-22 19-42",
                     "userId": "user004",
@@ -81,7 +81,7 @@
                 },
                 {
                     "deleted": false,
-                    "messege": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
+                    "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
                     "messegeId": "messege003",
                     "sendDate": "2024-08-22 19-42",
                     "userId": "user000",
@@ -89,7 +89,7 @@
                 },
                 {
                     "deleted": false,
-                    "messege": "Sure thing, Claren",
+                    "message": "Sure thing, Claren",
                     "messegeId": "messege004",
                     "sendDate": "2024-08-22 19-42",
                     "userId": "user004",
@@ -97,7 +97,7 @@
                 },
                 {
                     "deleted": false,
-                    "messege": "Morning.I'll try to do them. Thanks",
+                    "message": "Morning.I'll try to do them. Thanks",
                     "messegeId": "messege003",
                     "sendDate": "2024-08-22 19-42",
                     "userId": "user005",
