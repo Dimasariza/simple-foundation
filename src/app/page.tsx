@@ -43,12 +43,11 @@ export default function Home() {
 
   return (
     <div>
-      {/* <AppMainSearchBar /> */}
+      <AppMainSearchBar />
 
-
-        <AnimatePresence>
-          { switchQuickTabs() }
-        </AnimatePresence>
+      <AnimatePresence>
+        { switchQuickTabs() }
+      </AnimatePresence>
 
       <AppQuickButton />
     </div>
