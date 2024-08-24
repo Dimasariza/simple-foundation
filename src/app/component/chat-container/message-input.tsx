@@ -28,7 +28,7 @@ function AppMessegeInput({input, button, loading}: {input?: InputTextProps, butt
                 loading && tab?.inbox?.inboxGroup == "group" &&
                 <span className="absolute left-0 w-full flex justify-center bottom-[70px]">
                     <div className="message-badge border bg-stickers-aliceblue justify-center items-center text-[14px] ml-1 flex h-[40px] w-[150px]">
-                        <span className='ml-2 tracking-[-0.05em] text-primary-blue'>New Messege</span>
+                        <span className='ml-2 tracking-[-0.05em] text-primary-blue'>New Message</span>
                     </div>
                 </span>
             }

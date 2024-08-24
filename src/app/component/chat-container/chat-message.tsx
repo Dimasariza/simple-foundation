@@ -215,17 +215,21 @@ function AppChatContainer() {
                     <AppMessegeInput 
                         input={{
                             placeholder: "Type a new message", 
-                            onChange: (e) => {setNewMessage((prev: IChatMessege) => ({
+                            onChange: (e) => {
+                                console.log(newMessage)
+                                setNewMessage((prev: IChatMessege) => ({
                                 ...prev, message: e.target.value,
                             }))}
                         }}
                         button={{
-                            onClick: (e) => {setMessege((prev: IChatMessege) => [...message, {
-                                ...newMessage,
-                                sendData: moment(new Date()).format("YYYY-MM-DD"),
-                                userId: "user000",
-                                owner: true
-                            }])}
+                            onClick: (e) => {
+                                setMessege([...message, {
+                                    ...newMessage,
+                                    sendData: moment(new Date()).format("YYYY-MM-DD"),
+                                    userId: "user000",
+                                    owner: true
+                                }])
+                            }
                         }}
                         loading={loading}
                     />
