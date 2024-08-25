@@ -90,7 +90,13 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
             <div className="px-2 mx-2 py-2 grid-cols-12 grid bg-chips-bg">
                 <div className="flex">
                     <Menu 
-                        model={chipItems} 
+                        model={chipItems.map((c) => {
+                            const chip = data?.chips?.find(i => i == c.label)
+                            return {
+                                ...c,
+                                disabled: chip
+                            }
+                        })} 
                         popup 
                         ref={menuLeft} 
                         className="w-[270px] p-0" 
