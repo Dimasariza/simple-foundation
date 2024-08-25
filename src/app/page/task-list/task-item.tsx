@@ -59,7 +59,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
 
     const panelBodyTemplate = (
         <div>
-            <div className="px-5 grid-cols-12 grid">
+            <div className="px-12 grid-cols-16 grid">
                 <div className="flex">
                     <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
                 </div>
@@ -71,7 +71,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                 />
             </div>
 
-            <div className="px-5 grid-cols-12 grid">
+            <div className="px-12 grid-cols-16 grid">
                 <div className="flex">
                     <Image width={15} height={15} alt="Edit task list" src={`/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
                 </div>
@@ -86,7 +86,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                 </div> 
             </div>
 
-            <div className="px-2 mx-2 py-2 grid-cols-12 grid bg-chips-bg">
+            <div className="mx-10 px-1 rounded-border-rad py-2 grid-cols-16 grid bg-chips-bg">
                 <div className="flex">
                     <Menu 
                         model={chipItems.map((c) => {

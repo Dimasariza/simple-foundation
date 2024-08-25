@@ -13,6 +13,10 @@ const config: Config = {
       lato: ['var(--font-lato)']
     },
     extend: {
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+        'footer': '30px minmax(900px, 1fr) 100px',
+      },
       spacing: {
         "quick-btn-right": '34px',
         "quick-btn-bottom": '27px',

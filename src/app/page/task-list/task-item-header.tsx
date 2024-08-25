@@ -50,8 +50,8 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
     
     const { day, diff }: any = getDateStatus() || {};
     return (
-        <div className={`${options.className} border-none bg-transparent items-center ml-[20px] mr-[40px] my-[5px]`}>
-            <div className="flex p-[10px]">
+        <div className={`${options.className} border-none bg-transparent items-center ml-2 mr-6 mt-[5px]`}>
+            <div className="flex py-4">
                 <Checkbox 
                     pt={{
                         box: {
