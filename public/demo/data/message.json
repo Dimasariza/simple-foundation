@@ -7,7 +7,7 @@
                     "deleted": false,
                     "message": "Please check this out!",
                     "messegeId": "messege001",
-                    "sendDate": "2021-01-01 19-10",
+                    "sendDate": "2021-01-01 19:10:30",
                     "userId": "user001",
                     "unReadMessage": true
                 }
@@ -20,7 +20,7 @@
                     "deleted": false,
                     "message": "Hey, please read.",
                     "messegeId": "messege001",
-                    "sendDate": "2021-01-01 19-10",
+                    "sendDate": "2021-06-02 10:45:30",
                     "userId": "user002",
                     "unReadMessage": false
                 }
@@ -33,7 +33,7 @@
                     "deleted": false,
                     "message": "I understand your initial concerns and thats very valid, Elizabeth. But you a response as soon as possible.",
                     "messegeId": "messege001",
-                    "sendDate": "2024-08-22",
+                    "sendDate": "2021-06-01 12:19:30",
                     "userId": "user001",
                     "unReadMessage": false
                 }
@@ -46,7 +46,7 @@
                     "deleted": false,
                     "message": "Hey there. Welcome to your inbox! Contact us for more information and help about anything! We'll send you a response as soon as possible.",
                     "messegeId": "messege001",
-                    "sendDate": "2024-08-22",
+                    "sendDate": "2024-08-22 12:10:30",
                     "userId": "user003",
                     "unReadMessage": false
                 },
@@ -54,7 +54,7 @@
                     "deleted": false,
                     "message": "Hi, I need help with something can you help me?",
                     "messegeId": "messege002",
-                    "sendDate": "2024-08-22",
+                    "sendDate": "2024-08-22 12:19:30",
                     "userId": "user000",
                     "unReadMessage": false
                 }

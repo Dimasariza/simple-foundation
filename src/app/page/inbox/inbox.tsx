@@ -66,7 +66,7 @@ function AppInbox() {
                                 {inbox.name}
                             </span>
                             <span className="ml-3 font-normal tracking-[0.01em] flex text-[0.85em]">
-                                {inbox.lastMessege?.sendDate && moment(inbox.lastMessege?.sendDate).format("DD-MM-YYYY")}
+                                {inbox.lastMessege?.sendDate && moment(inbox.lastMessege?.sendDate).format("DD/MM/YYYY HH:mm")}
                             </span>
                         </div>
                         {
