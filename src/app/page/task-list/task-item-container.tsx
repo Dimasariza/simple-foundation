@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "primereact/button";
 import { Dropdown, DropdownProps } from "primereact/dropdown";
 import { useEffect, useState } from "react";
