@@ -43,7 +43,8 @@ const config: Config = {
         "chat-height": "726px",
       },
       borderRadius: {
-        "border-rad": "5px"
+        "border-rad": "5px",
+        0: "0px"
       },
       colors: {
         "quick-btn": {
