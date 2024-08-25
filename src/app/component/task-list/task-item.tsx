@@ -94,6 +94,9 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                             const chip = data?.chips?.find(i => i == c.label)
                             return {
                                 ...c,
+                                command: () => {
+                                    handleEditData("chips", [...data.chips, c.label]) 
+                                },
                                 disabled: chip
                             }
                         })} 
