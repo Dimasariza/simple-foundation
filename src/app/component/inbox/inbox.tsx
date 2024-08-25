@@ -12,7 +12,7 @@ import { IInbox } from "../../types/inbox";
 import styled from "styled-components";
 import { InboxService } from "../../service/InboxService";
 import { ChatInboxService } from "../../service/ChatInboxService";
-import { IChatMessege } from "../../types/chat";
+import { IChatMessage } from "../../types/chat";
 import { UserService } from "../../service/UserService";
 import { IUser } from "../../types/user";
 import moment from "moment";
@@ -115,7 +115,7 @@ function AppInbox() {
         .then(([inbox, user, messeges]) => {
             inbox = inbox.map(i => {
                 let { message } = messeges?.find((personal) => personal.inboxId == i.id) || {}
-                message = message?.map((item: IChatMessege) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
+                message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
                 
                 return {
                     ...i,
