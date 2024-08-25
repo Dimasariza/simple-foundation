@@ -133,7 +133,12 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                     {
                         data?.chips?.map((i, key) => {
                             const { className }: any = chipItems.find(chip => chip.label == i)
-                            return <Chip key={i + key} label={i} className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-[14px] font-bold tracking-[-0.01em]`} />
+                            return <Chip 
+                                    onClick={() => handleEditData("chips", data.chips.filter(chip => chip != i))}
+                                    key={i + key} 
+                                    label={i} 
+                                    className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-[14px] font-bold tracking-[-0.01em] cursor-pointer`} 
+                                />
                         })
                     }
                 </div>
