@@ -1,9 +1,10 @@
 "use client"
 
-import { InputText } from "primereact/inputtext";
+import { InputText, InputTextProps } from "primereact/inputtext";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
-const   AppInput = styled(InputText)`
+const StyledInput = styled(InputText)`
     font-family: var(--font-lato);
     height: 40px;
     font-size: 16px;
@@ -14,5 +15,15 @@ const   AppInput = styled(InputText)`
         color: black;
     }
 `;
+
+function AppInput(props: InputTextProps) {
+    const [text, setText] = useState<string>();
+    const handleChangeInput = (e: any) => {
+        setText(e.target.value)
+    }
+
+    const ref = useRef<any>()
+    return <StyledInput ref={ref} value={text} {...props}/>
+}
 
 export default AppInput;

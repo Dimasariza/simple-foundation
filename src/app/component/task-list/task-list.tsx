@@ -28,7 +28,7 @@ const StyledDropDown = styled(Dropdown)<DropdownProps>`
 
 function AppTaskList() {
     const [selectedTask, setSelectedTask] = useState(null);
-    const [taskListData, setTaskListData] = useState<ITaskList[]>();
+    const [taskListData, setTaskListData] = useState<ITaskList[]>([]);
 
     const taskOptions = [
         { name: 'Personal Errands', code: 'personal' },
@@ -76,7 +76,7 @@ function AppTaskList() {
     )
         
     const listTemplate: any = (items: ITaskList[]) => {
-        return items?.map((i, key) => <TaskItem key={`${key + i?.title}`} data={i} setTaskListData={setTaskListData}/>) 
+        return items?.map((i, key) => <TaskItem key={`${key + i?.title}`} data={i} taskListData={taskListData} setTaskListData={setTaskListData}/>) 
     };
 
     useEffect(() => {
@@ -87,8 +87,12 @@ function AppTaskList() {
     return (
         <AppCard className="overflow-auto">
             <DataView pt={{header: {
-                className: "bg-transparent"
-            }}} value={taskListData} header={cardHeaderTemplate} listTemplate={listTemplate} />
+                    className: "bg-transparent"
+                }}} 
+                value={taskListData} 
+                header={cardHeaderTemplate} 
+                listTemplate={listTemplate} 
+            />
         </AppCard>
     )
 }

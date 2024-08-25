@@ -10,8 +10,8 @@ import Image from "next/image";
 import moment from "moment";
 import { classNames } from "primereact/utils";
 import styled from "styled-components";
-import AppInput from "../input/input";
 import AppTextArea from "../text-area/text-area";
+import AppInput from "../input/input";
 const url = process.env.PUBLIC_URL || "";
 
 const StyledPanel = styled(Panel)`
@@ -27,7 +27,7 @@ const StyledPanel = styled(Panel)`
     }
 `;
 
-function TaskItem ({data, setTaskListData}: ITaskItemProps) {
+function TaskItem ({data, setTaskListData, taskListData}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
         taskTitle: false,
         taskDescription: false
@@ -74,11 +74,9 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
     }
 
     const panelHeaderTemplate = (options: any) => {
-        const className = `${options.className} border-x-0 border-t-0 border-b-1 bg-transparent items-center ml-[20px] mr-[40px] my-[5px]`;
         const { day, diff }: any = getDateStatus() || {};
-
         return (
-            <div className={className}>
+            <div className={`${options.className} border-x-0 border-t-0 border-b-1 bg-transparent items-center ml-[20px] mr-[40px] my-[5px]`}>
                 <div className="flex p-[10px]">
                     <Checkbox 
                         pt={{
@@ -91,11 +89,13 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                     />
                     {
                         edit.taskTitle
-                        ?   <AppInput 
-                                value={data?.title} 
+                        ?   
+                        <AppInput 
+                                value={data?.taskTitle} 
+                                itemRef="ref"
                                 placeholder="Type Task Title" 
-                                className="ml-4" 
-                                onChange={(e) => {handleEditData("title", e.target.value)}}
+                                className="ml-4 w-[350px]" 
+                                onChange={(e) => handleEditData("taskTitle", e.target.value)}
                             />
                         :   <span className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
                                         "line-through text-[14px]": data?.completed
@@ -103,7 +103,7 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                                 }
                                 onClick={() => handleEditing("taskTitle")}
                             >
-                                {data?.title}
+                                {data?.taskTitle}
                             </span>
                     }
                 </div>
@@ -120,13 +120,34 @@ function TaskItem ({data, setTaskListData}: ITaskItemProps) {
                         </div>
                     }
                     <div className="flex gap-3 justify-between">
-                        <Button className="w-[16px] h-[16px]" text onClick={() => setCollapsed(prev => !prev)} icon={<i className={`pi text-[14px] text-primary-gray1 ${collapsed ? "pi-angle-down" : "pi pi-angle-up"} "`}></i>}></Button> 
-                        <Button className="w-[24px] h-[24px]" text icon={<Image width={20} height={20} alt="menu" src={url + "/icons/menu-deactive.svg"} />} onClick={(event) => menuLeft.current.toggle(event)} aria-controls="popup_menu_left" aria-haspopup />
-                        <Menu model={items} popup ref={menuLeft} className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" pt={{
-                            label: {
-                                className: "text-indicator-tomato"
-                            }
-                        }}/>
+                        <Button 
+                            className="w-[16px] h-[16px]" 
+                            text 
+                            onClick={() => setCollapsed(prev => !prev)} 
+                            icon={<i className={classNames("pi text-[14px] text-primary-gray1", {
+                                "pi-angle-down": collapsed,
+                                "pi pi-angle-up": !collapsed
+                            })}></i>}
+                        /> 
+                        <Button 
+                            className="w-[24px] h-[24px]" 
+                            text 
+                            icon={<Image width={20} height={20} alt="menu" src={url + "/icons/menu-deactive.svg"} />} 
+                            onClick={(event) => menuLeft.current.toggle(event)} 
+                            aria-controls="popup_menu_left" 
+                            aria-haspopup 
+                        />
+                        <Menu 
+                            model={items} 
+                            popup 
+                            ref={menuLeft} 
+                            className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" 
+                            pt={{
+                                label: {
+                                    className: "text-indicator-tomato"
+                                }
+                            }}
+                        />
                     </div>
                 </div>
             </div>

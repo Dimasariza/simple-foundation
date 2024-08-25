@@ -1,4 +1,4 @@
-export interface IChatMessege {
+export interface IChatMessage {
     deleted: boolean;
     message: string | any;
     messegeId: string | number;

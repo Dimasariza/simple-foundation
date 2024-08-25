@@ -10,7 +10,7 @@ const url = process.env.PUBLIC_URL || ""
 const InputStyled = styled(InputText)`
 `
 
-function AppMessegeInput({input, button, loading}: {input?: InputTextProps, button?: ButtonProps, loading?: boolean}) {
+function MessageInput({input, button, loading}: {input?: InputTextProps, button?: ButtonProps, loading?: boolean}) {
     const { tab } = useSelector((state: any) => state.QuickTabsReducer) || {};
 
     return (
@@ -40,4 +40,4 @@ function AppMessegeInput({input, button, loading}: {input?: InputTextProps, butt
     )
 }
 
-export default AppMessegeInput;
+export default MessageInput;
