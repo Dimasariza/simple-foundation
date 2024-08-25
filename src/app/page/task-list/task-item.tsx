@@ -126,7 +126,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                     {
                         data.chips.map((i, key) => {
                             const { className }: any = chipItems.find(chip => chip.label == i)
-                            return <Chip key={i + key} label={i} className={`${className} w-48 m-1 rounded-border-rad font-lato text-primary-gray1 text-[12px] font-bold tracking-[0.1em]`} />
+                            return <Chip key={i + key} label={i} className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-[14px] font-bold tracking-[-0.01em]`} />
                         })
                     }
                 </div>
