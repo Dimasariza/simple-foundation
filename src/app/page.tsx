@@ -3,7 +3,7 @@
 import React from "react";
 
 import { locale, addLocale } from 'primereact/api';
-import MainLayout from "./layout/page";
+import MainLayout from "./layout/layout";
  
 export default function Home() {
   addLocale('es', {

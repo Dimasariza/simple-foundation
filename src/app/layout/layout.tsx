@@ -1,3 +1,5 @@
+"use client";
+
 import { useSelector } from "react-redux";
 import AppInbox from "../page/inbox/inbox";
 import AppChatContainer from "../page/message/message-container";
@@ -24,7 +26,7 @@ function MainLayout() {
       }
     }
     return (
-        <>
+        <div>
             <AppMainSearchBar />
 
             <AnimatePresence>
@@ -32,7 +34,7 @@ function MainLayout() {
             </AnimatePresence>
     
             <AppQuickButton />
-        </>
+        </div>
     )
 }
 
