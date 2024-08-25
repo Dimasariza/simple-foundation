@@ -1,6 +1,6 @@
-import { Menu } from "primereact/menu";
+import { Menu, MenuContext, MenuPassThroughMethodOptions } from "primereact/menu";
 import { MenuItem, MenuItemCommandEvent } from "primereact/menuitem";
-import { ITaskItemProps, ITaskList } from "../../types/task-list";
+import { IMenuItems, ITaskItemProps, ITaskList } from "../../types/task-list";
 import { useRef, useState } from "react";
 import { Checkbox, CheckboxChangeEvent } from "primereact/checkbox";
 import AppInput from "../input/input";
@@ -13,9 +13,10 @@ const url = process.env.PUBLIC_URL || "";
 function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed} : ITaskItemProps) {
     const [edit, setEdit] = useState<boolean>(false);
     const menuLeft = useRef<Menu | any>(null);
-    const items: MenuItem[] = [
+    const items: IMenuItems.IMenu[] = [
         {
             label: 'Delete',
+            labelClass: "text-indicator-tomato",
             command: (e: MenuItemCommandEvent) => {
                 setTaskListData((prev: ITaskList[]) => prev.filter((i) => i.id !== data.id))
             },
@@ -116,10 +117,10 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                         ref={menuLeft} 
                         className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" 
                         pt={{
-                            label: {
-                                className: "text-indicator-tomato"
-                            }
-                        }}
+                            label: (item: IMenuItems.IMenuPT) => ({
+                                className: item!?.context?.item?.labelClass
+                            })
+                        }}  
                     />
                 </div>
             </div>

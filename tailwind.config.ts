@@ -63,7 +63,19 @@ const config: Config = {
           cyan: "#AFEBDB",
           limegreen: "#CBF1C2",
           darkpurple: "#CFCEF9",
-          lightpurple: "#F9E0FD"
+          lightpurple: "#F9E0FD",
+          chips: "#F9F9F9"
+        },
+        chips: {
+          bg: "#F9F9F9",
+          aliceblue: "#E5F1FF",
+          sandybrown: "#FDCFA4",
+          blanchedalmond: "#F9E9C3",
+          cyan: "#AFEBDB",
+          limegreen: "#CBF1C2",
+          darkpurple: "#CFCEF9",
+          lightpurple: "#F9E0FD",
+          oceanblue: "#9DD0ED"
         },
         "test": "red"
       },

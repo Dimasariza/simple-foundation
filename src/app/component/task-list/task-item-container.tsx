@@ -49,7 +49,7 @@ function AppTaskList() {
                     options={taskOptions} 
                     optionLabel="name" 
                     placeholder="My Tasks" 
-                    className="md:w-14rem h-[40px] flex border-primary-gray2 items-center p-2" 
+                    className="md:w-14rem h-[40px] ml-12 flex border-primary-gray2 items-center p-2" 
                     pt={{
                         list: {
                             className: "font-lato p-0"
@@ -86,8 +86,9 @@ function AppTaskList() {
 
     return (
         <AppCard className="overflow-auto">
-            <DataView pt={{header: {
-                    className: "bg-transparent"
+            <DataView 
+                pt={{header: {
+                    className: "bg-transparent pt-4 pb-0 border-none"
                 }}} 
                 value={taskListData} 
                 header={cardHeaderTemplate} 
