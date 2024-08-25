@@ -1,11 +1,11 @@
-import { IGroupMessege, IChatMessege } from "./chat";
+import { IGroupMessege, IChatMessage } from "./chat";
 import { IUser } from "./user";
 
 export interface IInbox {
     id: string;
     inboxGroup: "personal" | "group";
     name: string;
-    lastMessege: IChatMessege | IGroupMessege;
-    message: IChatMessege[] | IGroupMessege[];
+    lastMessege: IChatMessage | IGroupMessege;
+    message: IChatMessage[] | IGroupMessege[];
     user: IUser;
 }
