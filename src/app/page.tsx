@@ -4,12 +4,12 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { locale, addLocale } from 'primereact/api';
 import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
-import AppInbox from "./component/inbox/inbox";
-import AppTaskList from "./component/task-list/task-item-container";
-import AppQuickButton from "./component/quick-button/quick-button";
+import AppInbox from "./page/inbox/inbox";
+import AppTaskList from "./page/task-list/task-item-container";
+import AppQuickButton from "./page/quick-button/quick-button";
 import { useSelector } from "react-redux";
 import { AnimatePresence } from "framer-motion";
-import AppChatContainer from "./component/message-container/message-container";
+import AppChatContainer from "./page/message/message-container";
  
 export default function Home() {
   addLocale('es', {

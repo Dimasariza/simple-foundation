@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
 import { IEditTaskItem, ITaskItemProps, ITaskList } from "../../types/task-list";
-import AppDatePicker from "../date-picker/date-picker";
+import AppDatePicker from "../../component/date-picker/date-picker";
 import { Panel } from "primereact/panel";
 import Image from "next/image";
 import moment from "moment";
 import styled from "styled-components";
-import AppTextArea from "../text-area/text-area";
+import AppTextArea from "../../component/text-area/text-area";
 import TaskItemHeader from "./task-item-header";
 import { Menu } from "primereact/menu";
-import { Button } from "primereact/button";
 import { MenuItem } from "primereact/menuitem";
-import AppButton from "../button/button";
+import AppButton from "../../component/button/button";
 import { Chip } from "primereact/chip";
 
 const StyledPanel = styled(Panel)`

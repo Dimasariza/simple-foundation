@@ -3,7 +3,7 @@
 import { DataScroller } from 'primereact/datascroller';
 import { useEffect, useState } from "react";
 import styled from 'styled-components';
-import AppCard from '../card/card';
+import AppCard from '../../component/card/card';
 import { useDispatch, useSelector } from 'react-redux';
 import { QuickTabsAction } from '../../redux/action/tabMenu';
 import { ChatInboxService } from '../../service/ChatInboxService';

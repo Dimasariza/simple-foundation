@@ -3,7 +3,7 @@ import { MenuItem, MenuItemCommandEvent } from "primereact/menuitem";
 import { IMenuItems, ITaskItemProps, ITaskList } from "../../types/task-list";
 import { useRef, useState } from "react";
 import { Checkbox, CheckboxChangeEvent } from "primereact/checkbox";
-import AppInput from "../input/input";
+import AppInput from "../../component/input/input";
 import { Button } from "primereact/button";
 import moment from "moment";
 import { classNames } from "primereact/utils";

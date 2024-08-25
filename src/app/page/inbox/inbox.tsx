@@ -1,10 +1,10 @@
 "use client"
 
-import AppSearchBar from "../search-bar/search-bar";
+import AppSearchBar from "../../component/search-bar/search-bar";
 import { useEffect, useState } from "react";
-import AppAvatarGroup from "../avatar/avatar-group";
+import AppAvatarGroup from "../../component/avatar/avatar-group";
 import { ListBox } from "primereact/listbox";
-import AppCard from "../card/card";
+import AppCard from "../../component/card/card";
 import { useDispatch } from "react-redux";
 import { QuickTabsAction } from "../../redux/action/tabMenu";
 import Image from "next/image";

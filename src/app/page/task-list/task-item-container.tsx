@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { Dropdown, DropdownProps } from "primereact/dropdown";
 import { useEffect, useState } from "react";
-import AppCard from "../card/card";
+import AppCard from "../../component/card/card";
 import { ITaskList } from "../../types/task-list";
 import { TaskListService } from "../../service/TaskListService";
 import TaskItem from "./task-item";
