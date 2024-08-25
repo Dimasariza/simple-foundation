@@ -76,7 +76,7 @@ function AppTaskList() {
     )
         
     const listTemplate: any = (items: ITaskList[]) => {
-        return items?.map((i, key) => <TaskItem key={`${key + i?.title}`} data={i} taskListData={taskListData} setTaskListData={setTaskListData}/>) 
+        return items?.map((i, key) => <TaskItem key={`${key + i?.title}`} data={i} setTaskListData={setTaskListData}/>) 
     };
 
     useEffect(() => {

@@ -32,21 +32,9 @@ const InboxStyle = styled(DataScroller)`
 `
 
 function AppChatContainer() {
-    const emptyMessage = {
-        deleted: "",
-        message: "",
-        messegeId: "",
-        inboxId: "",
-        sendDate: "",
-        user: "",
-        userId: "",
-        unReadMessege: "",
-        owner: ""
-    };
-
     const [message, setMessege] = useState<IChatMessage | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [newMessage, setNewMessage] = useState<any>(emptyMessage);
+    const [newMessage, setNewMessage] = useState<any>({});
     const dispatch = useDispatch();
     const { tab } = useSelector((state: any) => state.QuickTabsReducer);
 

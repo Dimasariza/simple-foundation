@@ -10,7 +10,10 @@ export interface ITaskList {
 export interface ITaskItemProps {
     data: ITaskList;
     setTaskListData: Dispatch<ITaskList[]>;
-    taskListData: ITaskList[]
+    setCollapsed?: Dispatch<boolean>;
+    collapsed?: boolean;
+    taskListData?: ITaskList[]
+    options?: any;
 }
 
 export interface IEditTaskItem {
