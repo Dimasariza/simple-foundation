@@ -80,7 +80,7 @@ function AppInbox() {
                                 {inbox?.lastMessege?.message}
                             </p>
                             {
-                                inbox.lastMessege?.unReadMessege &&
+                                inbox.lastMessege?.unReadMessage &&
                                 <i  className="pi pi-circle-fill text-indicator-tomato !flex pb-[5px] text-[10px] items-end" ></i>
                             }
                         </div>

@@ -1,10 +1,19 @@
 .p-datepicker {
+    font-family: var(--font-lato);
     margin-top: 9px;
     margin-left: 164px;
     box-shadow: none;
 
     .p-datepicker-header {
         border-bottom: 2px black;
+    }
+    
+    .p-datepicker-title {
+        font-family: var(--font-lato);
+    }
+
+    .p-datepicker-month {
+        font-family: var(--font-lato);
     }
 
     .p-highlight {

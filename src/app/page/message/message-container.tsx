@@ -34,6 +34,7 @@ const InboxStyle = styled(DataScroller)`
 function AppChatContainer() {
     const [message, setMessege] = useState<IChatMessage | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    // const [divider, setDivider] = useState<string>("");
     const [newMessage, setNewMessage] = useState<any>({});
     const dispatch = useDispatch();
     const { tab } = useSelector((state: any) => state.QuickTabsReducer);
@@ -46,6 +47,18 @@ function AppChatContainer() {
         dispatch(QuickTabsAction({name: "close"}));  
     }
 
+    const handleScroll = () => {
+    }
+
+    const isSameDay = (date1: string, date2: string) => {
+        const d1 = new Date(date1);
+        const d2 = new Date(date2);
+    
+        return d1.getFullYear() === d2.getFullYear() &&
+               d1.getMonth() === d2.getMonth() &&
+               d1.getDate() === d2.getDate();
+    }
+
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
@@ -56,19 +69,27 @@ function AppChatContainer() {
             UserService.getUsers()
         ])
         .then(([msgByInbox, user]: any) => {
+            let divider = "";
+            let lastSendDate = "";
             const messeges = msgByInbox.message.map((i: IChatMessage) => {
+                if(i.unReadMessage) {
+                    divider = "unReadMessage"
+                } else if(!isSameDay(lastSendDate, i.sendDate)) {
+                    lastSendDate = i.sendDate
+                    divider = i.sendDate
+                } else {
+                    divider = ""
+                }
                 return {
                     ...i,
                     user: user.find((u: IUser) => u.userId == i.userId),
-                    owner: i.userId == "user000"
+                    owner: i.userId == "user000",
+                    divider
                 }
             })
             setMessege(messeges)
         })
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-    const handleScroll = () => {
-    }
 
     return (
         <AppCard className="rounded-border-rad w-chat-width h-chat-height overflow-hidden">

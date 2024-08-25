@@ -3,9 +3,10 @@ export interface IChatMessage {
     message: string | any;
     messegeId: string | number;
     inboxId: string | number;
-    sendDate: Date;
+    sendDate: string;
     user: IUser;
     userId: string | number;
-    unReadMessege: boolean;
+    unReadMessage: boolean;
     owner: boolean;
+    divider: string;
 }

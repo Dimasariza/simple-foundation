@@ -6,6 +6,8 @@ import { classNames } from "primereact/utils";
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { IChatMessage } from "../../types/chat";
+import moment from "moment";
 const url = process.env.PUBLIC_URL || ""
 
 const MassageStyle = styled.div<{owner?: boolean}>`
@@ -29,7 +31,9 @@ const MassageStyle = styled.div<{owner?: boolean}>`
     }
 `
 
-function MessageBody ({data}: any) {
+function MessageBody ({data}: {data: IChatMessage}) {
+    const {owner, unReadMessage, user, message, divider, sendDate} = data || {};
+
     const menuLeft = useRef<Menu | any>(null);
     const menuRight = useRef<Menu | any>(null);
     const menuItems = {
@@ -57,8 +61,6 @@ function MessageBody ({data}: any) {
 
     const { tab } = useSelector((state: any) => state.QuickTabsReducer);
 
-    const {owner, unReadMessege, user, message} = data || {};
-
     const scrollToBottomRef = useRef<any>();
     const scrollToBottom = () => {
         scrollToBottomRef.current.scrollIntoView({  })
@@ -69,21 +71,22 @@ function MessageBody ({data}: any) {
     }, []);
 
     return (
-        <div className={`pl-[18px]`} ref={scrollToBottomRef}>
+        <div className="pl-[18px]" ref={scrollToBottomRef}>
             {
                 tab?.inbox?.inboxGroup == "group" &&
+                divider &&
                 <Divider 
                     align="center" 
                     className={classNames("m-0 mt-5 text-l font-lato font-bold", {
-                        "text-indicator-tomato before:border-indicator-tomato": unReadMessege,
-                        "text-primary-gray1 before:border-primary-gray1": !unReadMessege
+                        "text-indicator-tomato before:border-indicator-tomato": unReadMessage,
+                        "text-primary-gray1 before:border-primary-gray1": !unReadMessage
                     })}
                 >
                     <span>
                         {
-                            unReadMessege 
+                            unReadMessage 
                             ? "New Message"
-                            : "Today June 09, 2021"
+                            : `${moment(new Date(sendDate)).isSame(new Date, 'day') ? "Today" : ""} ${moment(new Date(sendDate)).format("MMM DD,   yyyy")}`
                         }
                     </span>
                 </Divider>
@@ -93,8 +96,8 @@ function MessageBody ({data}: any) {
                     className={classNames("text-[14px] tracking-[0.01em]", {
                         "text-chats-badge-purple": owner,
                         "text-primary-blue": !owner && tab?.inbox?.inboxGroup == "personal",
-                        "text-chats-badge-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessege,
-                        "text-chats-badge-green": unReadMessege
+                        "text-chats-badge-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessage,
+                        "text-chats-badge-green": unReadMessage,
                     })} 
                 >
                     {owner ? "You" :  user?.name}
@@ -124,14 +127,14 @@ function MessageBody ({data}: any) {
                     <div className={classNames({
                         "bg-chats-main-purple": owner,
                         "bg-quick-btn-white": !owner && tab?.inbox?.inboxGroup == "personal",
-                        "bg-chats-main-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessege,
-                        "bg-chats-main-green": !owner && unReadMessege,
+                        "bg-chats-main-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessage,
+                        "bg-chats-main-green": !owner && unReadMessage,
                     })}>
                         <span className="text-[12px] tracking-[0.07em]">
                             {message}
                         </span>
                         <span className="text-[12px] tracking-[0.04em] flex pt-1">
-                            19.32
+                            {moment(sendDate).format("HH:mm")}
                         </span>
                     </div>
                 </div>
