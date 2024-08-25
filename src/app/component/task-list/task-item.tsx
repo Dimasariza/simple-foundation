@@ -47,7 +47,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
     }
 
     const menuLeft = useRef<Menu>(null);
-    const items: MenuItem[] = [
+    const chipItems: MenuItem[] = [
         { label: "Important ASAP", className: "bg-chips-aliceblue" },
         { label: "Offline Meeting", className: "bg-chips-sandybrown" },
         { label: "Virtual Meeting", className: "bg-chips-blanchedalmond" },
@@ -89,23 +89,38 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
 
             <div className="px-2 mx-2 py-2 grid-cols-12 grid bg-chips-bg">
                 <div className="flex">
-                    <Menu model={items} popup ref={menuLeft} 
+                    <Menu 
+                        model={chipItems} 
+                        popup 
+                        ref={menuLeft} 
                         className="w-[270px] p-0" 
                         pt={{
                             label: (item) => ({
                                 className: "text-primary-gray1 text-[10px] font-extrabold tracking-[0.1em] font-lato"
                             }),
                             menuitem: (item) => ({
-                                className: "m-[10px] rounded-[5px] h-[30px]"
+                                className: "m-[10px] rounded-border-rad h-[30px]"
                             }),
                         }}
                     />
-                    <AppButton className="p-0 m-0 w-[20px]" text onClick={(event) => menuLeft.current!.toggle(event)} aria-controls="popup_menu_left" aria-haspopup icon={
-                        <Image width={20} height={20} alt="Edit task list" src={`/icons/bookmark-${data?.chips?.length ? "active" : "deactive"}.svg`} />
-                    } />
+                    <AppButton 
+                        className="p-0 m-0 w-[20px] h-[20px]" 
+                        text 
+                        onClick={(event) => menuLeft.current!.toggle(event)} 
+                        aria-controls="popup_menu_left" 
+                        aria-haspopup 
+                        icon={
+                            <Image width={20} height={20} alt="Edit task list" src={`/icons/bookmark-${data?.chips?.length ? "active" : "deactive"}.svg`} />
+                        } 
+                    />
                 </div>
-                <div>
-                    <Chip label="Action" />
+                <div className="min-w-[500px]">
+                    {
+                        data.chips.map(i => {
+                            const { className }: any = chipItems.find(chip => chip.label == i)
+                            return <Chip label={i} className={`${className} w-48 m-1 rounded-border-rad font-lato text-primary-gray1 text-[12px] font-bold tracking-[0.1em]`} />
+                        })
+                    }
                 </div>
             </div>
         </div>

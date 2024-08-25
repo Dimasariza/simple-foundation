@@ -22,7 +22,10 @@ const config: Config = {
         "card-height": "737px",
         "card-width": "734px",
         "chat-width": "708px",
-        "chat-height": "726px"
+        "chat-height": "726px",
+      },
+      borderRadius: {
+        "border-rad": "5px"
       },
       colors: {
         "quick-btn": {

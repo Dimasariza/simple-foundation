@@ -55,7 +55,7 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                 <Checkbox 
                     pt={{
                         box: {
-                            className: "rounded-[2px] border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
+                            className: "rounded-border-rad border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
                         }
                     }} 
                     checked={data?.completed} 

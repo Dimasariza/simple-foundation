@@ -14,7 +14,7 @@ function AppTextArea(props: InputTextareaProps) {
         setText(e.target.value)
     }
     return (
-        <StyledTextArea value={text} {...props} className={`${props.className} rounded-[5px] border-primary-gray2 tracking-[-0.045em] leading-5`}/>
+        <StyledTextArea value={text} {...props} className={`${props.className} rounded-border-rad border-primary-gray2 tracking-[-0.045em] leading-5`}/>
     )
 }
 

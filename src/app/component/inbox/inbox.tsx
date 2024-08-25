@@ -131,7 +131,7 @@ function AppInbox() {
         <AppCard className="overflow-vissible">
             {
                 loading 
-                ?   <div className="text-center justify-center overflow-hidden h-card-height py-[20px] px-[34px] rounded-md content-start">
+                ?   <div className="text-center justify-center overflow-hidden h-card-height py-[20px] px-[34px] rounded-border-rad content-start">
                         <AppSearchBar disabled onChange={handleFilterChange} placeholder="Search"/>
                         <div className="h-full">
                             <div className="flex justify-center mt-[16rem]">

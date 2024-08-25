@@ -71,7 +71,7 @@ function AppChatContainer() {
     }
 
     return (
-        <AppCard className="rounded-[5px] w-chat-width h-chat-height overflow-hidden">
+        <AppCard className="rounded-border-rad w-chat-width h-chat-height overflow-hidden">
             <InboxStyle 
                 onScrollCapture={handleScroll}
                 value={message} 

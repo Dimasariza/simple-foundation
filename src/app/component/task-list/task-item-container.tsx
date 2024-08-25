@@ -55,7 +55,7 @@ function AppTaskList() {
                             className: "font-lato p-0"
                         },
                         wrapper: {
-                            className: "drop-shadow-none rounded-[5px] border border-primary-gray2"
+                            className: "drop-shadow-none rounded-border-rad border border-primary-gray2"
                         },
                     }}
                 />
