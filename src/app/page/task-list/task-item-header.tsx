@@ -50,12 +50,12 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
     
     const { day, diff }: any = getDateStatus() || {};
     return (
-        <div className={`${options.className} border-x-0 border-t-0 border-b-1 bg-transparent items-center ml-[20px] mr-[40px] my-[5px]`}>
+        <div className={`${options.className} border-none bg-transparent items-center ml-[20px] mr-[40px] my-[5px]`}>
             <div className="flex p-[10px]">
                 <Checkbox 
                     pt={{
                         box: {
-                            className: "rounded-border-rad border-primary-gray2 border-2 h-[18px] w-[18px] self-center", 
+                            className: "rounded-border-rad h-[18px] w-[18px] self-center border-primary-gray2", 
                         }
                     }} 
                     checked={data?.completed} 

@@ -1,15 +1,9 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 
 import { locale, addLocale } from 'primereact/api';
-import AppMainSearchBar from "./component/main-search-bar/main-search-bar";
-import AppInbox from "./page/inbox/inbox";
-import AppTaskList from "./page/task-list/task-item-container";
-import AppQuickButton from "./page/quick-button/quick-button";
-import { useSelector } from "react-redux";
-import { AnimatePresence } from "framer-motion";
-import AppChatContainer from "./page/message/message-container";
+import MainLayout from "./layout/page";
  
 export default function Home() {
   addLocale('es', {
@@ -19,32 +13,7 @@ export default function Home() {
 
   locale('es');
 
-  const { tab } = useSelector((state: any) => state.QuickTabsReducer);
-
-  const switchQuickTabs = () => {
-    switch(tab?.group) {
-      case "Inbox":
-        if(tab?.name == "Inbox") {
-          return <AppInbox />;
-        } else {
-          return <AppChatContainer />;
-        } 
-      case "Task":
-        return <AppTaskList />;
-      default:
-        return 
-    }
-  }
-
   return (
-    <div>
-      <AppMainSearchBar />
-
-      <AnimatePresence>
-        { switchQuickTabs() }
-      </AnimatePresence>
-
-      <AppQuickButton />
-    </div>
+    <MainLayout />
   );
 }

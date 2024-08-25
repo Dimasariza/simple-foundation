@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import AppCard from "../../component/card/card";
 import { ITaskList } from "../../types/task-list";
 import { TaskListService } from "../../service/TaskListService";
-import TaskItem from "./task-item";
 import styled from "styled-components";
 import { DataView } from "primereact/dataview";
+import TaskListBody from "./task-item";
 
 const StyledDropDown = styled(Dropdown)<DropdownProps>`
-    border-radius: 5px;
-
     .p-placeholder {
         font-family: var(--font-lato);
         font-size: 16px;
@@ -49,13 +47,13 @@ function AppTaskList() {
                     options={taskOptions} 
                     optionLabel="name" 
                     placeholder="My Tasks" 
-                    className="md:w-14rem h-[40px] ml-12 flex border-primary-gray2 items-center p-2" 
+                    className="md:w-14rem h-[40px] ml-12 flex border-primary-gray2 items-center p-2 rounded-border-rad" 
                     pt={{
                         list: {
-                            className: "font-lato p-0"
+                            className: "font-lato p-0 border-primary-gray2"
                         },
                         wrapper: {
-                            className: "drop-shadow-none rounded-border-rad border border-primary-gray2"
+                            className: "drop-shadow-none rounded-border-rad border-none"
                         },
                     }}
                 />
@@ -76,7 +74,13 @@ function AppTaskList() {
     )
         
     const listTemplate: any = (items: ITaskList[]) => {
-        return items?.map((i, key) => <TaskItem key={`${key + i?.title}`} data={i} setTaskListData={setTaskListData}/>) 
+        return (
+            <div className="overflow-auto h-[660px]">
+                {
+                    items?.map((i, key) => <TaskListBody key={`${key + i?.title}`} data={i} setTaskListData={setTaskListData}/>) 
+                }
+            </div>
+        )
     };
 
     useEffect(() => {
@@ -85,11 +89,13 @@ function AppTaskList() {
     }, [])
 
     return (
-        <AppCard className="overflow-auto">
+        <AppCard className="overflow-hidden">
             <DataView 
-                pt={{header: {
-                    className: "bg-transparent pt-4 pb-0 border-none"
-                }}} 
+                pt={{
+                    header: {
+                      className: "bg-transparent pt-4 pb-0 border-none"
+                    },
+                }} 
                 value={taskListData} 
                 header={cardHeaderTemplate} 
                 listTemplate={listTemplate} 

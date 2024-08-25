@@ -58,7 +58,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
     ];
 
     const panelBodyTemplate = (
-        <div className="mx-12">
+        <div>
             <div className="px-5 grid-cols-12 grid">
                 <div className="flex">
                     <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
@@ -133,10 +133,10 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
             </div>
         </div>
     )
-
+// className="overflow-auto w-card-width h-card-height"
     return (
         <StyledPanel 
-            className="p-0 border-none"
+            className="pb-4 border-t-none mx-5 border-b border-primary-gray2"
             collapsed={collapsed}
             onToggle={() => setCollapsed(prev => !prev)}
             headerTemplate={(options) => <TaskItemHeader 
