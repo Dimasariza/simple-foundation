@@ -72,7 +72,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
             </div>
 
             <div className="px-12 grid-cols-16 grid">
-                <div className="flex">
+                <div className="flex cursor-pointer" onClick={() => handleEditing("taskDescription")}>
                     <Image width={15} height={15} alt="Edit task list" src={`/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
                 </div>
                 <div className="col-span-11 my-5">

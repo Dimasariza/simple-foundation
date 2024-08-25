@@ -1,5 +1,5 @@
-import { Menu, MenuContext, MenuPassThroughMethodOptions } from "primereact/menu";
-import { MenuItem, MenuItemCommandEvent } from "primereact/menuitem";
+import { Menu } from "primereact/menu";
+import { MenuItemCommandEvent } from "primereact/menuitem";
 import { IMenuItems, ITaskItemProps, ITaskList } from "../../types/task-list";
 import { useRef, useState } from "react";
 import { Checkbox, CheckboxChangeEvent } from "primereact/checkbox";
@@ -63,8 +63,8 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                 />
                 {
                     edit
-                    ?   
-                    <AppInput 
+                    ?   <AppInput 
+                            onBlur={() => setEdit(false)}
                             value={data?.taskTitle} 
                             itemRef="ref"
                             placeholder="Type Task Title" 

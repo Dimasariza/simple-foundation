@@ -22,8 +22,7 @@ function AppInput(props: InputTextProps) {
         setText(e.target.value)
     }
 
-    const ref = useRef<any>()
-    return <StyledInput ref={ref} value={text} {...props}/>
+    return <StyledInput value={text} {...props}/>
 }
 
 export default AppInput;
