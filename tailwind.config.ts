@@ -17,6 +17,20 @@ const config: Config = {
         '16': 'repeat(16, minmax(0, 1fr))',
         'footer': '30px minmax(900px, 1fr) 100px',
       },
+      gridColumnStart: {
+        '13': '13',
+        '14': '14',
+        '15': '15',
+        '16': '16',
+        '17': '17',
+      },
+      gridColumnEnd: {
+        '13': '13',
+        '14': '14',
+        '15': '15',
+        '16': '16',
+        '17': '17',
+      },
       spacing: {
         "quick-btn-right": '34px',
         "quick-btn-bottom": '27px',

@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const StyledTextArea = styled(InputTextarea)`
     font-family: var(--font-lato);
-    border-radius: 5px;
     font-size: 16px;
 `
 
@@ -14,7 +13,11 @@ function AppTextArea(props: InputTextareaProps) {
         setText(e.target.value)
     }
     return (
-        <StyledTextArea value={text} {...props} className={`${props.className} rounded-border-rad border-primary-gray2 tracking-[-0.045em] leading-5`}/>
+        <StyledTextArea 
+            value={text} 
+            {...props} 
+            className={`${props.className} rounded-[5px] font-lato text-[16px] border-primary-gray2 tracking-[-0.045em] leading-5`}
+        />
     )
 }
 

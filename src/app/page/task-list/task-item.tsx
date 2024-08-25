@@ -31,7 +31,6 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
         taskDescription: false
     });
     const [collapsed, setCollapsed] = useState<boolean>(true);
-
     const handleEditing = (name: string) => {
         setEdit((prev) => ({...prev, [name]: !prev[name]}))
     }
@@ -75,13 +74,21 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                 <div className="flex cursor-pointer" onClick={() => handleEditing("taskDescription")}>
                     <Image width={15} height={15} alt="Edit task list" src={`/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
                 </div>
-                <div className="col-span-11 my-5">
+                <div className="my-5 col-start-2 col-end-16">
                     {
                         edit.taskDescription 
-                        ? <AppTextArea className="w-full" value={data?.description} autoResize onChange={(e) => handleEditData("description", e.target.value)}/>
-                        : <p className="cursor-pointer tracking-[-0.04em] min-h-5 min-w-[500px] leading-5" onClick={() => handleEditing("taskDescription")}>
-                            {data?.description}
-                        </p>
+                        ?   <AppTextArea 
+                                autoFocus
+                                onBlur={() => handleEditing("taskDescription")}
+                                className="w-full" 
+                                value={data?.description} 
+                                autoResize 
+                                onChange={(e) => handleEditData("description", e.target.value)}
+                            />
+                        :   <p className="cursor-pointer tracking-[-0.04em] min-h-5 min-w-[500px] leading-5"   
+                            onClick={() => handleEditing("taskDescription")}>
+                                {data?.description}
+                            </p>
                     }
                 </div> 
             </div>
@@ -124,7 +131,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                 </div>
                 <div className="min-w-[500px]">
                     {
-                        data.chips.map((i, key) => {
+                        data?.chips?.map((i, key) => {
                             const { className }: any = chipItems.find(chip => chip.label == i)
                             return <Chip key={i + key} label={i} className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-[14px] font-bold tracking-[-0.01em]`} />
                         })
@@ -133,7 +140,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
             </div>
         </div>
     )
-// className="overflow-auto w-card-width h-card-height"
+
     return (
         <StyledPanel 
             className="pb-4 border-t-none mx-5 border-b border-primary-gray2"

@@ -64,6 +64,7 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                 {
                     edit
                     ?   <AppInput 
+                            autoFocus
                             onBlur={() => setEdit(false)}
                             value={data?.taskTitle} 
                             itemRef="ref"
