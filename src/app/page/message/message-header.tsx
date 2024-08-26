@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { useSelector } from "react-redux";
 
-function MessageHeader({handleBackToInbox, handleCloseMessege}:  any) {
+function MessageHeader({handleBackToInbox, handleCloseMessage}:  any) {
     const { tab } = useSelector((state: any) => state.QuickTabsReducer) || {};
 
     return (
@@ -31,7 +31,7 @@ function MessageHeader({handleBackToInbox, handleCloseMessege}:  any) {
                 className='w-[24px] h-[24px] p-0 m-0' 
                 text 
                 severity="secondary" 
-                onClick={handleCloseMessege}
+                onClick={handleCloseMessage}
             />
         </div>
     )

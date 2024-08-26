@@ -6,7 +6,7 @@
                 {
                     "deleted": false,
                     "message": "Please check this out!",
-                    "messegeId": "messege001",
+                    "messageId": "message001",
                     "sendDate": "2021-01-01 19:10:30",
                     "userId": "user001",
                     "unReadMessage": true
@@ -19,7 +19,7 @@
                 {
                     "deleted": false,
                     "message": "Hey, please read.",
-                    "messegeId": "messege001",
+                    "messageId": "message001",
                     "sendDate": "2021-06-02 10:45:30",
                     "userId": "user002",
                     "unReadMessage": false
@@ -32,7 +32,7 @@
                 {
                     "deleted": false,
                     "message": "I understand your initial concerns and thats very valid, Elizabeth. But you a response as soon as possible.",
-                    "messegeId": "messege001",
+                    "messageId": "message001",
                     "sendDate": "2021-06-01 12:19:30",
                     "userId": "user001",
                     "unReadMessage": false
@@ -45,7 +45,7 @@
                 {
                     "deleted": false,
                     "message": "Hey there. Welcome to your inbox! Contact us for more information and help about anything! We'll send you a response as soon as possible.",
-                    "messegeId": "messege001",
+                    "messageId": "message001",
                     "sendDate": "2024-08-22 12:10:30",
                     "userId": "user003",
                     "unReadMessage": false
@@ -53,7 +53,7 @@
                 {
                     "deleted": false,
                     "message": "Hi, I need help with something can you help me?",
-                    "messegeId": "messege002",
+                    "messageId": "message002",
                     "sendDate": "2024-08-22 12:19:30",
                     "userId": "user000",
                     "unReadMessage": false
@@ -66,106 +66,128 @@
                 {
                     "deleted": false,
                     "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
-                    "messegeId": "messege001",
+                    "messageId": "message001",
                     "sendDate": "2024-08-22 19:42:30",
                     "userId": "user000",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
-                    "messegeId": "messege002",
+                    "messageId": "message002",
                     "sendDate": "2024-08-22 19:44:30",
                     "userId": "user004",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
-                    "messegeId": "messege003",
+                    "messageId": "message003",
                     "sendDate": "2024-08-22 19:42:30",
                     "userId": "user000",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Sure thing, Claren",
-                    "messegeId": "messege004",
+                    "messageId": "message004",
                     "sendDate": "2024-08-22 19:51:30",
                     "userId": "user004",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
-                    "messegeId": "messege001",
+                    "messageId": "message005",
                     "sendDate": "2024-08-22 19:55:30",
                     "userId": "user000",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
-                    "messegeId": "messege002",
+                    "messageId": "message006",
                     "sendDate": "2024-08-22 20:10:30",
                     "userId": "user004",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
-                    "messegeId": "messege003",
+                    "messageId": "message007",
                     "sendDate": "2024-08-23 19:42:30",
                     "userId": "user000",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Sure thing, Claren",
-                    "messegeId": "messege004",
+                    "messageId": "message008",
                     "sendDate": "2024-08-23 19:55:30",
                     "userId": "user004",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
-                    "messegeId": "messege001",
+                    "messageId": "message009",
                     "sendDate": "2024-08-23 19:59:30",
                     "userId": "user000",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
-                    "messegeId": "messege002",
+                    "messageId": "message010",
                     "sendDate": "2024-08-23 20:01:30",
                     "userId": "user004",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
-                    "messegeId": "messege003",
+                    "messageId": "message011",
                     "sendDate": "2024-08-23 20:10:30",
                     "userId": "user000",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Sure thing, Claren",
-                    "messegeId": "messege004",
+                    "messageId": "message012",
                     "sendDate": "2024-08-26 01:15:30",
                     "userId": "user004",
-                    "unReadMessage": false
+                    "unReadMessage": false,
+                    "repliedMsgId": ""
                 },
                 {
                     "deleted": false,
                     "message": "Morning.I'll try to do them. Thanks",
-                    "messegeId": "messege003",
+                    "messageId": "message013",
                     "sendDate": "2024-08-26 19:42:30",
                     "userId": "user005",
-                    "unReadMessage": true
+                    "unReadMessage": true,
+                    "repliedMsgId": ""
+                },
+                {
+                    "deleted": false,
+                    "message": "Hi Mary",
+                    "messageId": "message014",
+                    "sendDate": "2024-08-26 19:45:30",
+                    "userId": "user000",
+                    "unReadMessage": false,
+                    "repliedMsgId": "message010"
                 }
             ] 
         }

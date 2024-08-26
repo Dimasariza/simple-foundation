@@ -4,7 +4,7 @@ import axios from 'axios';
 const endPoint = '/demo/data/message.json';
 
 export const ChatInboxService = {
-    getMesseges() {
+    getMessages() {
       return axios.get(endPoint)
       .then(({data}) => data.data as IChatMessage[])
     },

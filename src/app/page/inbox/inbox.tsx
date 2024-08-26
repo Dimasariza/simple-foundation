@@ -66,21 +66,21 @@ function AppInbox() {
                                 {inbox.name}
                             </span>
                             <span className="ml-3 font-normal tracking-[0.01em] flex text-[0.85em]">
-                                {inbox.lastMessege?.sendDate && moment(inbox.lastMessege?.sendDate).format("DD/MM/YYYY HH:mm")}
+                                {inbox.lastMessage?.sendDate && moment(inbox.lastMessage?.sendDate).format("DD/MM/YYYY HH:mm")}
                             </span>
                         </div>
                         {
                             inbox?.inboxGroup == "group" &&
                             <span className="font-normal tracking-[0.01em] mt-[-3px] flex text-[0.9em]">
-                                {inbox.lastMessege?.user?.name} :
+                                {inbox.lastMessage?.user?.name} :
                             </span>
                         }
                         <div className="flex justify-between">
                             <p className="font-normal tracking-[0.01em] p-0 mt-[-5px] text-[0.9em] w-3/4 truncate">
-                                {inbox?.lastMessege?.message}
+                                {inbox?.lastMessage?.message}
                             </p>
                             {
-                                inbox.lastMessege?.unReadMessage &&
+                                inbox.lastMessage?.unReadMessage &&
                                 <i  className="pi pi-circle-fill text-indicator-tomato !flex pb-[5px] text-[10px] items-end" ></i>
                             }
                         </div>
@@ -110,17 +110,17 @@ function AppInbox() {
         Promise.all([
             InboxService.getInbox(),
             UserService.getUsers(),
-            ChatInboxService.getMesseges(),
+            ChatInboxService.getMessages(),
         ])
-        .then(([inbox, user, messeges]) => {
+        .then(([inbox, user, messages]) => {
             inbox = inbox.map(i => {
-                let { message } = messeges?.find((personal) => personal.inboxId == i.id) || {}
+                let { message } = messages?.find((personal) => personal.inboxId == i.id) || {}
                 message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
                 
                 return {
                     ...i,
                     message,
-                    lastMessege: message?.[message?.length - 1]
+                    lastMessage: message?.[message?.length - 1]
                 }
             })
             setInbox(inbox)

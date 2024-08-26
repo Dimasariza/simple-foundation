@@ -32,9 +32,8 @@ const InboxStyle = styled(DataScroller)`
 `
 
 function AppChatContainer() {
-    const [message, setMessege] = useState<IChatMessage | any>([]);
+    const [message, setMessage] = useState<IChatMessage | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    // const [divider, setDivider] = useState<string>("");
     const [newMessage, setNewMessage] = useState<any>({});
     const dispatch = useDispatch();
     const { tab } = useSelector((state: any) => state.QuickTabsReducer);
@@ -43,7 +42,7 @@ function AppChatContainer() {
         dispatch(QuickTabsAction({name: "Inbox", group: "Inbox"}));  
     }
 
-    const handleCloseMessege = () => {
+    const handleCloseMessage = () => {
         dispatch(QuickTabsAction({name: "close"}));  
     }
 
@@ -71,7 +70,7 @@ function AppChatContainer() {
         .then(([msgByInbox, user]: any) => {
             let divider = "";
             let lastSendDate = "";
-            const messeges = msgByInbox.message.map((i: IChatMessage) => {
+            const messages: IChatMessage[] = msgByInbox.message.map((i: IChatMessage) => {
                 if(i.unReadMessage) {
                     divider = "unReadMessage"
                 } else if(!isSameDay(lastSendDate, i.sendDate)) {
@@ -84,10 +83,12 @@ function AppChatContainer() {
                     ...i,
                     user: user.find((u: IUser) => u.userId == i.userId),
                     owner: i.userId == "user000",
+                    repliedMessage: msgByInbox.message.find((m: IChatMessage) => m.messageId == i.repliedMsgId),
                     divider
                 }
             })
-            setMessege(messeges)
+
+            setMessage(messages)
         })
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -98,7 +99,7 @@ function AppChatContainer() {
                 value={message} 
                 itemTemplate={(e) => <MessageBody data={e}/>} 
                 rows={5} 
-                header={<MessageHeader handleBackToInbox={handleBackToInbox} handleCloseMessege={handleCloseMessege}/>} 
+                header={<MessageHeader handleBackToInbox={handleBackToInbox} handleCloseMessage={handleCloseMessage}/>} 
                 footer={
                     <MessageInput 
                         input={{
@@ -110,7 +111,7 @@ function AppChatContainer() {
                         }}
                         button={{
                             onClick: (e) => {
-                                setMessege([...message, {
+                                setMessage([...message, {
                                     ...newMessage,
                                     sendData: moment(new Date()).format("YYYY-MM-DD"),
                                     userId: "user000",

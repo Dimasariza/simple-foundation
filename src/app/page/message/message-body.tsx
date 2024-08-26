@@ -32,7 +32,7 @@ const MassageStyle = styled.div<{owner?: boolean}>`
 `
 
 function MessageBody ({data}: {data: IChatMessage}) {
-    const {owner, unReadMessage, user, message, divider, sendDate} = data || {};
+    const {owner, unReadMessage, user, message, divider, sendDate, repliedMessage} = data || {};
 
     const menuLeft = useRef<Menu | any>(null);
     const menuRight = useRef<Menu | any>(null);
@@ -102,6 +102,14 @@ function MessageBody ({data}: {data: IChatMessage}) {
                 >
                     {owner ? "You" :  user?.name}
                 </span>
+                {
+                    owner && repliedMessage &&
+                    <div className="w-full my-1 flex justify-end">
+                        <div className="w-4/5 bg-primary-white p-1 text-[14px] rounded-border-rad border border-primary-gray2 text-start">
+                            {repliedMessage.message}
+                        </div>
+                    </div>
+                }
                 <div className="msg-wrapper">
                     <Button  
                         className="h-[10px] w-[20px]"

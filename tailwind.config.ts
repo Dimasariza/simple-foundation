@@ -48,13 +48,14 @@ const config: Config = {
       },
       colors: {
         "quick-btn": {
-          white: "#F8F8F8"
+          white: "#F2F2F2"
         },
         border: {
           gray: "#BDBDBD"
         },
         primary: {
           blue: "#2F80ED",
+          white: "#F2F2F2",
           maingray: "#333333",
           gray1: "#4F4F4F",
           gray2: "#828282",
