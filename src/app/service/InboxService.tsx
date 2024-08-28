@@ -4,8 +4,8 @@ import axios from 'axios';
 const endPoint = 'https://simple-foundation.vercel.app/api/inbox';
 
 export const InboxService = {
-    getInbox() {
-      return axios.get(endPoint)
+    async getInbox() {
+      return await axios.get(endPoint)
       .then(({data}) => data as IInbox[])
     },
 };
