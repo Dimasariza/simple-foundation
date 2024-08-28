@@ -1,0 +1,15 @@
+{
+    "inbox": {
+        "inboxId": 1,
+        "message": [
+            {
+                "deleted": false,
+                "message": "Please check this out!",
+                "messageId": 1,
+                "sendDate": "2021-01-01 19:10:30",
+                "userId": 1,
+                "unReadMessage": false
+            }
+        ]
+    }
+}
