@@ -1,12 +1,12 @@
 import axios from "axios";
 import { IUser } from "../types/user";
 
-const endPoint = '/demo/data/user.json';
+const endPoint = 'https://simple-foundation.vercel.app/api/user';
 
 export const UserService = {
     getUsers() {
       return axios.get(endPoint)
-      .then(({data}) => data.data as IUser[])
+      .then(({data}) => data as IUser[])
     },
     getGroupMsg() {
 

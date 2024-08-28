@@ -1,7 +1,7 @@
 import { ITaskList } from "../types/task-list";
 import axios from 'axios';
 
-const endPoint = '/demo/data/task-list.json'
+const endPoint = 'https://simple-foundation.vercel.app/api/task-list';
 
 export const TaskListService = {
     getTaskList() {

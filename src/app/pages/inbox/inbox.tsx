@@ -7,7 +7,7 @@ import { QuickTabsAction } from "@/redux/action/quick-tab-action";
 import { IInbox } from "@/types/inbox";
 import { InboxService } from "@/service/InboxService";
 import { ChatInboxService } from "@/service/MessageService";
-import { IChatMessage } from "@/types/message";
+import { IChatMessage, IMgsByInbox } from "@/types/message";
 import { UserService } from "@/service/UserService";
 import { IUser } from "@/types/user";
 import AppAvatarGroup from "@/component/avatar/avatar-group";
@@ -112,8 +112,8 @@ function AppInbox() {
             UserService.getUsers(),
             ChatInboxService.getMessages(),
         ])
-        .then(([inbox, user, messages]) => {
-            inbox = inbox.map(i => {
+        .then(([inbox, user, messages]: [IInbox[], IUser[], IMgsByInbox[]]) => {
+            const inboxData = inbox.map((i) => {
                 let { message } = messages?.find((personal) => personal.inboxId == i.id) || {}
                 message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
                 
@@ -123,7 +123,7 @@ function AppInbox() {
                     lastMessage: message?.[message?.length - 1]
                 }
             })
-            setInbox(inbox)
+            setInbox(inboxData)
         })
     }, [])
 

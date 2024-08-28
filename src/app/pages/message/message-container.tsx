@@ -80,7 +80,7 @@ function AppChatContainer() {
                 return {
                     ...i,
                     user: user.find((u: IUser) => u.userId == i.userId),
-                    owner: i.userId == "user000",
+                    owner: i.userId == 0,
                     repliedMessage: msgByInbox.message.find((m: IChatMessage) => m.messageId == i.repliedMsgId),
                     divider
                 }
