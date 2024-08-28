@@ -117,7 +117,7 @@ function AppChatContainer() {
                             onClick: (e) => {
                                 setMessage([...message, {
                                     ...newMessage,
-                                    sendData: moment(new Date()).format("YYYY-MM-DD"),
+                                    sendDate: moment(new Date()).format("YYYY-MM-DD"),
                                     userId: "user000",
                                     owner: true,
                                     repliedMessage: message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId),

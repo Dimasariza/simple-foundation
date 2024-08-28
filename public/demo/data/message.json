@@ -173,21 +173,21 @@
                 },
                 {
                     "deleted": false,
-                    "message": "Morning.I'll try to do them. Thanks",
-                    "messageId": "message013",
-                    "sendDate": "2024-08-26 19:42:30",
-                    "userId": "user005",
-                    "unReadMessage": true,
-                    "repliedMsgId": ""
-                },
-                {
-                    "deleted": false,
                     "message": "Hi Mary",
                     "messageId": "message014",
                     "sendDate": "2024-08-26 19:45:30",
                     "userId": "user000",
                     "unReadMessage": false,
                     "repliedMsgId": "message010"
+                },
+                {
+                    "deleted": false,
+                    "message": "Morning.I'll try to do them. Thanks",
+                    "messageId": "message013",
+                    "sendDate": "2024-08-26 19:42:30",
+                    "userId": "user005",
+                    "unReadMessage": true,
+                    "repliedMsgId": ""
                 }
             ] 
         }

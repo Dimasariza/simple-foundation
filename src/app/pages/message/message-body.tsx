@@ -97,7 +97,7 @@ function MessageBody ({data}: {data: IChatMessage}) {
                 {
                     owner && repliedMessage &&
                     <div className="w-full my-1 flex justify-end">
-                        <div className="w-4/5 bg-primary-white p-1 text-14 rounded-border-rad border border-primary-gray2 text-start">
+                        <div className="w-4/5 bg-primary-white p-2 text-14 rounded-border-rad border border-primary-gray2 text-start">
                             {repliedMessage.message}
                         </div>
                     </div>
