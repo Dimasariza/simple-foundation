@@ -1,8 +1,9 @@
+import { RootState } from "@/redux/root";
 import { Button } from "primereact/button";
 import { useSelector } from "react-redux";
 
 function MessageHeader({handleBackToInbox, handleCloseMessage}:  any) {
-    const { tab } = useSelector((state: any) => state.QuickTabsReducer) || {};
+    const { tab } = useSelector((state: RootState) => state.QuickTabsReducer) || {};
 
     return (
         <div className="flex justify-between border-b border-border-gray p-[23px]">
@@ -20,7 +21,7 @@ function MessageHeader({handleBackToInbox, handleCloseMessage}:  any) {
                     </span>
                     {
                         tab?.inbox?.inboxGroup == "group" &&
-                        <span className="text-primary-maingray text-[12px] flex p-0 ml-[14px] font-normal tracking-[-0.035em]">
+                        <span className="text-primary-maingray text-12 flex p-0 ml-[14px] font-normal tracking-[-0.035em]">
                             {tab?.inbox?.users?.length} participans
                         </span>
                     }

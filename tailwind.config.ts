@@ -42,6 +42,12 @@ const config: Config = {
         "chat-width": "708px",
         "chat-height": "726px",
       },
+      fontSize: {
+        10: "10px",
+        12: "12px",
+        14: "14px",
+        16: "16px"
+      },
       borderRadius: {
         "border-rad": "5px",
         0: "0px"

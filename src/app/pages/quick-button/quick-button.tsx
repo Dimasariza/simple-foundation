@@ -1,13 +1,14 @@
 "use client"
 
 import { Button, ButtonProps } from "primereact/button";
-import styled from "styled-components";
 import { AnimatePresence, motion, MotionProps } from "framer-motion"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { QuickTabsAction } from "../../redux/action/tabMenu";
-import Image from "next/image";
+import { QuickTabsAction } from "@/redux/action/quick-tab-action";
 import { classNames } from "primereact/utils";
+import Image from "next/image";
+import styled from "styled-components";
+import { RootState } from "@/redux/root";
 const url = process.env.PUBLIC_URL || ""
 
 const MainButton = styled(Button)`
@@ -50,7 +51,7 @@ const AppQuickButton = (props: ButtonProps | MotionProps) => {
     ];
 
     const dispatch = useDispatch();
-    const { tab } = useSelector((state: any) => state.QuickTabsReducer);
+    const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
 
     const handleClickTabs = (activeTab: any) => {
         dispatch(QuickTabsAction(activeTab));

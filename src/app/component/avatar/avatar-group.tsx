@@ -1,9 +1,7 @@
-"use client"
-
 import { AvatarGroup } from "primereact/avatargroup";
-import AppAvatar from "./avatar";
 import { AvatarProps } from "primereact/avatar";
-import { IInbox } from "../../types/inbox";
+import { IInbox } from "@/types/inbox";
+import AppAvatar from "./avatar";
 
 const url = process.env.PUBLIC_URL || ""
 function AppAvatarGroup({inbox, avatar}: {avatar?: AvatarProps, inbox?: IInbox}) { 

@@ -8,7 +8,7 @@ export interface ITaskList {
     setDate: string;
     description: string;
     chips: any[];
-    [key: string]: any;
+    [key?: string]: any;
 }
 
 export interface ITaskItemProps {

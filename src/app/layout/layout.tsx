@@ -1,15 +1,16 @@
 "use client";
 
 import { useSelector } from "react-redux";
-import AppInbox from "../page/inbox/inbox";
-import AppChatContainer from "../page/message/message-container";
-import AppTaskList from "../page/task-list/task-item-container";
-import AppMainSearchBar from "../component/main-search-bar/main-search-bar";
 import { AnimatePresence } from "framer-motion";
-import AppQuickButton from "../page/quick-button/quick-button";
+import AppInbox from "@/pages/inbox/inbox";
+import AppChatContainer from "@/pages/message/message-container";
+import AppTaskList from "@/pages/task-list/task-item-container";
+import AppMainSearchBar from "@/component/main-search-bar/main-search-bar";
+import AppQuickButton from "@/pages/quick-button/quick-button";
+import { RootState } from "@/redux/root";
 
 function MainLayout() {
-    const { tab } = useSelector((state: any) => state.QuickTabsReducer);
+    const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
 
     const switchQuickTabs = () => {
       switch(tab?.group) {

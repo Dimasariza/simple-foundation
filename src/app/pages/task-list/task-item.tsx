@@ -1,20 +1,19 @@
 import { useRef, useState } from "react";
-import { IEditTaskItem, ITaskItemProps, ITaskList } from "../../types/task-list";
-import AppDatePicker from "../../component/date-picker/date-picker";
+import { IEditTaskItem, ITaskItemProps, ITaskList } from "@/types/task-list";
 import { Panel } from "primereact/panel";
+import { Menu } from "primereact/menu";
+import { MenuItem } from "primereact/menuitem";
+import { Chip } from "primereact/chip";
+import AppDatePicker from "@/component/date-picker/date-picker";
 import Image from "next/image";
 import moment from "moment";
 import styled from "styled-components";
-import AppTextArea from "../../component/text-area/text-area";
+import AppTextArea from "@/component/text-area/text-area";
 import TaskItemHeader from "./task-item-header";
-import { Menu } from "primereact/menu";
-import { MenuItem } from "primereact/menuitem";
-import AppButton from "../../component/button/button";
-import { Chip } from "primereact/chip";
+import AppButton from "@/component/button/button";
+const url = process.env.PUBLIC_URL || ""
 
 const StyledPanel = styled(Panel)`
-    font-family: var(--font-lato);
-
     .p-panel-header {
         padding: 0;
     }
@@ -60,7 +59,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
         <div>
             <div className="px-12 grid-cols-16 grid">
                 <div className="flex">
-                    <Image alt="clock" src={`/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
+                    <Image alt="clock" src={`${url}/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
                 </div>
                 <AppDatePicker 
                     className="col-span-11" 
@@ -72,7 +71,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
 
             <div className="px-12 grid-cols-16 grid">
                 <div className="flex cursor-pointer" onClick={() => handleEditing("taskDescription")}>
-                    <Image width={15} height={15} alt="Edit task list" src={`/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
+                    <Image width={15} height={15} alt="Edit task list" src={`${url}/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
                 </div>
                 <div className="my-5 col-start-2 col-end-16">
                     {
@@ -111,7 +110,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                         className="w-[270px] p-0" 
                         pt={{
                             label: (item) => ({
-                                className: "text-primary-gray1 text-[10px] font-extrabold tracking-[0.1em] font-lato"
+                                className: "text-primary-gray1 text-10 font-extrabold tracking-[0.1em] font-lato"
                             }),
                             menuitem: (item) => ({
                                 className: "m-[10px] rounded-border-rad h-[30px]"
@@ -125,7 +124,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                         aria-controls="popup_menu_left" 
                         aria-haspopup 
                         icon={
-                            <Image width={20} height={20} alt="Edit task list" src={`/icons/bookmark-${data?.chips?.length ? "active" : "deactive"}.svg`} />
+                            <Image width={20} height={20} alt="Edit task list" src={`${url}/icons/bookmark-${data?.chips?.length ? "active" : "deactive"}.svg`} />
                         } 
                     />
                 </div>
@@ -137,7 +136,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                                     onClick={() => handleEditData("chips", data.chips.filter(chip => chip != i))}
                                     key={i + key} 
                                     label={i} 
-                                    className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-[14px] font-bold tracking-[-0.01em] cursor-pointer`} 
+                                    className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-14 font-bold tracking-[-0.01em] cursor-pointer`} 
                                 />
                         })
                     }
@@ -148,7 +147,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
 
     return (
         <StyledPanel 
-            className="pb-4 border-t-none mx-5 border-b border-primary-gray2"
+            className="pb-4 border-t-none mx-5 border-b border-primary-gray2 font-lato"
             collapsed={collapsed}
             onToggle={() => setCollapsed(prev => !prev)}
             headerTemplate={(options) => <TaskItemHeader 

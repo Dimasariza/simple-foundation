@@ -3,11 +3,11 @@
 import { Button } from "primereact/button";
 import { Dropdown, DropdownProps } from "primereact/dropdown";
 import { useEffect, useState } from "react";
-import AppCard from "../../component/card/card";
-import { ITaskList } from "../../types/task-list";
-import { TaskListService } from "../../service/TaskListService";
-import styled from "styled-components";
+import { ITaskList } from "@/types/task-list";
+import { TaskListService } from "@/service/TaskListService";
 import { DataView } from "primereact/dataview";
+import AppCard from "@/component/card/card";
+import styled from "styled-components";
 import TaskListBody from "./task-item";
 
 const StyledDropDown = styled(Dropdown)<DropdownProps>`

@@ -1,12 +1,12 @@
 import { Menu } from "primereact/menu";
 import { MenuItemCommandEvent } from "primereact/menuitem";
-import { IMenuItems, ITaskItemProps, ITaskList } from "../../types/task-list";
+import { IMenuItems, ITaskItemProps, ITaskList } from "@/types/task-list";
 import { useRef, useState } from "react";
 import { Checkbox, CheckboxChangeEvent } from "primereact/checkbox";
-import AppInput from "../../component/input/input";
 import { Button } from "primereact/button";
-import moment from "moment";
 import { classNames } from "primereact/utils";
+import AppInput from "@/component/input/input";
+import moment from "moment";
 import Image from "next/image";
 const url = process.env.PUBLIC_URL || "";
 
@@ -33,9 +33,9 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
         }))
     }
 
-    const getDateStatus = () => {
+    const getDateStatus = (date: string) => {
         const currentDateObj: Date = new Date();
-        const setDateObj: Date = new Date(data?.setDate);
+        const setDateObj: Date = new Date(date);
         const differenceInMilliseconds = setDateObj.getTime() - currentDateObj.getTime();
         const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
@@ -48,9 +48,9 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
         }
     }
     
-    const { day, diff }: any = getDateStatus() || {};
+    const { day, diff }: any = getDateStatus(data?.setDate) || {};
     return (
-        <div className={`${options.className} border-none bg-transparent items-center ml-2 mr-6 mt-[5px]`}>
+        <div className={`${options?.className} border-none bg-transparent items-center ml-2 mr-6 mt-[5px]`}>
             <div className="flex py-4">
                 <Checkbox 
                     pt={{
@@ -72,8 +72,8 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                             className="ml-4 w-[350px]" 
                             onChange={(e) => handleEditData("taskTitle", e.target.value)}
                         />
-                    :   <span className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
-                                    "line-through text-[14px]": data?.completed
+                    :   <span data-testid="task-title" className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
+                                    "line-through text-14": data?.completed
                                 })
                             }
                             onClick={() => setEdit(true)}
@@ -86,10 +86,10 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                 {
                     data?.setDate &&
                     <div className="flex gap-5 justify-end px-4">
-                        <span className="text-indicator-tomato text-[14px] tracking-[-0.07em]">
+                        <span className="text-indicator-tomato text-14 tracking-[-0.07em]">
                             {diff == 0 ? "" : diff} {day}
                         </span>
-                        <span className="text-[14px] tracking-[0.01em]">
+                        <span className="text-14 tracking-[0.01em]">
                             {moment(data?.setDate).format("DD-MM-YYYY")}
                         </span>
                     </div>
@@ -99,7 +99,7 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                         className="w-[16px] h-[16px]" 
                         text 
                         onClick={() => setCollapsed((prev: boolean) => !prev)} 
-                        icon={<i className={classNames("pi text-[14px] text-primary-gray1", {
+                        icon={<i className={classNames("pi text-14 text-primary-gray1", {
                             "pi-angle-down": collapsed,
                             "pi pi-angle-up": !collapsed
                         })}></i>}

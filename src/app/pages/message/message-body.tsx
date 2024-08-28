@@ -1,42 +1,30 @@
-import Image from "next/image";
+"use client";
+
 import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
 import { Menu } from "primereact/menu";
 import { classNames } from "primereact/utils";
 import { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { MenuItem } from "primereact/menuitem";
 import { IChatMessage } from "../../types/chat";
 import moment from "moment";
+import Image from "next/image";
+import { ReplyMessageAction } from "@/redux/action/input-message-action";
+import { RootState } from "@/redux/root";
 const url = process.env.PUBLIC_URL || ""
-
-const MassageStyle = styled.div<{owner?: boolean}>`
-    text-align: ${({owner}) => owner ? "end" : "start"};
-    margin-bottom: 2px;
-
-    .msg-wrapper {
-        display: flex;
-        flex-direction: ${({owner}) => owner ? "row" : "row-reverse"};
-        justify-content: ${({owner}) => owner ? "end" : "start"};
-
-        div {
-            text-align: start;
-            width: 455px;
-            border: none;
-            display: flex;
-            flex-direction: column;
-            padding: 8px;
-            border-radius: 5px;
-        }
-    }
-`
 
 function MessageBody ({data}: {data: IChatMessage}) {
     const {owner, unReadMessage, user, message, divider, sendDate, repliedMessage} = data || {};
+    
+    const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
+    const scrollToBottomRef = useRef<any>();
+    const dispatch = useDispatch();
+    const dataMsg = useSelector((state: RootState) => state.ReplyMessageReducer)
 
     const menuLeft = useRef<Menu | any>(null);
     const menuRight = useRef<Menu | any>(null);
-    const menuItems = {
+    const menuItems: any = {
         other: [
             {
                 label: 'Share',
@@ -44,24 +32,26 @@ function MessageBody ({data}: {data: IChatMessage}) {
             },
             {
                 label: 'Reply',
-                color: "text-primary-blue"
+                color: "text-primary-blue",
+                command: () => {
+                    dispatch(ReplyMessageAction(data))
+                }
             }
         ],
         own: [
             {
                 label: 'Edit',
-                color: "text-primary-blue"
+                color: "text-primary-blue",
             },
             {
                 label: 'Delete',
-                color: "text-indicator-tomato"
+                color: "text-indicator-tomato",
+                command: () => {
+                }
             }
         ]
-    }
+    } as { other: MenuItem, own: MenuItem }
 
-    const { tab } = useSelector((state: any) => state.QuickTabsReducer);
-
-    const scrollToBottomRef = useRef<any>();
     const scrollToBottom = () => {
         scrollToBottomRef.current.scrollIntoView({  })
     }
@@ -91,9 +81,11 @@ function MessageBody ({data}: {data: IChatMessage}) {
                     </span>
                 </Divider>
             }
-            <MassageStyle owner={owner}>
+            <div className={classNames("mb-[2px]",{
+                "text-end": owner
+            })}>
                 <span 
-                    className={classNames("text-[14px] tracking-[0.01em]", {
+                    className={classNames("text-14 tracking-[0.01em]", {
                         "text-chats-badge-purple": owner,
                         "text-primary-blue": !owner && tab?.inbox?.inboxGroup == "personal",
                         "text-chats-badge-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessage,
@@ -105,12 +97,15 @@ function MessageBody ({data}: {data: IChatMessage}) {
                 {
                     owner && repliedMessage &&
                     <div className="w-full my-1 flex justify-end">
-                        <div className="w-4/5 bg-primary-white p-1 text-[14px] rounded-border-rad border border-primary-gray2 text-start">
+                        <div className="w-4/5 bg-primary-white p-1 text-14 rounded-border-rad border border-primary-gray2 text-start">
                             {repliedMessage.message}
                         </div>
                     </div>
                 }
-                <div className="msg-wrapper">
+                <div className={classNames("flex justify-end .msg-wrapper", {
+                    "flex-row": owner,
+                    "flex-row-reverse": !owner
+                })}>
                     <Button  
                         className="h-[10px] w-[20px]"
                         text 
@@ -118,7 +113,7 @@ function MessageBody ({data}: {data: IChatMessage}) {
                         onClick={(event) => owner ? menuLeft.current.toggle(event) : menuRight.current.toggle(event)} 
                         aria-haspopup  
                     />
-                    <Menu className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border border-solid" 
+                    <Menu className="w-[125px] ml-[2px] mt-[-4px] p-0 shadow-none border border-border-gray border-solid rounded-border-rad" 
                         model={owner ? menuItems.own : menuItems.other} 
                         popupAlignment={owner ? "left" : "right"} 
                         popup 
@@ -132,21 +127,21 @@ function MessageBody ({data}: {data: IChatMessage}) {
                             },
                         }} 
                     />
-                    <div className={classNames({
+                    <div className={classNames("p-2 rounded-border-rad w-[445px] text-start flex flex-col",{
                         "bg-chats-main-purple": owner,
                         "bg-quick-btn-white": !owner && tab?.inbox?.inboxGroup == "personal",
                         "bg-chats-main-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessage,
                         "bg-chats-main-green": !owner && unReadMessage,
                     })}>
-                        <span className="text-[12px] tracking-[0.07em]">
+                        <span className="text-12 tracking-[0.07em]">
                             {message}
                         </span>
-                        <span className="text-[12px] tracking-[0.04em] flex pt-1">
+                        <span className="text-12 tracking-[0.04em] flex pt-1">
                             {moment(sendDate).format("HH:mm")}
                         </span>
                     </div>
                 </div>
-            </MassageStyle>
+            </div>
         </div>
     );
 };

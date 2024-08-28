@@ -2,22 +2,22 @@
 
 import { DataScroller } from 'primereact/datascroller';
 import { useEffect, useState } from "react";
-import styled from 'styled-components';
-import AppCard from '../../component/card/card';
 import { useDispatch, useSelector } from 'react-redux';
-import { QuickTabsAction } from '../../redux/action/tabMenu';
-import { ChatInboxService } from '../../service/ChatInboxService';
-import { UserService } from '../../service/UserService';
-import { IUser } from '../../types/user';
+import { QuickTabsAction } from '@/redux/action/quick-tab-action';
+import { ChatInboxService } from '@/service/ChatInboxService';
+import { UserService } from '@/service/UserService';
+import { IUser } from '@/types/user';
+import { IChatMessage } from '@/types/chat';
+import styled from 'styled-components';
+import AppCard from '@/component/card/card';
 import moment from 'moment';
 import MessageBody from './message-body';
-import { IChatMessage } from '../../types/chat';
 import MessageHeader from './message-header';
 import MessageInput from './message-input';
+import { RootState } from '@/redux/root';
+import { ReplyMessageAction } from '@/redux/action/input-message-action';
 
 const InboxStyle = styled(DataScroller)`
-    font-family: var(--font-lato);
-
     .p-datascroller-list > li {
         border: none;
     }
@@ -36,7 +36,8 @@ function AppChatContainer() {
     const [loading, setLoading] = useState<boolean>(true);
     const [newMessage, setNewMessage] = useState<any>({});
     const dispatch = useDispatch();
-    const { tab } = useSelector((state: any) => state.QuickTabsReducer);
+    const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
+    const replyMessage: IChatMessage = useSelector((state: RootState) => state.ReplyMessageReducer);
 
     const handleBackToInbox = () => {
         dispatch(QuickTabsAction({name: "Inbox", group: "Inbox"}));  
@@ -115,8 +116,10 @@ function AppChatContainer() {
                                     ...newMessage,
                                     sendData: moment(new Date()).format("YYYY-MM-DD"),
                                     userId: "user000",
-                                    owner: true
+                                    owner: true,
+                                    repliedMessage: message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId),
                                 }])
+                                dispatch(ReplyMessageAction(null))
                             }
                         }}
                         loading={loading}
@@ -125,13 +128,16 @@ function AppChatContainer() {
                 inline
                 scrollHeight="580px"
 
-                className="w-chat-width h-chat-height"
+                className="w-chat-width h-chat-height font-lato"
                 pt={{
                     list: {
-                        className: `border-none h-card-height ${loading && "mb-20"}`,
+                        className: `border-none h-full ${loading && "mb-1"}`,
+                    },
+                    content: {
+                        className: "h-card-height"
                     },
                     header: {
-                        className: "bg-transparent p-0 h-[70px] mb-[12px]"
+                        className: "bg-transparent p-0 h-[70px] mb-[10px]"
                     },
                     footer: {
                         className: "bg-transparent border-none"

@@ -1,22 +1,12 @@
-"use client"
-
 import { Avatar, AvatarProps } from "primereact/avatar";
-import styled from "styled-components";
-
-const AvatarStyle = styled(Avatar)`
-    width: 34px;
-    height: 34px;
-    border: none;
-
-    img {
-        width: 18px;    
-        height: 18px;
-    }
-`
 
 function AppAvatar(props: AvatarProps) {
-    return <AvatarStyle {...props} shape="circle" />
+    const className = `w-[34px] h-[34px] border-none [&>img]:w-[18px] [&>img]:h-[18px] ${props?.className ?? ""}`
+    return <Avatar
+        {...props} 
+        shape="circle" 
+        className={className}
+    />
 }
-
 
 export default AppAvatar;

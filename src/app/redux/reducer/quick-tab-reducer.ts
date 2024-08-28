@@ -1,5 +1,3 @@
-'use client'
-
 export const QuickTabsReducer = (state: any = { tab: '' }, { type, tab }: any) => {
     switch (type) {
         case 'Task':

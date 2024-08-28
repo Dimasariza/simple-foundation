@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/app/*"],
+      "@/pages/*": ["./src/app/pages/*"],
+      "@/types/*": ["./src/app/types/*"]
     },
     "types": [
       "node"

@@ -6,7 +6,7 @@ const MotionCard = motion<any>(Card);
 function AppCard(props: CardProps) {
     const cardProps = {
         ...props,
-        className: `${props?.className ?? ""} !fixed bottom-card-bottom right-quick-btn-right w-card-width h-card-height rounded-border-rad`,
+        className: `!fixed bottom-card-bottom right-quick-btn-right w-card-width h-card-height rounded-border-rad ${props?.className ?? ""}`,
         style: {
             border: "1px solid #red",
             background: "white",

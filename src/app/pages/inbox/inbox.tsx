@@ -1,20 +1,20 @@
 "use client"
 
-import AppSearchBar from "../../component/search-bar/search-bar";
 import { useEffect, useState } from "react";
-import AppAvatarGroup from "../../component/avatar/avatar-group";
 import { ListBox } from "primereact/listbox";
-import AppCard from "../../component/card/card";
 import { useDispatch } from "react-redux";
-import { QuickTabsAction } from "../../redux/action/tabMenu";
+import { QuickTabsAction } from "@/redux/action/quick-tab-action";
+import { IInbox } from "@/types/inbox";
+import { InboxService } from "@/service/InboxService";
+import { ChatInboxService } from "@/service/ChatInboxService";
+import { IChatMessage } from "@/types/chat";
+import { UserService } from "@/service/UserService";
+import { IUser } from "@/types/user";
+import AppAvatarGroup from "@/component/avatar/avatar-group";
+import AppSearchBar from "@/component/search-bar/search-bar";
+import AppCard from "@/component/card/card";
 import Image from "next/image";
-import { IInbox } from "../../types/inbox";
 import styled from "styled-components";
-import { InboxService } from "../../service/InboxService";
-import { ChatInboxService } from "../../service/ChatInboxService";
-import { IChatMessage } from "../../types/chat";
-import { UserService } from "../../service/UserService";
-import { IUser } from "../../types/user";
 import moment from "moment";
 const url = process.env.PUBLIC_URL || ""
 
@@ -81,7 +81,7 @@ function AppInbox() {
                             </p>
                             {
                                 inbox.lastMessage?.unReadMessage &&
-                                <i  className="pi pi-circle-fill text-indicator-tomato !flex pb-[5px] text-[10px] items-end" ></i>
+                                <i  className="pi pi-circle-fill text-indicator-tomato !flex pb-[5px] text-10 items-end" ></i>
                             }
                         </div>
                     </div>
@@ -137,7 +137,7 @@ function AppInbox() {
                             <div className="flex justify-center mt-[16rem]">
                                 <Image width={85} height={85} alt="loading" src={url + "/icons/loading.svg"} className="pi-spin items-center" />
                             </div>
-                            <div className="pl-[16px] text-[16px] tracking-[0.01em] mt-1"><b>Loading Chats ...</b></div>
+                            <div className="pl-[16px] text-16 tracking-[0.01em] mt-1"><b>Loading Chats ...</b></div>
                         </div>
                     </div>
                 :   <ListStyle 
