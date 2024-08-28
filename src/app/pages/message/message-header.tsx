@@ -6,7 +6,7 @@ function MessageHeader({handleBackToInbox, handleCloseMessage}:  any) {
     const { tab } = useSelector((state: RootState) => state.QuickTabsReducer) || {};
 
     return (
-        <div className="flex justify-between border-b border-border-gray p-[23px]">
+        <div className="flex justify-between pt-[6px] pl-[13px] pr-[4px] pb-[18px] items-center">
             <div className="flex items-center">
                 <Button 
                     icon="pi pi-arrow-left text-primary-maingray" 

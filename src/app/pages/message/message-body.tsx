@@ -20,7 +20,6 @@ function MessageBody ({data}: {data: IChatMessage}) {
     const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
     const scrollToBottomRef = useRef<any>();
     const dispatch = useDispatch();
-    const dataMsg = useSelector((state: RootState) => state.ReplyMessageReducer)
 
     const menuLeft = useRef<Menu | any>(null);
     const menuRight = useRef<Menu | any>(null);
@@ -61,7 +60,7 @@ function MessageBody ({data}: {data: IChatMessage}) {
     }, []);
 
     return (
-        <div className="pl-[18px]" ref={scrollToBottomRef}>
+        <div className="p-0" ref={scrollToBottomRef}>
             {
                 tab?.inbox?.inboxGroup == "group" &&
                 divider &&
@@ -127,13 +126,13 @@ function MessageBody ({data}: {data: IChatMessage}) {
                             },
                         }} 
                     />
-                    <div className={classNames("p-2 rounded-border-rad w-[445px] text-start flex flex-col",{
+                    <div className={classNames("p-2 rounded-border-rad max-w-[80%] min-w-[50%] text-start flex flex-col",{
                         "bg-chats-main-purple": owner,
                         "bg-quick-btn-white": !owner && tab?.inbox?.inboxGroup == "personal",
                         "bg-chats-main-yellow": !owner && tab?.inbox?.inboxGroup == "group" && !unReadMessage,
                         "bg-chats-main-green": !owner && unReadMessage,
                     })}>
-                        <span className="text-12 tracking-[0.07em]">
+                        <span className="text-12 px-1 tracking-[0.07em]">
                             {message}
                         </span>
                         <span className="text-12 tracking-[0.04em] flex pt-1">

@@ -18,7 +18,7 @@ function MessageInput({input, button, loading}: {input?: InputTextProps, button?
     const dispatch = useDispatch();
 
     return (
-        <div className='relative z-10'>
+        <div className='relative z-10 pt-0 pb-0'>
             {
                 loading && tab?.inbox?.inboxGroup == "personal" &&
                 <span className="absolute left-0 w-full flex justify-center bottom-[70px]">

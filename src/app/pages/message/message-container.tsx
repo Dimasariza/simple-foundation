@@ -22,10 +22,6 @@ const InboxStyle = styled(DataScroller)`
         border: none;
     }
 
-    .p-datascroller .p-datascroller-content {
-        padding: 0;
-    }
-
     .p-datascroller .p-datascroller-footer {
         padding: 0;
     }
@@ -95,12 +91,12 @@ function AppChatContainer() {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <AppCard className="rounded-border-rad w-chat-width h-chat-height overflow-hidden">
+        <AppCard className="w-chat-width h-chat-height overflow-hidden">
             <InboxStyle 
                 onScrollCapture={handleScroll}
                 value={message} 
                 itemTemplate={(e) => <MessageBody data={e}/>} 
-                rows={5} 
+                rows={10} 
                 header={<MessageHeader handleBackToInbox={handleBackToInbox} handleCloseMessage={handleCloseMessage}/>} 
                 footer={
                     <MessageInput 
@@ -122,8 +118,6 @@ function AppChatContainer() {
                                     owner: true,
                                     repliedMessage: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId) : "",
                                 }])
-
-                                console.log(moment(new Date()).format("YYYY-MM-DD HH:MM"))
                                 setInputValue("")
                                 dispatch(ReplyMessageAction(null))
                             }
@@ -132,21 +126,20 @@ function AppChatContainer() {
                     />
                 }
                 inline
-                scrollHeight="580px"
-
-                className="w-chat-width h-chat-height font-lato"
+                scrollHeight="595px"
+                className="font-lato"
                 pt={{
                     list: {
-                        className: `border-none h-full ${loading && "mb-1"}`,
+                        className: `border-none`,
                     },
                     content: {
-                        className: "h-card-height"
+                        className: `p-3 pl-7 pb-8 h-card-height ${loading && "pb-20"}`
                     },
                     header: {
-                        className: "bg-transparent p-0 h-[70px] mb-[10px]"
+                        className: "bg-transparent pb-0 border-b border-border-gray border-solid m-0"
                     },
                     footer: {
-                        className: "bg-transparent border-none"
+                        className: "bg-transparent border-none p-0"
                     },
                 }}
             />
