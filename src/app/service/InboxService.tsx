@@ -6,6 +6,6 @@ const endPoint = '/demo/data/inbox.json'
 export const InboxService = {
     getInbox() {
       return axios.get(endPoint)
-      .then(({data}) => data.data as IInbox[])
+      .then(({data}) => console.log(data))
     },
 };
