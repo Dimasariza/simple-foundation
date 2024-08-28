@@ -1,6 +1,6 @@
 var jsonServer  = require('json-server')
 var server      = jsonServer.create()
-var router      = jsonServer.router(require('./db.js')())
+var router      = jsonServer.router(require('./db.json')())
 var middlewares = jsonServer.defaults()
 
 server.use(middlewares)
