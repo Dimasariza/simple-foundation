@@ -35,6 +35,7 @@ function AppChatContainer() {
     const [message, setMessage] = useState<IChatMessage | any>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [newMessage, setNewMessage] = useState<any>({});
+    const [inputValue, setInputValue] = useState<string>("");
     const dispatch = useDispatch();
     const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
     const replyMessage: IChatMessage = useSelector((state: RootState) => state.ReplyMessageReducer);
@@ -104,8 +105,10 @@ function AppChatContainer() {
                 footer={
                     <MessageInput 
                         input={{
+                            value: inputValue,
                             placeholder: "Type a new message", 
                             onChange: (e) => {
+                                setInputValue(e.target.value)
                                 setNewMessage((prev: IChatMessage) => ({
                                 ...prev, message: e.target.value,
                             }))}
@@ -119,6 +122,7 @@ function AppChatContainer() {
                                     owner: true,
                                     repliedMessage: message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId),
                                 }])
+                                setInputValue("")
                                 dispatch(ReplyMessageAction(null))
                             }
                         }}
