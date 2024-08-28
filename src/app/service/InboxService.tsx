@@ -1,11 +1,11 @@
 import { IInbox } from "../types/inbox";
 import axios from 'axios';
 
-const endPoint = '/demo/data/inbox.json'
+const endPoint = 'https://simple-foundation.vercel.app/api/inbox'
 
 export const InboxService = {
     getInbox() {
       return axios.get(endPoint)
-      .then(({data}) => data.data as IInbox[])
+      .then(({data}) => data as IInbox[])
     },
 };

@@ -8,7 +8,7 @@ import Image from "next/image";
 import AppButton from "@/component/button/button";
 import AppInput from "@/component/input/input";
 import { RootState } from "@/redux/root";
-import { IChatMessage } from "@/types/chat";
+import { IChatMessage } from "@/types/message";
 import { ReplyMessageAction } from "@/redux/action/input-message-action";
 const url = process.env.PUBLIC_URL || ""
 
@@ -38,7 +38,7 @@ function MessageInput({input, button, loading}: {input?: InputTextProps, button?
             }
             {
                 replyMessage &&
-                <div className="absolute left-5 rounded-t-border-rad p-3 bottom-[60px] w-[81.8%] border-primary-gray2 border border-b-0 bg-quick-btn-white">
+                <div className="absolute left-5 rounded-t-border-rad p-3 bottom-[60px] w-[82.2%] border-primary-gray2 border border-b-0 bg-quick-btn-white">
                     <div className="flex w-full justify-between rounded-border-rad">
                         <span>Replying to { replyMessage?.user?.name }</span>
                         <AppButton text className="h-[12px] w-[12px]" onClick={() => dispatch(ReplyMessageAction(null))} icon={<i className="pi pi-times text-primary-gray1 text-12"></i>}/>

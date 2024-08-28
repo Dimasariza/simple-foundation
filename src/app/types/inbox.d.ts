@@ -1,4 +1,4 @@
-import { IGroupMessage, IChatMessage } from "./chat";
+import { IGroupMessage, IChatMessage } from "./message";
 import { IUser } from "./user";
 
 export interface IInbox {

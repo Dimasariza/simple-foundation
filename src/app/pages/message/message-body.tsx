@@ -7,7 +7,7 @@ import { classNames } from "primereact/utils";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MenuItem } from "primereact/menuitem";
-import { IChatMessage } from "../../types/chat";
+import { IChatMessage } from "../../types/message";
 import moment from "moment";
 import Image from "next/image";
 import { ReplyMessageAction } from "@/redux/action/input-message-action";
@@ -135,7 +135,7 @@ function MessageBody ({data}: {data: IChatMessage}) {
                         <span className="text-12 px-1 tracking-[0.07em]">
                             {message}
                         </span>
-                        <span className="text-12 tracking-[0.04em] flex pt-1">
+                        <span className="text-12 tracking-[0.04em] px-1 flex pt-1">
                             {moment(sendDate).format("HH:mm")}
                         </span>
                     </div>

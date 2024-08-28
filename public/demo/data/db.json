@@ -28,7 +28,7 @@
             "id": 5,
             "name": "I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHN]",
             "inboxGroup": "group",
-            "users":["user000", "user004", "user005"]
+            "users":[0, 4, 5]
         }
     ],
     "message": [
@@ -40,7 +40,7 @@
                     "message": "Please check this out!",
                     "messageId": 1,
                     "sendDate": "2021-01-01 19:10:30",
-                    "userId": "user001",
+                    "userId": 1,
                     "unReadMessage": true
                 }
             ] 
@@ -53,7 +53,7 @@
                     "message": "Hey, please read.",
                     "messageId": 1,
                     "sendDate": "2021-06-02 10:45:30",
-                    "userId": "user002",
+                    "userId": 2,
                     "unReadMessage": false
                 }
             ] 
@@ -66,7 +66,7 @@
                     "message": "I understand your initial concerns and thats very valid, Elizabeth. But you a response as soon as possible.",
                     "messageId": 1,
                     "sendDate": "2021-06-01 12:19:30",
-                    "userId": "user001",
+                    "userId": 1,
                     "unReadMessage": false
                 }
             ] 
@@ -79,7 +79,7 @@
                     "message": "Hey there. Welcome to your inbox! Contact us for more information and help about anything! We'll send you a response as soon as possible.",
                     "messageId": 1,
                     "sendDate": "2024-08-22 12:10:30",
-                    "userId": "user003",
+                    "userId": 3,
                     "unReadMessage": false
                 },
                 {
@@ -87,7 +87,7 @@
                     "message": "Hi, I need help with something can you help me?",
                     "messageId": 2,
                     "sendDate": "2024-08-22 12:19:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false
                 }
             ] 
@@ -100,7 +100,7 @@
                     "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
                     "messageId": 1,
                     "sendDate": "2024-08-22 19:42:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -109,7 +109,7 @@
                     "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
                     "messageId": 2,
                     "sendDate": "2024-08-22 19:44:30",
-                    "userId": "user004",
+                    "userId": 4,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -118,7 +118,7 @@
                     "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
                     "messageId": 3,
                     "sendDate": "2024-08-22 19:42:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -127,7 +127,7 @@
                     "message": "Sure thing, Claren",
                     "messageId": 4,
                     "sendDate": "2024-08-22 19:51:30",
-                    "userId": "user004",
+                    "userId": 4,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -136,7 +136,7 @@
                     "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
                     "messageId": 5,
                     "sendDate": "2024-08-22 19:55:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -145,7 +145,7 @@
                     "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
                     "messageId": 6,
                     "sendDate": "2024-08-22 20:10:30",
-                    "userId": "user004",
+                    "userId": 4,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -154,7 +154,7 @@
                     "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
                     "messageId": 7,
                     "sendDate": "2024-08-23 19:42:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -163,7 +163,7 @@
                     "message": "Sure thing, Claren",
                     "messageId": 8,
                     "sendDate": "2024-08-23 19:55:30",
-                    "userId": "user004",
+                    "userId": 4,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -172,7 +172,7 @@
                     "message": "No worries. It will be completed ASAP. I've asked him yesterday.",
                     "messageId": 9,
                     "sendDate": "2024-08-23 19:59:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -181,7 +181,7 @@
                     "message": "Hello Obaidullah, i will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
                     "messageId": 10,
                     "sendDate": "2024-08-23 20:01:30",
-                    "userId": "user004",
+                    "userId": 4,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -190,7 +190,7 @@
                     "message": "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary",
                     "messageId": 11,
                     "sendDate": "2024-08-23 20:10:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -199,7 +199,7 @@
                     "message": "Sure thing, Claren",
                     "messageId": 12,
                     "sendDate": "2024-08-26 01:15:30",
-                    "userId": "user004",
+                    "userId": 4,
                     "unReadMessage": false,
                     "repliedMsgId": ""
                 },
@@ -208,7 +208,7 @@
                     "message": "Hi Mary",
                     "messageId": 14,
                     "sendDate": "2024-08-26 19:45:30",
-                    "userId": "user000",
+                    "userId": 0,
                     "unReadMessage": false,
                     "repliedMsgId": 10
                 },
@@ -217,7 +217,7 @@
                     "message": "Morning.I'll try to do them. Thanks",
                     "messageId": 13,
                     "sendDate": "2024-08-26 19:42:30",
-                    "userId": "user005",
+                    "userId": 5,
                     "unReadMessage": true,
                     "repliedMsgId": ""
                 }

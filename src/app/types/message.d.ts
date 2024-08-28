@@ -12,3 +12,8 @@ export interface IChatMessage {
     repliedMsgId: string | number;
     repliedMessage: IChatMessage;
 }
+
+export interface IMgsByInbox {
+    inboxId: string | any
+    message: IChatMessage[]
+}

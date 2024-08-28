@@ -4,10 +4,10 @@ import { DataScroller } from 'primereact/datascroller';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { QuickTabsAction } from '@/redux/action/quick-tab-action';
-import { ChatInboxService } from '@/service/ChatInboxService';
+import { ChatInboxService } from '@/service/MessageService';
 import { UserService } from '@/service/UserService';
 import { IUser } from '@/types/user';
-import { IChatMessage } from '@/types/chat';
+import { IChatMessage, IMgsByInbox } from '@/types/message';
 import styled from 'styled-components';
 import AppCard from '@/component/card/card';
 import moment from 'moment';
@@ -65,10 +65,10 @@ function AppChatContainer() {
             ChatInboxService.getMsgByInbox(tab?.inbox?.id),
             UserService.getUsers()
         ])
-        .then(([msgByInbox, user]: any) => {
+        .then(([msgByInbox, user]: [IMgsByInbox, IUser[]]) => {
             let divider = "";
             let lastSendDate = "";
-            const messages: IChatMessage[] = msgByInbox.message.map((i: IChatMessage) => {
+            const messages: IChatMessage[] | any = msgByInbox?.message?.map((i: IChatMessage) => {
                 if(i.unReadMessage) {
                     divider = "unReadMessage"
                 } else if(!isSameDay(lastSendDate, i.sendDate)) {
@@ -85,6 +85,7 @@ function AppChatContainer() {
                     divider
                 }
             })
+            console.log(msgByInbox.message)
 
             setMessage(messages)
         })
