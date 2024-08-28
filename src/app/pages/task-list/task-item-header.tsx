@@ -20,9 +20,8 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
             labelClass: "text-indicator-tomato",
             command: (e: MenuItemCommandEvent) => {
                 TaskListService.deleteTaskList(data.id)
-                .then((res) => {
-                    setSubmit((prev: boolean) => !prev)
-                })
+                .then((res) => {})
+                setSubmit((prev: boolean) => !prev)
                 // setTaskListData((prev: ITaskList[]) => prev.filter((i) => i.id !== data.id))
             },
             

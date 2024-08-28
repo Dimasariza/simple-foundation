@@ -24,7 +24,7 @@ const StyledPanel = styled(Panel)`
     }
 `;
 
-function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
+function TaskListBody ({data, setTaskListData, setSubmit}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
         taskTitle: false,
         taskDescription: false
@@ -156,6 +156,7 @@ function TaskListBody ({data, setTaskListData}: ITaskItemProps) {
                 setTaskListData={setTaskListData} 
                 collapsed={collapsed} 
                 setCollapsed={setCollapsed} 
+                setSubmit={setSubmit}
                 />
             } 
             toggleable 

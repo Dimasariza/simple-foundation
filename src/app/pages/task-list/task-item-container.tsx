@@ -93,6 +93,10 @@ function AppTaskList() {
         })
     }, [submit])
 
+    useEffect(() => {
+        console.log(submit)
+    }, [submit])
+
     return (
         <AppCard className="overflow-hidden">
             <DataView 
