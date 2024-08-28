@@ -8,9 +8,10 @@ import { classNames } from "primereact/utils";
 import AppInput from "@/component/input/input";
 import moment from "moment";
 import Image from "next/image";
+import { TaskListService } from "@/service/TaskListService";
 const url = process.env.PUBLIC_URL || "";
 
-function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed} : ITaskItemProps) {
+function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed, setSubmit} : ITaskItemProps) {
     const [edit, setEdit] = useState<boolean>(false);
     const menuLeft = useRef<Menu | any>(null);
     const items: IMenuItems.IMenu[] = [
@@ -18,7 +19,11 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
             label: 'Delete',
             labelClass: "text-indicator-tomato",
             command: (e: MenuItemCommandEvent) => {
-                setTaskListData((prev: ITaskList[]) => prev.filter((i) => i.id !== data.id))
+                TaskListService.deleteTaskList(data.id)
+                .then((res) => {
+                    setSubmit((prev: boolean) => !prev)
+                })
+                // setTaskListData((prev: ITaskList[]) => prev.filter((i) => i.id !== data.id))
             },
             
         },

@@ -15,6 +15,7 @@ export interface ITaskItemProps {
     data: ITaskList;
     setTaskListData: Dispatch<ITaskList[]>;
     setCollapsed?: Dispatch<boolean>;
+    setSubmit?: Dispatch<boolean>;
     collapsed?: boolean;
     taskListData?: ITaskList[]
     options?: any;

@@ -29,6 +29,7 @@ const StyledDropDown = styled(Dropdown)<DropdownProps>`
 function AppTaskList() {
     const [selectedTask, setSelectedTask] = useState(null);
     const [taskListData, setTaskListData] = useState<ITaskList[]>([]);
+    const [submit, setSubmit] = useState<boolean>(false);
 
     const taskOptions = [
         { name: 'Personal Errands', code: 'personal' },
@@ -79,7 +80,7 @@ function AppTaskList() {
         return (
             <div className="overflow-auto h-[660px]">
                 {
-                    items?.map((i, key) => <TaskListBody key={`${key + i?.title}`} data={i} setTaskListData={setTaskListData}/>) 
+                    items?.map((i, key) => <TaskListBody key={`${key} ${i?.title}`} data={i} setSubmit={setSubmit} setTaskListData={setTaskListData}/>) 
                 }
             </div>
         )
@@ -87,8 +88,10 @@ function AppTaskList() {
 
     useEffect(() => {
         TaskListService.getTaskList()
-        .then((res: ITaskList[]) => setTaskListData(res))
-    }, [])
+        .then((res: ITaskList[]) => {
+            setTaskListData(res)
+        })
+    }, [submit])
 
     return (
         <AppCard className="overflow-hidden">
