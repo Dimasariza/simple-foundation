@@ -117,11 +117,13 @@ function AppChatContainer() {
                             onClick: (e) => {
                                 setMessage([...message, {
                                     ...newMessage,
-                                    sendDate: moment(new Date()).format("YYYY-MM-DD"),
+                                    sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
                                     userId: "user000",
                                     owner: true,
-                                    repliedMessage: message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId),
+                                    repliedMessage: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId) : "",
                                 }])
+
+                                console.log(moment(new Date()).format("YYYY-MM-DD HH:MM"))
                                 setInputValue("")
                                 dispatch(ReplyMessageAction(null))
                             }
