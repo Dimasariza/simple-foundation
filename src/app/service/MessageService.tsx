@@ -8,8 +8,8 @@ export const ChatInboxService = {
       return axios.get(endPoint)
       .then(({data}) => data as IMgsByInbox[])
     },
-    getMsgByInbox(inboxId: string | number) {
-      return axios.get(endPoint + "?inboxId=" + inboxId)
+    getMsgByInbox(id: string | number) {
+      return axios.get(endPoint + "/" + id)
       .then(({data}) => data[0] as IMgsByInbox)
     }
 };

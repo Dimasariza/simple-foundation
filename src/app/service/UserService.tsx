@@ -8,7 +8,16 @@ export const UserService = {
       return axios.get(endPoint)
       .then(({data}) => data as IUser[])
     },
-    getGroupMsg() {
-
+    getUserById(id: string | number) {
+      return axios.get(endPoint + "/" + id)
+      .then(({data}) => data as IUser)
+    },
+    updateUser(id: string | number) {
+      return axios.put(endPoint + "/" + id)
+      .then(({data}) => data as IUser)
+    },
+    deleteUser(id: string | number) {
+      return axios.delete(endPoint + "/" + id)
+      .then(({data}) => data as IUser)
     }
 };

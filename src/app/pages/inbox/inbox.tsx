@@ -113,8 +113,8 @@ function AppInbox() {
             ChatInboxService.getMessages(),
         ])
         .then(([inbox, user, messages]: [IInbox[], IUser[], IMgsByInbox[]]) => {
-            const inboxData = inbox.map((i) => {
-                let { message } = messages?.find((personal) => personal.inboxId == i.id) || {}
+            const inboxData = inbox.map((i) => { 
+                let { message } = messages?.find((m) => m.id == i.messageId) || {}
                 message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.id == item.userId) }))
                 
                 return {

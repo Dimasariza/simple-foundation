@@ -3,37 +3,41 @@
         {
             "id": 1,
             "name": "109220-Naturalization",
-            "unReadMessage": true,
+            "messageId": 1,
             "inboxGroup": "group",
             "users":[]
         },
         {
             "id": 2,
             "name": "Jeannette Moraima Guaman Chamba (Hutto I-589)[Hutto Follow Up - Brief Service]",
+            "messageId": 2,
             "inboxGroup": "group",
             "users":[]
         },
         {
             "id": 3,
             "name": "8405-Diana SALAZAR MUNGUIA",
+            "messageId": 3,
             "inboxGroup": "group",
             "users":[]
         },
         {
             "id": 4,
             "name": "FastVisa Support",
+            "messageId": 4,
             "inboxGroup": "personal"
         },
         {
             "id": 5,
             "name": "I-589 - AMARKHIL, Obaidullah [Affirmative Filling with ZHN]",
+            "messageId": 5,
             "inboxGroup": "group",
             "users":[0, 4, 5]
         }
     ],
     "message": [
         { 
-            "inboxId": 1,
+            "id": 1,
             "message": [
                 {
                     "deleted": false,
@@ -46,7 +50,7 @@
             ] 
         },
         { 
-            "inboxId": 2,
+            "id": 2,
             "message": [
                 {
                     "deleted": false,
@@ -59,7 +63,7 @@
             ] 
         },
         { 
-            "inboxId": 3,
+            "id": 3,
             "message": [
                 {
                     "deleted": false,
@@ -72,7 +76,7 @@
             ] 
         },
         { 
-            "inboxId": 4,
+            "id": 4,
             "message": [
                 {
                     "deleted": false,
@@ -93,7 +97,7 @@
             ] 
         },
         { 
-            "inboxId": 5,
+            "id": 5,
             "message": [
                 {
                     "deleted": false,

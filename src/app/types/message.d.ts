@@ -14,6 +14,6 @@ export interface IChatMessage {
 }
 
 export interface IMgsByInbox {
-    inboxId: string | any
+    id: string | any
     message: IChatMessage[]
 }
