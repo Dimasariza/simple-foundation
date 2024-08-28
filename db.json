@@ -1,7 +1,7 @@
 {
     "inbox": [
         {
-            "inboxId": 1,
+            "id": 1,
             "message": [
                 {
                     "deleted": false,
