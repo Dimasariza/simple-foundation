@@ -115,7 +115,7 @@ function AppInbox() {
         .then(([inbox, user, messages]: [IInbox[], IUser[], IMgsByInbox[]]) => {
             const inboxData = inbox.map((i) => {
                 let { message } = messages?.find((personal) => personal.inboxId == i.id) || {}
-                message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.userId == item.userId) }))
+                message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.id == item.userId) }))
                 
                 return {
                     ...i,

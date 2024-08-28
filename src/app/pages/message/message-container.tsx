@@ -79,14 +79,12 @@ function AppChatContainer() {
                 }
                 return {
                     ...i,
-                    user: user.find((u: IUser) => u.userId == i.userId),
+                    user: user.find((u: IUser) => u.id == i.userId),
                     owner: i.userId == 0,
                     repliedMessage: msgByInbox.message.find((m: IChatMessage) => m.messageId == i.repliedMsgId),
                     divider
                 }
             })
-            console.log(msgByInbox.message)
-
             setMessage(messages)
         })
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -115,7 +113,7 @@ function AppChatContainer() {
                                 setMessage([...message, {
                                     ...newMessage,
                                     sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
-                                    userId: "user000",
+                                    id: 0,
                                     owner: true,
                                     repliedMessage: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId) : "",
                                 }])
