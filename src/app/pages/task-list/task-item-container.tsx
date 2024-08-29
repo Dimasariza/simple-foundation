@@ -38,7 +38,7 @@ function AppTaskList() {
 
     const handleAddNewTask = () => {
         const newTaskList = {
-            id: Number(taskListData.at(-1)?.id) + 1,
+            id: Number(taskListData.at(0)?.id) + 1,
             completed: false,
             taskTitle: "",
             setDate: "",
