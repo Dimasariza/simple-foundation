@@ -100,7 +100,7 @@ function AppChatContainer() {
                     divider
                 }
             })
-            setMessage(messages)
+            setMessage(messages) // messageS
         })
     }, [submit]); // eslint-disable-line react-hooks/exhaustive-deps
 
