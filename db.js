@@ -1,13 +1,14 @@
-const message = require('./public/demo/data/message.json');
-const inbox = require('./public/demo/data/inbox.json');
-const taskList = require('./public/demo/data/task-list.json');
-const user = require('./public/demo/data/user.json');
+const fs = require('fs')
+const path = require("path");
 
-module.exports = function() {
-    return {
-        message,
-        inbox,
-        taskList,
-        user       
-    }
+const message = JSON.parse(fs.readFileSync(path.join(__dirname, './public/demo/data/message.json')));
+const inbox = JSON.parse(fs.readFileSync(path.join(__dirname, './public/demo/data/inbox.json')));
+const taskList = JSON.parse(fs.readFileSync(path.join(__dirname, './public/demo/data/task-list.json')));
+const user = JSON.parse(fs.readFileSync(path.join(__dirname, './public/demo/data/user.json')));
+
+module.exports = {
+    message,
+    inbox,
+    taskList,
+    user       
 }
