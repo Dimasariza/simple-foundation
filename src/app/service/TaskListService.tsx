@@ -12,8 +12,8 @@ export const TaskListService = {
       return axios.get(endPoint + "/" + id)
       .then(({data}) => data as ITaskList)
     },
-    updateTaskList(id: string | number) {
-      return axios.put(endPoint + "/" + id)
+    updateTaskList(newData: ITaskList) {
+      return axios.put(endPoint + "/" + newData.id, newData)
       .then(({data}) => data as ITaskList)
     },
     deleteTaskList(id: string | number) {

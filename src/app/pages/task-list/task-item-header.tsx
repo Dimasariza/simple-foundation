@@ -11,8 +11,9 @@ import Image from "next/image";
 import { TaskListService } from "@/service/TaskListService";
 const url = process.env.PUBLIC_URL || "";
 
-function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed, setSubmit} : ITaskItemProps) {
+function TaskItemHeader({options, data, collapsed, setCollapsed, setSubmit} : ITaskItemProps) {
     const [edit, setEdit] = useState<boolean>(false);
+    const [value, setValue] = useState<ITaskList>(data);
     const menuLeft = useRef<Menu | any>(null);
     const items: IMenuItems.IMenu[] = [
         {
@@ -20,21 +21,23 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
             labelClass: "text-indicator-tomato",
             command: (e: MenuItemCommandEvent) => {
                 TaskListService.deleteTaskList(data.id)
-                .then((res) => {})
-                setSubmit((prev: boolean) => !prev)
-                // setTaskListData((prev: ITaskList[]) => prev.filter((i) => i.id !== data.id))
+                .then((res) => {
+                    setSubmit((prev: boolean) => !prev)
+                })
             },
             
         },
     ];
 
     const handleEditData = (key: string, newData: any) => {
-        setTaskListData((prev: ITaskList[]) => prev.map((i) => {
-            if(data?.id == i.id) {
-                return {...i, [key]: newData}
-            }
-            return i
-        }))
+        setValue((prev) => ({...prev, [key]: newData}));
+    }
+    
+    const handleOnSubmit = () => {
+        TaskListService.updateTaskList(value)
+        .then(res => {
+            setSubmit((prev: boolean) => !prev)
+        })
     }
 
     const getDateStatus = (date: string) => {
@@ -52,7 +55,7 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
         }
     }
     
-    const { day, diff }: any = getDateStatus(data?.setDate) || {};
+    const { day, diff }: any = getDateStatus(value?.setDate) || {};
     return (
         <div className={`${options?.className} border-none bg-transparent items-center ml-2 mr-6 mt-[5px]`}>
             <div className="flex py-4">
@@ -62,39 +65,47 @@ function TaskItemHeader({options, data, setTaskListData, collapsed, setCollapsed
                             className: "rounded-border-rad h-[18px] w-[18px] self-center border-primary-gray2", 
                         }
                     }} 
-                    checked={data?.completed} 
-                    onChange={(e: CheckboxChangeEvent) => handleEditData("completed", e.checked)} 
+                    checked={value?.completed} 
+                    onChange={(e: CheckboxChangeEvent) => {
+                        handleEditData("completed", e.checked);
+                    }} 
+                    onBlur={() => {
+                        handleOnSubmit();
+                    }}
                 />
                 {
                     edit
                     ?   <AppInput 
                             autoFocus
-                            onBlur={() => setEdit(false)}
-                            value={data?.taskTitle} 
+                            onBlur={() => {
+                                setEdit(false);
+                                handleOnSubmit();    
+                            }}
+                            value={value?.taskTitle} 
                             itemRef="ref"
                             placeholder="Type Task Title" 
                             className="ml-4 w-[350px]" 
                             onChange={(e) => handleEditData("taskTitle", e.target.value)}
                         />
                     :   <span data-testid="task-title" className={classNames("cursor-pointer tracking-[-0.03em] items-center ml-4 w-[350px] font-medium", {
-                                    "line-through text-14": data?.completed
+                                    "line-through text-14": value?.completed
                                 })
                             }
                             onClick={() => setEdit(true)}
                         >
-                            {data?.taskTitle}
+                            {value?.taskTitle}
                         </span>
                 }
             </div>
             <div className="flex">
                 {
-                    data?.setDate &&
+                    value?.setDate &&
                     <div className="flex gap-5 justify-end px-4">
                         <span className="text-indicator-tomato text-14 tracking-[-0.07em]">
                             {diff == 0 ? "" : diff} {day}
                         </span>
                         <span className="text-14 tracking-[0.01em]">
-                            {moment(data?.setDate).format("DD-MM-YYYY")}
+                            {moment(value?.setDate).format("DD-MM-YYYY")}
                         </span>
                     </div>
                 }

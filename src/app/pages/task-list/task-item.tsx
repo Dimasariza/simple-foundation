@@ -11,6 +11,7 @@ import styled from "styled-components";
 import AppTextArea from "@/component/text-area/text-area";
 import TaskItemHeader from "./task-item-header";
 import AppButton from "@/component/button/button";
+import { TaskListService } from "@/service/TaskListService";
 const url = process.env.PUBLIC_URL || ""
 
 const StyledPanel = styled(Panel)`
@@ -24,23 +25,28 @@ const StyledPanel = styled(Panel)`
     }
 `;
 
-function TaskListBody ({data, setTaskListData, setSubmit}: ITaskItemProps) {
+function TaskListBody ({data, setSubmit}: ITaskItemProps) {
     const [edit, setEdit] = useState<IEditTaskItem>({
         taskTitle: false,
         taskDescription: false
     });
+    const [value, setValue] = useState<ITaskList>(data);
     const [collapsed, setCollapsed] = useState<boolean>(true);
     const handleEditing = (name: string) => {
         setEdit((prev) => ({...prev, [name]: !prev[name]}))
     }
 
     const handleEditData = (key: string, newData: any) => {
-        setTaskListData((prev: ITaskList[]) => prev.map((i) => {
-            if(data?.id == i.id) {
-                return {...i, [key]: newData}
-            }
-            return i
-        }))
+        setValue((prev) => ({...prev, [key]: newData}));
+    }
+
+    const handleOnSubmit = () => {
+        console.log(value)
+        // debugger;
+        // TaskListService.updateTaskList(value)
+        // .then(res => {
+        //     setSubmit((prev: boolean) => !prev)
+        // })
     }
 
     const menuLeft = useRef<Menu>(null);
@@ -59,34 +65,39 @@ function TaskListBody ({data, setTaskListData, setSubmit}: ITaskItemProps) {
         <div>
             <div className="px-12 grid-cols-16 grid">
                 <div className="flex">
-                    <Image alt="clock" src={`${url}/icons/clock-${data?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
+                    <Image alt="clock" src={`${url}/icons/clock-${value?.setDate ? "active" : "deactive"}.svg`} width={20} height={20} />
                 </div>
                 <AppDatePicker 
                     className="col-span-11" 
                     dateFormat="dd-mm-yy" 
-                    value={new Date(data?.setDate)} 
-                    onChange={(e) => handleEditData("setDate", moment(e?.value).format("YYYY-MM-DD"))} 
+                    value={new Date(value?.setDate)} 
+                    onChange={(e) => {
+                        handleEditData("setDate", moment(e?.value).format("YYYY-MM-DD"));
+                    }} 
                 />
             </div>
 
             <div className="px-12 grid-cols-16 grid">
                 <div className="flex cursor-pointer" onClick={() => handleEditing("taskDescription")}>
-                    <Image width={15} height={15} alt="Edit task list" src={`${url}/icons/pencil-${data?.description ? "active" : "deactive"}.svg`} />
+                    <Image width={15} height={15} alt="Edit task list" src={`${url}/icons/pencil-${value?.description ? "active" : "deactive"}.svg`} />
                 </div>
                 <div className="my-5 col-start-2 col-end-16">
                     {
                         edit.taskDescription 
                         ?   <AppTextArea 
                                 autoFocus
-                                onBlur={() => handleEditing("taskDescription")}
+                                onBlur={() => {
+                                    handleEditing("taskDescription");
+                                    handleOnSubmit();
+                                }}
                                 className="w-full" 
-                                value={data?.description} 
+                                value={value?.description} 
                                 autoResize 
                                 onChange={(e) => handleEditData("description", e.target.value)}
                             />
                         :   <p className="cursor-pointer tracking-[-0.04em] min-h-5 min-w-[500px] leading-5"   
                             onClick={() => handleEditing("taskDescription")}>
-                                {data?.description}
+                                {value?.description}
                             </p>
                     }
                 </div> 
@@ -96,11 +107,11 @@ function TaskListBody ({data, setTaskListData, setSubmit}: ITaskItemProps) {
                 <div className="flex">
                     <Menu 
                         model={chipItems.map((c) => {
-                            const chip = data?.chips?.find(i => i == c.label)
+                            const chip = value?.chips?.find(i => i == c.label)
                             return {
                                 ...c,
                                 command: () => {
-                                    handleEditData("chips", [...data.chips, c.label]) 
+                                    handleEditData("chips", [...value?.chips, c.label]) 
                                 },
                                 disabled: chip
                             }
@@ -124,16 +135,16 @@ function TaskListBody ({data, setTaskListData, setSubmit}: ITaskItemProps) {
                         aria-controls="popup_menu_left" 
                         aria-haspopup 
                         icon={
-                            <Image width={20} height={20} alt="Edit task list" src={`${url}/icons/bookmark-${data?.chips?.length ? "active" : "deactive"}.svg`} />
+                            <Image width={20} height={20} alt="Edit task list" src={`${url}/icons/bookmark-${value?.chips?.length ? "active" : "deactive"}.svg`} />
                         } 
                     />
                 </div>
                 <div className="min-w-[500px]">
                     {
-                        data?.chips?.map((i, key) => {
+                        value?.chips?.map((i, key) => {
                             const { className }: any = chipItems.find(chip => chip.label == i)
                             return <Chip 
-                                    onClick={() => handleEditData("chips", data.chips.filter(chip => chip != i))}
+                                    onClick={() => handleEditData("chips", value?.chips.filter(chip => chip != i))}
                                     key={i + key} 
                                     label={i} 
                                     className={`${className} w-32 m-1 rounded-border-rad font-lato text-primary-gray1 text-14 font-bold tracking-[-0.01em] cursor-pointer`} 
@@ -153,7 +164,6 @@ function TaskListBody ({data, setTaskListData, setSubmit}: ITaskItemProps) {
             headerTemplate={(options) => <TaskItemHeader 
                 options={options} 
                 data={data} 
-                setTaskListData={setTaskListData} 
                 collapsed={collapsed} 
                 setCollapsed={setCollapsed} 
                 setSubmit={setSubmit}

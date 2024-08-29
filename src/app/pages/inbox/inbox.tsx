@@ -19,8 +19,6 @@ import moment from "moment";
 const url = process.env.PUBLIC_URL || ""
 
 const ListStyle = styled(ListBox)<{data: IInbox[]}>`
-    font-family: var(--font-lato);
-
     .p-list-box {
         max-height: '680px';
     }
@@ -94,7 +92,7 @@ function AppInbox() {
         if(inbox.inboxGroup == "personal") {
             dispatch(QuickTabsAction({name: "Personal-Inbox", group: "Inbox", inbox}));  
         } else if(inbox.inboxGroup == "group") {
-        dispatch(QuickTabsAction({name: "Group-Inbox", group: "Inbox", inbox}));  
+            dispatch(QuickTabsAction({name: "Group-Inbox", group: "Inbox", inbox}));  
         }
     }
 
@@ -142,7 +140,7 @@ function AppInbox() {
                     </div>
                 :   <ListStyle 
                         data={inbox}
-                        className="w-full md:w-14rem border-none" 
+                        className="w-full md:w-14rem border-none font-lato" 
                         itemTemplate={itemTemplate} 
                         filter
                         filterValue={filter} 

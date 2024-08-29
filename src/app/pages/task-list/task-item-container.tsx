@@ -80,7 +80,7 @@ function AppTaskList() {
         return (
             <div className="overflow-auto h-[660px]">
                 {
-                    items?.map((i, key) => <TaskListBody key={`${key} ${i?.title}`} data={i} setSubmit={setSubmit} setTaskListData={setTaskListData}/>) 
+                    items?.map((i, key) => <TaskListBody key={`${key} ${i?.title}`} data={i} setSubmit={setSubmit}/>) 
                 }
             </div>
         )
@@ -91,10 +91,6 @@ function AppTaskList() {
         .then((res: ITaskList[]) => {
             setTaskListData(res)
         })
-    }, [submit])
-
-    useEffect(() => {
-        console.log(submit)
     }, [submit])
 
     return (

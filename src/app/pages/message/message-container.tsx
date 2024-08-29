@@ -16,6 +16,7 @@ import MessageHeader from './message-header';
 import MessageInput from './message-input';
 import { RootState } from '@/redux/root';
 import { ReplyMessageAction } from '@/redux/action/input-message-action';
+import { IInbox } from '@/types/inbox';
 
 const InboxStyle = styled(DataScroller)`
     .p-datascroller-list > li {
@@ -29,8 +30,8 @@ const InboxStyle = styled(DataScroller)`
 
 function AppChatContainer() {
     const [message, setMessage] = useState<IChatMessage | any>([]);
+    const [inbox, setInbox] = useState<IMgsByInbox>();
     const [loading, setLoading] = useState<boolean>(true);
-    const [newMessage, setNewMessage] = useState<any>({});
     const [inputValue, setInputValue] = useState<string>("");
     const dispatch = useDispatch();
     const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
@@ -45,6 +46,31 @@ function AppChatContainer() {
     }
 
     const handleScroll = () => {
+    }
+
+    const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value)
+    }
+
+    const handleOnClickButton = () => {
+        const newMessage = {
+            deleted: false,
+            message: inputValue,
+            messageId: message.at(-1).messageId++,
+            sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
+            userId: 0,
+            unReadMessage: false
+        } as IChatMessage
+
+        console.log(newMessage)
+
+        // setMessage([...message, {
+        //     message: inputValue,
+        //     owner: true,
+        //     repliedMessage: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId) : "",
+        // }])
+        setInputValue("")
+        dispatch(ReplyMessageAction(null))
     }
 
     const isSameDay = (date1: string, date2: string) => {
@@ -68,6 +94,7 @@ function AppChatContainer() {
         .then(([msgByInbox, user]: [IMgsByInbox, IUser[]]) => {
             let divider = "";
             let lastSendDate = "";
+            setInbox(msgByInbox);
             const messages: IChatMessage[] | any = msgByInbox?.message?.map((i: IChatMessage) => {
                 if(i.unReadMessage) {
                     divider = "unReadMessage"
@@ -102,24 +129,10 @@ function AppChatContainer() {
                         input={{
                             value: inputValue,
                             placeholder: "Type a new message", 
-                            onChange: (e) => {
-                                setInputValue(e.target.value)
-                                setNewMessage((prev: IChatMessage) => ({
-                                ...prev, message: e.target.value,
-                            }))}
+                            onChange: handleOnChangeInput
                         }}
                         button={{
-                            onClick: (e) => {
-                                setMessage([...message, {
-                                    ...newMessage,
-                                    sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
-                                    id: 0,
-                                    owner: true,
-                                    repliedMessage: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId) : "",
-                                }])
-                                setInputValue("")
-                                dispatch(ReplyMessageAction(null))
-                            }
+                            onClick: handleOnClickButton
                         }}
                         loading={loading}
                     />

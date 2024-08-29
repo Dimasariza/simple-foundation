@@ -11,5 +11,12 @@ export const ChatInboxService = {
     getMsgByInbox(id: string | number) {
       return axios.get(endPoint + "/" + id)
       .then(({data}) => data as IMgsByInbox)
-    }
+    },
+    addMessage() {
+
+    },
+    updateMessage(data: IMgsByInbox) {
+      return axios.put(endPoint + "/" + data.id, data)
+      .then(({data}) => data as IMgsByInbox)
+    } 
 };
