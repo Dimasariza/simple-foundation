@@ -54,13 +54,14 @@ function AppChatContainer() {
 
     const handleOnClickButton = () => {
         const newMessage = {
-            id: message.at(-1).messageId + 1,
             deleted: false,
             message: inputValue,
+            id: message.at(-1).messageId + 1,
             sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
             userId: 0,
             unReadMessage: false,
             repliedMsgId: replyMessage ? message.find((m: IChatMessage) => m.id == replyMessage?.id).id : "",
+            inboxId: tab.inbox.id,
         } as IChatMessage
 
         MessageService.addMessage(newMessage)
