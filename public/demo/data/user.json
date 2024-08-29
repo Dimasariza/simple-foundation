@@ -1,28 +1,26 @@
-{
-    "data": [
-        {
-            "userId": "user000",
-            "name": "Owner"
-        },
-        {
-            "userId": "user001",
-            "name": "Cameron Phillips"
-        },
-        {
-            "userId": "user002",
-            "name": "Ellen"
-        },
-        {
-            "userId": "user003",
-            "name": "FastVisa Support"
-        },
-        {
-            "userId": "user004",
-            "name": "Mary Hilda"
-        },
-        {
-            "userId": "user005",
-            "name": "Obaidullah Amarakhil"
-        }
-    ]
-}
+[
+    {
+        "id": 0,
+        "name": "Owner"
+    },
+    {
+        "id": 1,
+        "name": "Cameron Phillips"
+    },
+    {
+        "id": 2,
+        "name": "Ellen"
+    },
+    {
+        "id": 3,
+        "name": "FastVisa Support"
+    },
+    {
+        "id": 4,
+        "name": "Mary Hilda"
+    },
+    {
+        "id": 5,
+        "name": "Obaidullah Amarakhil"
+    }
+]
