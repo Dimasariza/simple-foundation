@@ -17,6 +17,7 @@ import MessageInput from './message-input';
 import { RootState } from '@/redux/root';
 import { ReplyMessageAction } from '@/redux/action/input-message-action';
 import { IInbox } from '@/types/inbox';
+import { isSameDay } from 'date-fns/isSameDay';
 
 const InboxStyle = styled(DataScroller)`
     .p-datascroller-list > li {
@@ -70,15 +71,6 @@ function AppChatContainer() {
         })
         setInputValue("")
         dispatch(ReplyMessageAction(null))
-    }
-
-    const isSameDay = (date1: string, date2: string) => {
-        const d1 = new Date(date1);
-        const d2 = new Date(date2);
-    
-        return d1.getFullYear() === d2.getFullYear() &&
-               d1.getMonth() === d2.getMonth() &&
-               d1.getDate() === d2.getDate();
     }
 
     useEffect(() => {

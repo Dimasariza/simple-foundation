@@ -26,7 +26,6 @@ const StyledPanel = styled(Panel)`
 `;
 
 function TaskListBody ({data, setSubmit}: ITaskItemProps) {
-    console.log(data)
     const [edit, setEdit] = useState<IEditTaskItem>({
         taskTitle: false,
         taskDescription: false
