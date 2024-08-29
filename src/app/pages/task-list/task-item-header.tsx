@@ -9,7 +9,7 @@ import AppInput from "@/component/input/input";
 import moment from "moment";
 import Image from "next/image";
 import { TaskListService } from "@/service/TaskListService";
-import { differenceInDays } from "date-fns";
+import { differenceInDays, isAfter, isBefore, isSameDay } from "date-fns";
 const url = process.env.PUBLIC_URL || "";
 
 function TaskItemHeader({options, data, collapsed, setCollapsed, setSubmit} : ITaskItemProps) {
@@ -44,17 +44,18 @@ function TaskItemHeader({options, data, collapsed, setCollapsed, setSubmit} : IT
     const getDateStatus = (date: string) => {
         const currentDateObj: Date = new Date();
         const setDateObj: Date = new Date(date);
-        const diff = differenceInDays(setDateObj, currentDateObj)
+        const diff: number = differenceInDays(setDateObj, currentDateObj)
         
-        if(diff == 0) {
+        if(isSameDay(setDateObj, currentDateObj)) {
             return { day: "Today", diff }
-        } else if(diff > 0) {
+        } else if(isAfter(setDateObj, currentDateObj)) {
             return { day: "Days Left", diff }
-        } else if(diff < 0) {
-            return { day: "Days Over", diff: Math.abs(diff) }
+        } else if(isBefore(setDateObj, currentDateObj)) {
+            return { day: "Days Over", diff: diff ? Math.abs(diff) : 1 }
         }
+
     }
-    
+
     const { day, diff }: any = getDateStatus(value?.setDate) || {};
     return (
         <div className={`${options?.className} border-none bg-transparent items-center ml-2 mr-6 mt-[5px]`}>
