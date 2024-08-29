@@ -38,7 +38,7 @@ function AppTaskList() {
 
     const handleAddNewTask = () => {
         const newTaskList = {
-            id: Number(taskListData.at(0)?.id) + 1,
+            id: Number(taskListData.at(-1)?.id) + 1,
             completed: false,
             taskTitle: "",
             setDate: "",
@@ -88,7 +88,7 @@ function AppTaskList() {
         
     const listTemplate: any = (items: ITaskList[]) => {
         return (
-            <div className="overflow-auto h-[660px]">
+            <div className="overflow-auto h-[660px] flex flex-col-reverse justify-end">
                 {
                     items?.map((i, key) => <TaskListBody key={`${key} ${i?.title}`} data={i} setSubmit={setSubmit}/>) 
                 }
@@ -99,7 +99,7 @@ function AppTaskList() {
     useEffect(() => {
         TaskListService.getTaskList()
         .then((res: ITaskList[]) => {
-            setTaskListData(res.reverse())
+            setTaskListData(res)
         })
     }, [submit])
 

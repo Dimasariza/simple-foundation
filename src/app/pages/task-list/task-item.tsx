@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IEditTaskItem, ITaskItemProps, ITaskList } from "@/types/task-list";
 import { Panel } from "primereact/panel";
 import { Menu } from "primereact/menu";
@@ -26,6 +26,7 @@ const StyledPanel = styled(Panel)`
 `;
 
 function TaskListBody ({data, setSubmit}: ITaskItemProps) {
+    console.log(data)
     const [edit, setEdit] = useState<IEditTaskItem>({
         taskTitle: false,
         taskDescription: false
