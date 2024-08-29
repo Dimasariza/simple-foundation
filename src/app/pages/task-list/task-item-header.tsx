@@ -9,6 +9,7 @@ import AppInput from "@/component/input/input";
 import moment from "moment";
 import Image from "next/image";
 import { TaskListService } from "@/service/TaskListService";
+import { differenceInDays } from "date-fns";
 const url = process.env.PUBLIC_URL || "";
 
 function TaskItemHeader({options, data, collapsed, setCollapsed, setSubmit} : ITaskItemProps) {
@@ -43,15 +44,14 @@ function TaskItemHeader({options, data, collapsed, setCollapsed, setSubmit} : IT
     const getDateStatus = (date: string) => {
         const currentDateObj: Date = new Date();
         const setDateObj: Date = new Date(date);
-        const differenceInMilliseconds = setDateObj.getTime() - currentDateObj.getTime();
-        const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
-
-        if(Math.sign(differenceInDays) < 0 && Math.abs(differenceInDays) < 1) {
-            return { day: "Today", diff: 0 }
-        } else if (Math.sign(differenceInDays) > 0 && differenceInDays > 0) {
-            return { day: "Days Left", diff: Math.ceil(Math.abs(differenceInDays)) } 
-        } else if(Math.sign(differenceInDays) < 0 && differenceInDays < 1) {
-            return { day: "Days Over", diff: Math.floor(Math.abs(differenceInDays)) }
+        const diff = differenceInDays(setDateObj, currentDateObj)
+        
+        if(diff == 0) {
+            return { day: "Today", diff }
+        } else if(diff > 0) {
+            return { day: "Days Left", diff }
+        } else if(diff < 0) {
+            return { day: "Days Over", diff: Math.abs(diff) }
         }
     }
     

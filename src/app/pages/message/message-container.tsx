@@ -16,8 +16,7 @@ import MessageHeader from './message-header';
 import MessageInput from './message-input';
 import { RootState } from '@/redux/root';
 import { ReplyMessageAction } from '@/redux/action/input-message-action';
-import { IInbox } from '@/types/inbox';
-import { isSameDay } from 'date-fns/isSameDay';
+import { isSameDay } from 'date-fns';
 
 const InboxStyle = styled(DataScroller)`
     .p-datascroller-list > li {
