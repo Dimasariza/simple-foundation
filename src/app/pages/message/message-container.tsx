@@ -30,7 +30,6 @@ const InboxStyle = styled(DataScroller)`
 
 function AppChatContainer() {
     const [message, setMessage] = useState<IChatMessage[]>([]);
-    const [allMessages, setAllMessages] = useState<IChatMessage[]>();
     const [loading, setLoading] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>("");
     const [submit, setSubmit] = useState<boolean>(false);
@@ -57,7 +56,6 @@ function AppChatContainer() {
         const newMessage = {
             deleted: false,
             message: inputValue,
-            id: allMessages ? Number(allMessages!.at(-1)?.id) + 1 : 1,
             sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
             userId: 0,
             unReadMessage: false,
@@ -79,11 +77,10 @@ function AppChatContainer() {
         }, 2000);
 
         Promise.all([
-            MessageService.getMessages(),
             MessageService.getMsgByInbox(tab?.inbox?.id),
             UserService.getUsers()
         ])
-        .then(([allMessages, msgByInbox, user]: [IChatMessage[], IChatMessage[], IUser[]]) => {
+        .then(([msgByInbox, user]: [IChatMessage[], IUser[]]) => {
             let divider = "";
             let lastSendDate = "";
             const messages: IChatMessage[] | any = msgByInbox?.map((i: IChatMessage) => {
@@ -103,7 +100,6 @@ function AppChatContainer() {
                     divider
                 }
             })
-            setAllMessages(allMessages)
             setMessage(messages)
         })
     }, [submit]); // eslint-disable-line react-hooks/exhaustive-deps
