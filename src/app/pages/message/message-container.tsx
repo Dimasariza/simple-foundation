@@ -4,10 +4,10 @@ import { DataScroller } from 'primereact/datascroller';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { QuickTabsAction } from '@/redux/action/quick-tab-action';
-import { ChatInboxService } from '@/service/MessageService';
+import { MessageService } from '@/service/MessageService';
 import { UserService } from '@/service/UserService';
 import { IUser } from '@/types/user';
-import { IChatMessage, IMgsByInbox } from '@/types/message';
+import { IChatMessage, IMsgByInbox } from '@/types/message';
 import styled from 'styled-components';
 import AppCard from '@/component/card/card';
 import moment from 'moment';
@@ -30,9 +30,10 @@ const InboxStyle = styled(DataScroller)`
 
 function AppChatContainer() {
     const [message, setMessage] = useState<IChatMessage | any>([]);
-    const [inbox, setInbox] = useState<IMgsByInbox>();
+    const [inbox, setInbox] = useState<IMsgByInbox>();
     const [loading, setLoading] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>("");
+    const [submit, setSubmit] = useState<boolean>(false);
     const dispatch = useDispatch();
     const { tab } = useSelector((state: RootState) => state.QuickTabsReducer);
     const replyMessage: IChatMessage = useSelector((state: RootState) => state.ReplyMessageReducer);
@@ -56,19 +57,17 @@ function AppChatContainer() {
         const newMessage = {
             deleted: false,
             message: inputValue,
-            messageId: message.at(-1).messageId++,
+            messageId: message.at(-1).messageId + 1,
             sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
             userId: 0,
-            unReadMessage: false
+            unReadMessage: false,
+            repliedMsgId: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId).messageId : "",
         } as IChatMessage
 
-        console.log(newMessage)
-
-        // setMessage([...message, {
-        //     message: inputValue,
-        //     owner: true,
-        //     repliedMessage: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId) : "",
-        // }])
+        MessageService.updateMessage({...inbox, message: [...message, newMessage]} as IMsgByInbox)
+        .then(res => {
+            setSubmit((prev) => !prev)
+        })
         setInputValue("")
         dispatch(ReplyMessageAction(null))
     }
@@ -88,10 +87,10 @@ function AppChatContainer() {
         }, 2000);
 
         Promise.all([
-            ChatInboxService.getMsgByInbox(tab?.inbox?.id),
+            MessageService.getMsgByInbox(tab?.inbox?.id),
             UserService.getUsers()
         ])
-        .then(([msgByInbox, user]: [IMgsByInbox, IUser[]]) => {
+        .then(([msgByInbox, user]: [IMsgByInbox, IUser[]]) => {
             let divider = "";
             let lastSendDate = "";
             setInbox(msgByInbox);
@@ -114,7 +113,7 @@ function AppChatContainer() {
             })
             setMessage(messages)
         })
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [submit]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <AppCard className="w-chat-width h-chat-height overflow-hidden">

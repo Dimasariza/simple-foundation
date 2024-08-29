@@ -13,7 +13,7 @@ export interface IChatMessage {
     repliedMessage: IChatMessage;
 }
 
-export interface IMgsByInbox {
+export interface IMsgByInbox {
     id: string | any
     message: IChatMessage[]
 }

@@ -6,8 +6,8 @@ import { useDispatch } from "react-redux";
 import { QuickTabsAction } from "@/redux/action/quick-tab-action";
 import { IInbox } from "@/types/inbox";
 import { InboxService } from "@/service/InboxService";
-import { ChatInboxService } from "@/service/MessageService";
-import { IChatMessage, IMgsByInbox } from "@/types/message";
+import { MessageService } from "@/service/MessageService";
+import { IChatMessage, IMsgByInbox } from "@/types/message";
 import { UserService } from "@/service/UserService";
 import { IUser } from "@/types/user";
 import AppAvatarGroup from "@/component/avatar/avatar-group";
@@ -108,9 +108,9 @@ function AppInbox() {
         Promise.all([
             InboxService.getInbox(),
             UserService.getUsers(),
-            ChatInboxService.getMessages(),
+            MessageService.getMessages(),
         ])
-        .then(([inbox, user, messages]: [IInbox[], IUser[], IMgsByInbox[]]) => {
+        .then(([inbox, user, messages]: [IInbox[], IUser[], IMsgByInbox[]]) => {
             const inboxData = inbox.map((i) => { 
                 let { message } = messages?.find((m) => m.id == i.messageId) || {}
                 message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.id == item.userId) }))
