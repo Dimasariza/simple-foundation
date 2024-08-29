@@ -5,7 +5,13 @@
         "src": "server.js",
         "use": "@vercel/node",
         "config": {
-          "includeFiles": ["./public/demo/data/db.json"]
+          "includeFiles": [
+            "./public/demo/data/db.json",
+            "./public/demo/data/inbox.json",
+            "./public/demo/data/message.json",
+            "./public/demo/data/task-list.json",
+            "./public/demo/data/user.json"
+          ]
         }
       }
     ],

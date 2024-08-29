@@ -9,6 +9,6 @@ const user = JSON.parse(fs.readFileSync(path.join(__dirname, './public/demo/data
 module.exports = {
     message,
     inbox,
-    taskList,
+    "task-list": taskList,
     user       
 }
