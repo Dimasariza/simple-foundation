@@ -1,7 +1,6 @@
 export interface IChatMessage {
     deleted: boolean;
     message: string | any;
-    messageId: string | number;
     inboxId: string | number;
     sendDate: string;
     user: IUser;
@@ -11,6 +10,7 @@ export interface IChatMessage {
     divider: string;
     repliedMsgId: string | number;
     repliedMessage: IChatMessage;
+    id: string | number;
 }
 
 export interface IMsgByInbox {

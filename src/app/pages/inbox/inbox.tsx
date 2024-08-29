@@ -110,15 +110,16 @@ function AppInbox() {
             UserService.getUsers(),
             MessageService.getMessages(),
         ])
-        .then(([inbox, user, messages]: [IInbox[], IUser[], IMsgByInbox[]]) => {
+        .then(([inbox, user, messages]: [IInbox[], IUser[], IChatMessage[]]) => {
             const inboxData = inbox.map((i) => { 
-                let { message } = messages?.find((m) => m.id == i.messageId) || {}
-                message = message?.map((item: IChatMessage) => ({...item, user: user?.find((u: IUser) => u.id == item.userId) }))
+                let message = messages
+                .map((m) => ({...m, user: user?.find((u: IUser) => u.id == m.userId) }))
+                .filter((m) => m.inboxId == i.id)
                 
                 return {
                     ...i,
                     message,
-                    lastMessage: message?.[message?.length - 1]
+                    lastMessage: message?.at(-1)
                 }
             })
             setInbox(inboxData)

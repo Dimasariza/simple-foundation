@@ -30,7 +30,6 @@ const InboxStyle = styled(DataScroller)`
 
 function AppChatContainer() {
     const [message, setMessage] = useState<IChatMessage | any>([]);
-    const [inbox, setInbox] = useState<IMsgByInbox>();
     const [loading, setLoading] = useState<boolean>(true);
     const [inputValue, setInputValue] = useState<string>("");
     const [submit, setSubmit] = useState<boolean>(false);
@@ -55,16 +54,16 @@ function AppChatContainer() {
 
     const handleOnClickButton = () => {
         const newMessage = {
+            id: message.at(-1).messageId + 1,
             deleted: false,
             message: inputValue,
-            messageId: message.at(-1).messageId + 1,
             sendDate: moment(new Date()).format("YYYY-MM-DD HH:MM"),
             userId: 0,
             unReadMessage: false,
-            repliedMsgId: replyMessage ? message.find((m: IChatMessage) => m.messageId == replyMessage?.messageId).messageId : "",
+            repliedMsgId: replyMessage ? message.find((m: IChatMessage) => m.id == replyMessage?.id).id : "",
         } as IChatMessage
 
-        MessageService.updateMessage({...inbox, message: [...message, newMessage]} as IMsgByInbox)
+        MessageService.addMessage(newMessage)
         .then(res => {  
             setSubmit((prev) => !prev)
         })
@@ -81,11 +80,10 @@ function AppChatContainer() {
             MessageService.getMsgByInbox(tab?.inbox?.id),
             UserService.getUsers()
         ])
-        .then(([msgByInbox, user]: [IMsgByInbox, IUser[]]) => {
+        .then(([msgByInbox, user]: [IChatMessage[], IUser[]]) => {
             let divider = "";
             let lastSendDate = "";
-            setInbox(msgByInbox);
-            const messages: IChatMessage[] | any = msgByInbox?.message?.map((i: IChatMessage) => {
+            const messages: IChatMessage[] | any = msgByInbox?.map((i: IChatMessage) => {
                 if(i.unReadMessage) {
                     divider = "unReadMessage"
                 } else if(!isSameDay(lastSendDate, i.sendDate)) {
@@ -98,7 +96,7 @@ function AppChatContainer() {
                     ...i,
                     user: user.find((u: IUser) => u.id == i.userId),
                     owner: i.userId == 0,
-                    repliedMessage: msgByInbox.message.find((m: IChatMessage) => m.messageId == i.repliedMsgId),
+                    repliedMessage: msgByInbox.find((m: IChatMessage) => m.id == i.repliedMsgId),
                     divider
                 }
             })
