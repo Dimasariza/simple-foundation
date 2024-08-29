@@ -49,7 +49,7 @@ function MessageInput({input, button, loading}: {input?: InputTextProps, button?
                 </div>
             }
             <div className="flex gap-[13px] px-[20px] pb-[20px]">
-                <AppInput {...input} className={classNames("w-full",{
+                <AppInput {...input} autoFocus className={classNames("w-full",{
                     "rounded-border-rad rounded-t-0": replyMessage,
                 })}/>
                 <Button label="Send" {...button} className="bg-primary-blue h-[40px] font-lato"/>

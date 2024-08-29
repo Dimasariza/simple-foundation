@@ -12,6 +12,10 @@ export const TaskListService = {
       return axios.get(endPoint + "/" + id)
       .then(({data}) => data as ITaskList)
     },
+    addTaskList(data: ITaskList) {
+      return axios.post(endPoint, data)
+      .then(({data}) => data as ITaskList[])
+    },
     updateTaskList(newData: ITaskList) {
       return axios.put(endPoint + "/" + newData.id, newData)
       .then(({data}) => data as ITaskList)

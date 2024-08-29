@@ -65,7 +65,7 @@ function AppChatContainer() {
         } as IChatMessage
 
         MessageService.updateMessage({...inbox, message: [...message, newMessage]} as IMsgByInbox)
-        .then(res => {
+        .then(res => {  
             setSubmit((prev) => !prev)
         })
         setInputValue("")

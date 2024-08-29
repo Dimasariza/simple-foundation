@@ -37,8 +37,18 @@ function AppTaskList() {
     ];
 
     const handleAddNewTask = () => {
-        const newData: ITaskList[] = [{} as ITaskList, ...taskListData!]
-        setTaskListData(newData)
+        const newTaskList = {
+            id: Number(taskListData.at(-1)?.id) + 1,
+            completed: false,
+            taskTitle: "",
+            setDate: "",
+            chips: [],
+            description: ""
+        }
+        TaskListService.addTaskList(newTaskList)
+        .then(res => {
+            setSubmit((prev) => !prev)
+        })
     }
 
     const cardHeaderTemplate = (
@@ -89,7 +99,7 @@ function AppTaskList() {
     useEffect(() => {
         TaskListService.getTaskList()
         .then((res: ITaskList[]) => {
-            setTaskListData(res)
+            setTaskListData(res.reverse())
         })
     }, [submit])
 
