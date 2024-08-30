@@ -88,10 +88,12 @@ function AppTaskList() {
         
     const listTemplate: any = (items: ITaskList[]) => {
         return (
-            <div className="overflow-auto h-[660px] flex flex-col-reverse justify-end">
-                {
-                    items?.map((i, key) => <TaskListBody key={`${key} ${i?.title}`} data={i} setSubmit={setSubmit}/>) 
-                }
+            <div className="overflow-auto h-[660px]">
+                <div className="flex flex-col-reverse justify-end">
+                    {
+                        items?.map((i, key) => <TaskListBody key={`${key} ${i?.title}`} data={i} setSubmit={setSubmit}/>) 
+                    }
+                </div>
             </div>
         )
     };
