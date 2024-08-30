@@ -12,6 +12,7 @@ import moment from "moment";
 import Image from "next/image";
 import { ReplyMessageAction } from "@/redux/action/input-message-action";
 import { RootState } from "@/redux/root";
+import { isSameDay } from "date-fns";
 const url = process.env.PUBLIC_URL || ""
 
 function MessageBody ({data}: {data: IChatMessage}) {
@@ -41,6 +42,9 @@ function MessageBody ({data}: {data: IChatMessage}) {
             {
                 label: 'Edit',
                 color: "text-primary-blue",
+                command: () => {
+                    
+                }
             },
             {
                 label: 'Delete',
@@ -75,7 +79,7 @@ function MessageBody ({data}: {data: IChatMessage}) {
                         {
                             unReadMessage 
                             ? "New Message"
-                            : `${moment(new Date(sendDate)).isSame(new Date, 'day') ? "Today" : ""} ${moment(new Date(sendDate)).format("MMM DD,   yyyy")}`
+                            : `${isSameDay(new Date(), new Date(sendDate)) ? "Today" : ""} ${moment(new Date(sendDate)).format("MMM DD,   yyyy")}`
                         }
                     </span>
                 </Divider>
